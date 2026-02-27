@@ -1,0 +1,16 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  client-ci:
+    name: Client CI
+    uses: ./.github/workflows/client-ci.yml
+
+  server-ci:
+    name: Server CI
+    uses: ./.github/workflows/server-ci.yml

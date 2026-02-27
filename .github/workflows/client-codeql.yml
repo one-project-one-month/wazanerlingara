@@ -1,0 +1,61 @@
+name: Client CodeQL Analysis
+
+on:
+  push:
+    branches: [ main, master, develop ]
+    paths:
+      - 'client/**'
+      - '.github/workflows/client-codeql.yml'
+  pull_request:
+    branches: [ main, master, develop ]
+    paths:
+      - 'client/**'
+      - '.github/workflows/client-codeql.yml'
+  schedule:
+    - cron: '0 0 * * 0' # Weekly on Sunday
+
+jobs:
+  analyze:
+    name: Analyze Client
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'javascript' ]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          queries: +security-and-quality
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'yarn'
+          cache-dependency-path: client/yarn.lock
+
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Install dependencies
+        working-directory: ./client
+        run: yarn install --frozen-lockfile
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+        with:
+          working-directory: ./client
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
