@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+  <span class="logo">CMS</span>
+  <span class="spacer"></span>
+  <button mat-button routerLink="/articles" *ngIf="isLoggedIn()">
+    <mat-icon>article</mat-icon>
+    Articles
+  </button>
+  <button mat-button routerLink="/profile" *ngIf="isLoggedIn()">
+    <mat-icon>person</mat-icon>
+    Profile
+  </button>
+  <button mat-button routerLink="/auth/login" *ngIf="!isLoggedIn()">
+    <mat-icon>login</mat-icon>
+    Login
+  </button>
+  <button mat-button routerLink="/auth/register" *ngIf="!isLoggedIn()">
+    <mat-icon>person_add</mat-icon>
+    Register
+  </button>
+  <button mat-button *ngIf="isLoggedIn()" (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    Logout
+  </button>
+</mat-toolbar>

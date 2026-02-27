@@ -1,0 +1,28 @@
+<div class="article-detail-container" *ngIf="article">
+  <mat-card class="article-detail-card">
+    <mat-card-header>
+      <div class="article-header-content">
+        <mat-card-title>{{ article.title }}</mat-card-title>
+        <button mat-raised-button color="primary" [routerLink]="['/articles', article.id, 'edit']">
+          <mat-icon>edit</mat-icon>
+          Edit
+        </button>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngIf="article.coverImage" class="article-detail-image-container">
+        <img [src]="article.coverImage" [alt]="article.title" class="article-detail-image" />
+      </div>
+      <div class="article-content" [innerHTML]="article.content"></div>
+    </mat-card-content>
+    <mat-card-footer>
+      <div class="article-footer">
+        <span class="date">{{ article.createdAt | date }}</span>
+        <div *ngIf="article.tags" class="tags">
+          <mat-chip *ngFor="let tag of article.tags">{{ tag }}</mat-chip>
+        </div>
+      </div>
+    </mat-card-footer>
+  </mat-card>
+</div>
+

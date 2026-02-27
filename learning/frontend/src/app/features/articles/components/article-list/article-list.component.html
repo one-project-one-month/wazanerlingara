@@ -1,0 +1,40 @@
+<div class="article-list-container">
+  <div class="header-section">
+    <h1>Articles</h1>
+    <button mat-raised-button color="primary" routerLink="/articles/create">
+      <mat-icon>add</mat-icon>
+      Create Article
+    </button>
+  </div>
+  <div class="articles-grid">
+    <mat-card *ngFor="let article of articles" class="article-card">
+      <div class="article-card-content">
+        <div class="article-image-container" *ngIf="article.coverImage">
+          <img [src]="article.coverImage" [alt]="article.title" class="article-image" />
+        </div>
+        <div class="article-image-placeholder" *ngIf="!article.coverImage">
+          <mat-icon>image</mat-icon>
+        </div>
+        <div class="article-info">
+          <mat-card-header>
+            <mat-card-title>
+              <a [routerLink]="['/articles', article.id]">{{ article.title }}</a>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ article.excerpt || article.content.substring(0, 150) }}...</p>
+          </mat-card-content>
+          <mat-card-footer>
+            <div class="article-meta">
+              <span class="date">{{ article.createdAt | date }}</span>
+              <div *ngIf="article.tags" class="tags">
+                <mat-chip *ngFor="let tag of article.tags">{{ tag }}</mat-chip>
+              </div>
+            </div>
+          </mat-card-footer>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>
+
