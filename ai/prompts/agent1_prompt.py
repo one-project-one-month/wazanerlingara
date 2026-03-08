@@ -1,0 +1,63 @@
+from langchain.agents.middleware import dynamic_prompt, ModelRequest
+from langchain_core.messages import AIMessage
+
+@dynamic_prompt
+def round_agent1_prompt(request: ModelRequest) -> str:
+    round_c = request.runtime.context.get("count_round", "round_c")
+    content = request.messages[0].content
+
+    words = [
+        msg.content
+        for msg in request.messages
+        if isinstance(msg, AIMessage)
+    ]
+    
+    agent2_words = [
+        msg.content for msg in request.messages
+        if isinstance(msg, AIMessage) and getattr(msg, "name", None) == "agent_2"
+    ]
+    
+
+    agent3_words = [
+        msg.content for msg in request.messages
+        if isinstance(msg, AIMessage) and getattr(msg, "name", None) == "agent_3_as_imposter"
+    ]
+
+    words = ", ".join(words) if words else "None yet"
+    
+    if round_c == "round_1":
+        return f"""You are a player in an Imposter social deduction game.
+                    Players' words so far: {words}
+                    Your secret keyword is {content}: 
+
+                    Rules:
+                    - Answer in ONE word only.
+                    - Directly describe what it is or how it is used.
+                    - Do NOT repeat previous words from other players.
+                    - Be subtle. Do not make it too obvious.
+                    """
+
+    elif round_c in ["round_2", "round_3"]:
+        return f"""
+                Players' words so far: {words}
+                Your keyword: {content}
+                Think carefully:
+                - Then give ONE new word.
+                - Do NOT repeat any previous word.
+                """
+
+    elif round_c in ['guess_imposter']:
+        return f"""
+            Player_2's responses:
+            {agent2_words}
+
+            Player_3's responses:
+            {agent3_words}
+
+            Based on these responses:
+            - Guess who is the imposter (Player_2 or Player_3).
+            - Return only the player name.
+            """
+    else:
+        pass 
+    return round_c
