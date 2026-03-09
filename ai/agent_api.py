@@ -30,7 +30,7 @@ async def play_with_ai_agent(request: PlayRequest):
     context={"count_round": request.count_round},
     config={"configurable": {"thread_id": "share_thread"}})
         return {
-            "agent_1": agent1_result,            
+            "agent_1": agent1_result['messages'][-1].content            
         }
 
     except Exception as e:
@@ -43,7 +43,7 @@ async def play_with_ai_agent(request: PlayRequest):
     context={"count_round": request.count_round},
     config={"configurable": {"thread_id": "share_thread"}})        
         return {
-            "agent_2": agent2_result 
+            "agent_2": agent2_result['messages'][-1].content
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -55,7 +55,7 @@ async def imposter_ai(request: ImposterRequest):
     context={"count_round": request.count_round},
     config={"configurable": {"thread_id": "share_thread"}})    
         return {
-            "agent_3": agent3_result 
+            "agent_3": agent3_result['messages'][-1].content
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -69,6 +69,6 @@ async def human_player_ai(request: HumanRequest):
             {"messages": [HumanMessage(content=request.content, name="agent_4")]},
         )
 
-        return {"human_player": human_player} 
+        return {"human_player": request.content} 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

@@ -63,6 +63,6 @@ def round_agent2_prompt(request: ModelRequest) -> str:
             {agent4_words}
 
             Based on these responses:
-            - Guess who is the imposter (Player_2 or Player_3 or Player_4).
+            - Guess who is the imposter (Player_1 or Player_3 or Player_4).
             - Return only the player name.
             """
