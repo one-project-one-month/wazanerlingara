@@ -5,17 +5,18 @@ from langgraph.checkpoint.postgres import PostgresSaver
 import sys
 import os
 from models.groq_llm import get_model
-from prompts.imposter_prompt import round_imposter_agent_prompt
+from prompts.agent1_prompt import round_agent1_prompt
 from config.database import DB_URI
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+from langchain_core.messages import HumanMessage
 
 class Context(TypedDict):
     user_role: str
 
 
-def create_imposter_agent():
+def create_player_agent():
     model = get_model()
 
     conn = psycopg.connect(DB_URI, autocommit=True)
@@ -24,9 +25,8 @@ def create_imposter_agent():
 
     agent = create_agent(
         model=model,
-        middleware=[round_imposter_agent_prompt],
         context_schema=Context,
-        name="agent_3",
+        name="agent_4",
         checkpointer=checkpointer,
     )
 

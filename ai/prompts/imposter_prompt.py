@@ -1,10 +1,9 @@
 from langchain.agents.middleware import dynamic_prompt, ModelRequest
-from langchain_core.messages import AIMessage
+from langchain_core.messages import AIMessage,HumanMessage
 
 @dynamic_prompt
 def round_imposter_agent_prompt(request: ModelRequest) -> str:
     round_c = request.runtime.context.get("count_round", "round_c")
-    content = request.messages[0].content
     
     words = [
         msg.content
@@ -20,6 +19,11 @@ def round_imposter_agent_prompt(request: ModelRequest) -> str:
     agent2_words = [
         msg.content for msg in request.messages
         if isinstance(msg, AIMessage) and getattr(msg, "name", None) == "agent_2"
+    ]
+
+    agent4_words = [
+        msg.content for msg in request.messages
+        if isinstance(msg, HumanMessage) and getattr(msg, "name", None) == "agent_4"
     ]
 
     words = ", ".join(words) if words else "None yet"
@@ -67,11 +71,10 @@ def round_imposter_agent_prompt(request: ModelRequest) -> str:
             Player_2's responses:
             {agent2_words}
 
+            Player_4's responses:
+            {agent4_words}
 
             Based on these responses:
-            - Guess who is the imposter (Player_1 or Player_2).
+            - Guess who is the imposter (Player_1 or Player_3 or Player_4).
             - Return only the player name.
             """
-    else:
-        pass 
-    return round_c

@@ -1,3 +1,5 @@
 # AI Component
 
-This directory contains the AI-related logic and components for the Wazanerlingara project.
+##### Play with AI 
+
+Multi-Agent Interaction with shared memory 
