@@ -23,6 +23,22 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
+@app.get("/health")
+async def health_check():
+    expected_agents = ["agent_1", "agent_2", "agent_3", "player"]
+    missing = [a for a in expected_agents if a not in agents]
+    
+    if missing:
+        raise HTTPException(
+            status_code=503,
+            detail={"status": "unhealthy", "missing_agents": missing}
+        )
+    
+    return {
+        "status": "healthy",
+        "agents_loaded": list(agents.keys())
+    }
+
 @app.post("/agent_1")
 async def play_with_ai_agent(request: PlayRequest):
     try:
