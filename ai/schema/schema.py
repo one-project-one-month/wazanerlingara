@@ -21,3 +21,6 @@ class ImposterRequest(BaseModel):
 
 class HumanRequest(BaseModel):
     content: str 
+
+class DeleteThread(BaseModel):
+    thread_id: str

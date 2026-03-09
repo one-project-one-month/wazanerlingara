@@ -7,8 +7,8 @@ from agents.agent_1 import create_agent1
 from agents.agent_2 import create_agent2
 from agents.imposter_agent import create_imposter_agent
 from agents.player_agent import create_player_agent
-from schema.schema import PlayRequest, ImposterRequest, HumanRequest
-
+from schema.schema import PlayRequest, ImposterRequest, HumanRequest, DeleteThread
+from config.database import delete_thread, history_thread
 
 agents = {}
 
@@ -88,3 +88,13 @@ async def human_player_ai(request: HumanRequest):
         return {"human_player": request.content} 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/clear_db")
+def ckpt_delete_thread():
+    del_thread = delete_thread("share_thread")
+    return del_thread
+
+@app.get("/history_thread")
+def check_history():
+    check_thread = history_thread("share_thread")
+    return check_thread
