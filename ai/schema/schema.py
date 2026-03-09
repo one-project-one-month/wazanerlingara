@@ -10,3 +10,14 @@ class RevealWord(BaseModel):
     """
 
     revealWordResponse: str
+
+class PlayRequest(BaseModel):
+    content: str
+    count_round: str
+
+class ImposterRequest(BaseModel):
+    content: str 
+    count_round: str
+
+class HumanRequest(BaseModel):
+    content: str 

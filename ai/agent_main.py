@@ -24,15 +24,13 @@ imposter_agent = create_imposter_agent()
 
 imposter_agent_result = imposter_agent.invoke(
     {"messages": [{"role": "user", "content": "you are imposter"}]},
-    context={"count_round": "round_1"},
+   context={"count_round": "round_1"},
     config={"configurable": {"thread_id": "share_thread"}}
 )
 
 create_player_agent1 = create_player_agent()
 
-config1 = {"configurable": {"thread_id": "share_thread"}}
-
 create_player_agent1_result = create_player_agent1.update_state(
-    config1,
+    {"configurable": {"thread_id": "share_thread"}},
     {"messages": [HumanMessage(content="morning", name="agent_4")]}
 )

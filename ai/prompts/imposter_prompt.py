@@ -56,7 +56,7 @@ def round_imposter_agent_prompt(request: ModelRequest) -> str:
         - Instead, give a natural clue related to the word so you blend in with the other players.
         - Your clue should be vague enough to avoid suspicion.
         - Do NOT repeat any previous words.
-        - Respond with ONE word only.
+        - Respond with ONE word only dont explain.
 
         Strategy:
         - If you are unsure about the word, give a broad or safe word that could relate to many possibilities.
@@ -75,6 +75,6 @@ def round_imposter_agent_prompt(request: ModelRequest) -> str:
             {agent4_words}
 
             Based on these responses:
-            - Guess who is the imposter (Player_1 or Player_3 or Player_4).
+            - Guess who is the imposter (Player_1 or Player_2 or Player_4).
             - Return only the player name.
             """
