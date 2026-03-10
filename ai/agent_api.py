@@ -2,6 +2,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from langchain_core.messages import HumanMessage
+from fastapi.responses import JSONResponse
 
 from agents.agent_1 import create_agent1
 from agents.agent_2 import create_agent2
@@ -97,4 +98,16 @@ def ckpt_delete_thread():
 @app.get("/history_thread")
 def check_history():
     check_thread = history_thread("share_thread")
-    return check_thread
+    return JSONResponse(content=check_thread)
+
+@app.get("/imposter_guess")
+def imposter_guesses():
+    check_thread = history_thread("share_thread")
+    agent_1 = check_thread["agent_1"][-1]
+    agent_2 = check_thread['agent_2'][-1]
+    agent_3 = check_thread['agent_3'][-1]
+    agent_4 = check_thread['agent_4'][-1]
+    imp_list = [agent_1, agent_2, agent_3, agent_4]
+    counts = {p: imp_list.count(p) for p in set(imp_list)}
+    major_vote = max(counts, key=counts.get)
+    return major_vote
