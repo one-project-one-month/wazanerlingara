@@ -40,6 +40,7 @@ def round_agent1_prompt(request: ModelRequest) -> str:
                     - Directly describe what it is or how it is used.
                     - Do NOT repeat previous words from other players.
                     - Be subtle. Do not make it too obvious.
+                    - In Burmese Language
                     """
 
     elif round_c in ["round_2", "round_3"]:
@@ -49,6 +50,7 @@ def round_agent1_prompt(request: ModelRequest) -> str:
                 Think carefully:
                 - Then give ONE new word.
                 - Do NOT repeat any previous word.
+                - In Burmese Language 
                 """
 
     elif round_c in ['guess_imposter']:

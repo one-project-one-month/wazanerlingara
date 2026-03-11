@@ -41,6 +41,7 @@ def round_imposter_agent_prompt(request: ModelRequest) -> str:
             - Do NOT repeat previous words.
             - Blend in naturally.
             - Try to guess what the keyword might be.
+            - In Burmese Language
             """
 
     elif round_c in ["round_2", "round_3"]:
@@ -57,7 +58,7 @@ def round_imposter_agent_prompt(request: ModelRequest) -> str:
         - Your clue should be vague enough to avoid suspicion.
         - Do NOT repeat any previous words.
         - Respond with ONE word only dont explain.
-
+        - In Burmese Language
         Strategy:
         - If you are unsure about the word, give a broad or safe word that could relate to many possibilities.
         - If you think you know the word, give a subtle related clue instead of revealing it.
