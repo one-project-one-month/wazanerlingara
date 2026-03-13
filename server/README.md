@@ -31,6 +31,47 @@
 $ yarn install
 ```
 
+## Database migrations
+
+This project uses [Prisma](https://www.prisma.io/) as the ORM. Ensure `DATABASE_URL` is set in `.env` before running migration commands.
+
+### Where database models live
+
+| Purpose | Location |
+|--------|----------|
+| **Schema (tables, columns, relations)** | `prisma/schema.prisma` — single source of truth; edit here and run `prisma migrate dev` to apply changes. |
+| **Access in code (client + types)** | `src/database/` — `PrismaService` (injectable client), `DatabaseModule` (global), and re-exports of Prisma types (`User`, `Profile`, etc.) from `src/database/index.ts`. |
+
+Use `PrismaService` in any service by injecting it; import types from `@prisma/client` or from `src/database`.
+
+### Apply migrations
+
+Apply pending migrations and update the database schema (creates new migration when `schema.prisma` has changed):
+
+```bash
+$ npx prisma migrate dev
+```
+
+To name a new migration (e.g. when creating the initial migration):
+
+```bash
+$ npx prisma migrate dev --name init
+```
+
+### Reset the database
+
+**Warning:** This drops the database, recreates it, and reapplies all migrations. **All data will be permanently lost.** Use only on development databases, never on production.
+
+```bash
+$ npx prisma migrate reset
+```
+
+To skip the confirmation prompt (e.g. in scripts):
+
+```bash
+$ npx prisma migrate reset --force
+```
+
 ## Compile and run the project
 
 ```bash

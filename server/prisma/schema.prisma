@@ -1,0 +1,117 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  fullname  String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  profile      Profile?
+  hostedRooms  GameRoom[] @relation("HostUser")
+  participants Participant[]
+  friendsAsFirst  Friend[] @relation("FirstUser")
+  friendsAsSecond Friend[] @relation("SecondUser")
+
+  @@map("users")
+}
+
+model Profile {
+  id              String   @id @default(uuid())
+  userId          String   @unique @map("user_id")
+  code            String?
+  telegramUsername String? @map("telegram_username")
+  tiktokUrl       String?  @map("tiktok_url")
+  facebookUrl     String?  @map("facebook_url")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("profile")
+}
+
+model Friend {
+  id            String   @id @default(uuid())
+  firstUserId   String   @map("first_user_id")
+  secondUserId  String   @map("second_user_id")
+  status        String
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  firstUser  User @relation("FirstUser", fields: [firstUserId], references: [id], onDelete: Cascade)
+  secondUser User @relation("SecondUser", fields: [secondUserId], references: [id], onDelete: Cascade)
+
+  @@unique([firstUserId, secondUserId])
+  @@map("friends")
+}
+
+model Category {
+  id            String   @id @default(uuid())
+  name          String
+  imageUrl      String?  @map("image_url")
+  adminDefined  Boolean  @default(false) @map("admin_defined")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  histories History[]
+
+  @@map("categories")
+}
+
+model GameRoom {
+  id                 String   @id @default(uuid())
+  hostId             String   @map("host_id")
+  code               String   @unique
+  roomPrivacyStatus  String   @map("room_privacy_status")
+  createdAt          DateTime @default(now()) @map("created_at")
+  updatedAt          DateTime @updatedAt @map("updated_at")
+
+  host        User         @relation("HostUser", fields: [hostId], references: [id], onDelete: Cascade)
+  participants Participant[]
+  histories   History[]
+
+  @@map("game_room")
+}
+
+model Participant {
+  id          String    @id @default(uuid())
+  userId      String?   @map("user_id")
+  gameRoomId  String    @map("game_room_id")
+  name        String
+  role        String
+  isWinner    Boolean   @default(false) @map("is_winner")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  user      User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  gameRoom  GameRoom  @relation(fields: [gameRoomId], references: [id], onDelete: Cascade)
+
+  @@map("participant")
+}
+
+model History {
+  id                String   @id @default(uuid())
+  categoryId        String   @map("category_id")
+  gameRoomId        String   @map("game_room_id")
+  totalMatchCount   Int      @map("total_match_count")
+  gameType          String   @map("game_type")
+  timingMode        String   @map("timing_mode")
+  timingModeTimer   Int?     @map("timing_mode_timer")
+  matchAnswer       String   @map("match_answer")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  category  Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  gameRoom  GameRoom  @relation(fields: [gameRoomId], references: [id], onDelete: Cascade)
+
+  @@map("history")
+}
