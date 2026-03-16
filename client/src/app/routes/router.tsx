@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { LandingPage, TestPage } from "@/app/constants/lazyload";
+import { LandingPage, OnboardingPage, TestPage } from "@/app/constants/lazyload";
 import MainLayout from "@/components/layouts/main-layout";
 import SetupPage from "@/features/set-up/pages/set-up-page";
 
@@ -16,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "test",
         element: <TestPage />,
+      },
+      {
+        path: "onboarding",
+        element: <OnboardingPage />
       },
       {
         path: "set-up",

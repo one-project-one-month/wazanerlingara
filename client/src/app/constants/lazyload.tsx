@@ -9,6 +9,9 @@ export const TestPage = PageLoader(
   lazy(() => import("@/features/home/pages/test")),
 );
 
+export const OnboardingPage = PageLoader(
+  lazy(() => import("@/features/onboarding/pages"))
+)
 export const SetupPage = PageLoader(
   lazy(() => import("@/features/set-up/pages/set-up-page")),
 );

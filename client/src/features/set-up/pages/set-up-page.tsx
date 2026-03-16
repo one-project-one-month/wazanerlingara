@@ -44,7 +44,10 @@ export default function SetupPage() {
             <Button className="h-20 text-lg font-semibold tracking-wide sm:text-2xl">
               <span className="inline-flex items-center gap-3">
                 {/* <PlayIcon /> */}
-                <img src={playIcon} />
+                <img
+                  src={playIcon}
+                  alt="play icon"
+                />
                 <span>စကစားကြမယ်</span>
               </span>
             </Button>
@@ -54,7 +57,10 @@ export default function SetupPage() {
               className="h-20 border-2 border-netural-700 bg-black text-lg font-semibold tracking-wide text-netural-100 hover:border-netural-500 sm:text-2xl"
             >
               <span className="inline-flex items-center gap-3">
-                <img src={questionMarkIcon} />
+                <img
+                  src={questionMarkIcon}
+                  alt="question mark icon "
+                />
                 <span>ဘယ်လိုကစားရမလဲ?</span>
               </span>
             </Button>
