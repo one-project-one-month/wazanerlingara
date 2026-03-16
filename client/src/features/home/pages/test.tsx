@@ -9,11 +9,11 @@ function Test() {
       <Input type="text" placeholder="Test" variant="success" />
       <Input type="text" placeholder="Test" variant="error" />
       <Input type="text" placeholder="Test" disabled />
-      <Button>Test</Button>
-      <Button disabled>Test</Button>
-      <Button variant="outline">Test</Button>
+      <Button>Primary</Button>
+      <Button disabled>Secondary</Button>
+      <Button variant="outline">Tertiary</Button>
       <Button variant="outline" disabled>
-        Test
+        Disabled
       </Button>
       <Textarea placeholder="Test" rows={2} />
       <div className="card-body">Hello</div>
