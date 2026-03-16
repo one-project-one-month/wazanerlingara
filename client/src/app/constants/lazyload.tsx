@@ -8,3 +8,7 @@ export const LandingPage = PageLoader(
 export const TestPage = PageLoader(
   lazy(() => import("@/features/home/pages/test")),
 );
+
+export const SetupPage = PageLoader(
+  lazy(() => import("@/features/set-up/pages/set-up-page")),
+);
