@@ -8,16 +8,24 @@ import useOnboarding from "../hooks"
 
 
 const OnBoardingPage = () => {
-    const [page, setPage] = useState(0) //indicator of current page
-    const { finish } = useOnboarding() //to persist localstoreage
-    const navigate = useNavigate()
+    const [page, setPage] = useState(0); //indicator of current page
+    const { completed, finish } = useOnboarding(); //to persist localstoreage
+    const navigate = useNavigate();
+
+
+    if (completed) {
+        navigate('/', { replace: true })
+    }
+
 
     //move next page button click
     const handleNext = () => {
         if (page === totalSteps) {
-            setPage(1)
+
             finish()
-            return navigate('/');
+            navigate('/');
+            setPage(1)
+            return
 
         }
         setPage((prev) => prev + 1);
@@ -40,7 +48,7 @@ const OnBoardingPage = () => {
     }
     return (
         <section
-            className="min-h-screen bg-background-900 text-white py-10 px-4 relative flex justify-center items-center"
+            className="min-h-screen bg-background-900 text-white  relative flex justify-center items-center rounded"
         >
 
             <OnboardingCard

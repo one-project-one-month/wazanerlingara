@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 
 const useOnboarding = () => {
-    const [completed, setCompleted] = useState(false)
-    useEffect(() => {
+    const [completed, setCompleted] = useState(() => {
         const saved = localStorage.getItem("onboarding");
-        setCompleted(saved === "completed");
-    }, [])
+        return saved === "completed"
+    })
+
 
     const finish = () => {
         localStorage.setItem("onboarding", "completed")
