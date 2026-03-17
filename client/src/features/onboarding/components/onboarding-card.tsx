@@ -27,13 +27,16 @@ const OnboardingCard = ({
         <div
             className='flex flex-col justify-center gap-4  py-4 w-full'
         >
+            {
+                !isLast &&
+                <Link
+                    to="/"
+                    className="underline text-sm self-end"
+                >
+                    ကျော်သွားမယ်
+                </Link>
+            }
 
-            <Link
-                to="/"
-                className="underline text-sm self-end"
-            >
-                ကျော်သွားမယ်
-            </Link>
             <div
                 className='max-w-2xl mx-auto  space-y-4 sm:space-y-6'
             >
@@ -57,7 +60,7 @@ const OnboardingCard = ({
                     <img
                         src={image}
                         alt={'Onboarding illustration'}
-                        loading="lazy"
+
                         className='w-96 aspect-square rounded-full'
                     />
                     <div

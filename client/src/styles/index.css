@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "CustomFont";
+  src: url("../assets/fonts/handwrittenFont.ttf") format("truetype");
+  font-style: normal;
+}
+
+body {
+  font-family: 'CustomFont', serif;
+}
+
 @theme inline {
   --color-primary-50: #feebeb;
   --color-primary-100: #fcc2c2;
