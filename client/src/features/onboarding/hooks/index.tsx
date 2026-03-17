@@ -2,10 +2,8 @@ import { useState } from "react"
 
 
 const useOnboarding = () => {
-    const [completed, setCompleted] = useState(() => {
-        const saved = localStorage.getItem("onboarding");
-        return saved === "completed"
-    })
+    const [completed, setCompleted] = useState(() => (
+        localStorage.getItem("onboarding") === "completed"))
 
 
     const finish = () => {

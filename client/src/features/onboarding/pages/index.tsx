@@ -9,26 +9,18 @@ import useOnboarding from "../hooks"
 
 const OnBoardingPage = () => {
     const [page, setPage] = useState(0); //indicator of current page
-    const { completed, finish } = useOnboarding(); //to persist localstoreage
+    const { finish } = useOnboarding(); //to persist localstoreage
     const navigate = useNavigate();
-
-
-    if (completed) {
-        navigate('/', { replace: true })
-    }
-
 
     //move next page button click
     const handleNext = () => {
         if (page === totalSteps) {
-
             finish()
             navigate('/');
-            setPage(1)
-            return
-
+        } else {
+            setPage((prev) => prev + 1);
         }
-        setPage((prev) => prev + 1);
+
     };
 
     //change the page by indicators
