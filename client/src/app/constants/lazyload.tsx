@@ -15,3 +15,11 @@ export const OnboardingPage = PageLoader(
 export const SetupPage = PageLoader(
   lazy(() => import("@/features/set-up/pages/set-up-page")),
 );
+
+export const VotingPage = PageLoader(
+    lazy(() => import("@/features/voting/pages/voting-page")),
+);
+
+export const ResultPage = PageLoader(
+    lazy(() => import("@/features/voting/pages/result-page")),
+);
