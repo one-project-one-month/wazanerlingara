@@ -28,6 +28,12 @@ const OnBoardingPage = () => {
         setPage(page)
     }
 
+    //skip onboarding
+    const handleSkip = () => {
+        finish()
+        navigate('/');
+    }
+
     const currentStep = onboardingSteps[page - 1] //to render current page data
     const totalSteps = onboardingSteps.length;
 
@@ -40,9 +46,8 @@ const OnBoardingPage = () => {
     }
     return (
         <section
-            className="min-h-screen bg-background-900 text-white  relative flex justify-center items-center rounded"
+            className="min-h-screen bg-background-900 text-white  relative flex justify-center items-center py-4 px-6"
         >
-
             <OnboardingCard
                 title={currentStep.title}
                 description={currentStep.description}
@@ -51,6 +56,7 @@ const OnBoardingPage = () => {
                 isLast={page === totalSteps}
                 onNext={handleNext}
                 handlePageChange={handlePageChange}
+                skip={handleSkip}
             />
         </section>
     )
