@@ -2,11 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import {
   LandingPage,
   OnboardingPage,
+  TestPage,
   SetupPage,
-  TestPage
+  VotingPage,
+  ResultPage,
 } from "@/app/constants/lazyload";
 import MainLayout from "@/components/layouts/main-layout";
-
 
 const router = createBrowserRouter([
   {
@@ -26,13 +27,20 @@ const router = createBrowserRouter([
         path: "set-up",
         element: <SetupPage />,
       },
+      {
+        path: "voting",
+        element: <VotingPage />,
+      },
+      {
+        path: "result",
+        element: <ResultPage />,
+      },
     ],
-
   },
   {
-    path: "/onboarding",
-    element: <OnboardingPage />
-  }
+    path: "onboarding",
+    element: <OnboardingPage />,
+  },
 ]);
 
 export default router;
