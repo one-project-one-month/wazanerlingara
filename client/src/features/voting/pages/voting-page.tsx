@@ -1,9 +1,9 @@
 import {useCallback, useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
-import PlayerCard from "@/features/voting/components/PlayerCard.tsx";
+import VotingPlayerCard from "@/features/voting/components/voting-player-card.tsx";
 import { Button } from "@/components/ui/button.tsx";
-import ConfirmationModal from "@/features/voting/components/ConfirmationModal";
-import LoadingView from "@/features/voting/components/LoadingView.tsx";
+import VotingConfirmationPopup from "@/features/voting/components/voting-confirmation-popup.tsx";
+import VotingLoading from "@/features/voting/components/voting-loading.tsx";
 
 export interface VotingRouteState {
   votedFor: string | null;
@@ -43,7 +43,7 @@ const VotingPage = () => {
       }
     >
       {isLoading ? (
-        <LoadingView />
+        <VotingLoading />
       ) : (
         <>
           <div
@@ -60,7 +60,7 @@ const VotingPage = () => {
           </div>
 
           <div className="w-full flex justify-center py-4">
-            <PlayerCard onSelect={(name) => setSelectedPlayer(name)} />
+            <VotingPlayerCard onSelect={(name) => setSelectedPlayer(name)} />
           </div>
 
           <div className={"mt-auto lg:mt-8 w-full lg:max-w-xl"}>
@@ -73,7 +73,7 @@ const VotingPage = () => {
             </Button>
           </div>
 
-          <ConfirmationModal
+          <VotingConfirmationPopup
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
             onConfirm={confirmVote}
