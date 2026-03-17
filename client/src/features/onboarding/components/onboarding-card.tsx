@@ -1,6 +1,4 @@
 import { Button } from '@/components/ui/button'
-import { Link } from 'react-router-dom'
-
 type PropsType = {
     title: string,
     description: string,
@@ -8,7 +6,8 @@ type PropsType = {
     step: number,
     isLast: boolean,
     onNext: () => void,
-    handlePageChange: (page: number) => void
+    handlePageChange: (page: number) => void,
+    skip: () => void
 }
 
 const steps = [1, 2, 3]; //indicator steps
@@ -21,7 +20,8 @@ const OnboardingCard = ({
     step,
     isLast,
     onNext,
-    handlePageChange }: PropsType) => {
+    handlePageChange,
+    skip }: PropsType) => {
 
     return (
         <div
@@ -29,12 +29,13 @@ const OnboardingCard = ({
         >
             {
                 !isLast &&
-                <Link
-                    to="/"
-                    className="underline text-sm self-end"
+                <button
+                    type='button'
+                    onClick={skip}
+                    className="underline text-sm self-end cursor-pointer hover:text-primary-200"
                 >
                     ကျော်သွားမယ်
-                </Link>
+                </button>
             }
 
             <div
