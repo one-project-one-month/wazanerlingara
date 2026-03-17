@@ -57,18 +57,18 @@ const ResultPage = () => {
   const state = location.state as VotingRouteState | null;
   const votedFor = state?.votedFor;
 
-  if (!votedFor) {
-    return <Navigate to="/voting" replace />;
-  }
-
   // static flow
   const isTeammatesWin = votedFor === "စာဥ";
 
   const randomTrashTalk = useMemo(() => {
+    if (!votedFor) return "";
     const list = isTeammatesWin ? teammatesTrashTalks : imposterTrashTalks;
-    const randomIndex = Math.floor(Math.random() * list.length);
-    return list[randomIndex];
-  }, [isTeammatesWin]);
+    return list[Math.floor(Math.random() * list.length)];
+  }, [isTeammatesWin, votedFor]);
+
+  if (!votedFor) {
+    return <Navigate to="/voting" replace />;
+  }
 
   const titleText = isTeammatesWin ? "Teammates Win!" : "Imposter Win!";
   const titleColor = isTeammatesWin ? "text-success-500" : "text-red-500";

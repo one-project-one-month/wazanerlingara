@@ -36,7 +36,8 @@ const PlayerCard = ({ onSelect }: PlayerCardProps) => {
           const isSelected = selectedName === player.name;
 
           return (
-              <div
+              <button
+                  type={"button"}
                   key={player.name}
                   onClick={() => handleSelect(player.name)}
                   className={`
@@ -46,7 +47,7 @@ const PlayerCard = ({ onSelect }: PlayerCardProps) => {
               >
                 <img src={player.icon} alt={`${player.name} icon`} className="md:w-50" />
                 <p className={"text-xl md:text-2xl text-center"}>{player.name}</p>
-              </div>
+              </button>
           );
         })}
       </section>
