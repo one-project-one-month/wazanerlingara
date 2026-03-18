@@ -1,13 +1,14 @@
-import { createBrowserRouter } from "react-router-dom";
 import {
   LandingPage,
   OnboardingPage,
-  TestPage,
-  SetupPage,
-  VotingPage,
   ResultPage,
+  SetupPage,
+  TestPage,
+  VotingPage,
 } from "@/app/constants/lazyload";
 import MainLayout from "@/components/layouts/main-layout";
+import GameStartPage from "@/features/game-start/pages/game-start-page";
+import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "result",
         element: <ResultPage />,
+      },
+      {
+        path: "game-start",
+        element: <GameStartPage />,
       },
     ],
   },

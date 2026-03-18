@@ -10,7 +10,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <div
         className={cn(
-          "relative group active:scale-95 duration-300 ",
+          "relative group active:scale-95 duration-300 flex",
           props.disabled && "cursor-not-allowed pointer-events-none",
         )}
       >

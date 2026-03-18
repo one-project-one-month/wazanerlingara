@@ -5,8 +5,11 @@ import wordMarkImage from "@/assets/svg/wazanerlingara.svg";
 import playIcon from "@/assets/svg/play-icon.svg";
 import questionMarkIcon from "@/assets/svg/question-mark-icon.svg";
 import SetupPageSetting from "../components/setup-page-settings";
+import { useNavigate } from "react-router-dom";
+import { APP_CONFIG } from "@/app/config/app-config";
 
 export default function SetupPage() {
+  const navigate = useNavigate();
   return (
     <div className="fixed inset-0 z-10 overflow-y-auto bg-black text-white lg:overflow-hidden">
       <div className="grid min-h-full w-full grid-cols-1 divide-y divide-white/10 lg:h-full lg:grid-cols-[35%_65%] lg:divide-x lg:divide-y-0">
@@ -41,13 +44,13 @@ export default function SetupPage() {
           </div>
 
           <div className="mx-auto grid w-full max-w-full grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
-            <Button className="h-20 text-lg font-semibold tracking-wide sm:text-2xl">
+            <Button
+              className="h-20 text-lg font-semibold tracking-wide sm:text-2xl"
+              onClick={() => navigate(APP_CONFIG.GAME_START)}
+            >
               <span className="inline-flex items-center gap-3">
                 {/* <PlayIcon /> */}
-                <img
-                  src={playIcon}
-                  alt="play icon"
-                />
+                <img src={playIcon} alt="play-icon" className="size-10" />
                 <span>စကစားကြမယ်</span>
               </span>
             </Button>
@@ -59,7 +62,8 @@ export default function SetupPage() {
               <span className="inline-flex items-center gap-3">
                 <img
                   src={questionMarkIcon}
-                  alt="question mark icon "
+                  alt="help-icon"
+                  className="size-10"
                 />
                 <span>ဘယ်လိုကစားရမလဲ?</span>
               </span>
