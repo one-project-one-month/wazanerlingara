@@ -1,8 +1,8 @@
-import type { SetupPageSettingItemType } from "@/types/index.types";
+import chatIcon from "@/assets/svg/chat-icon.svg";
+import incognitoIcon from "@/assets/svg/incognito-icon.svg";
 import musicIcon from "@/assets/svg/music-icon.svg";
 import speakerIcon from "@/assets/svg/speaker-icon.svg";
-import incognitoIcon from "@/assets/svg/incognito-icon.svg";
-import chatIcon from "@/assets/svg/chat-icon.svg";
+import type { SetupPageSettingItemType } from "@/types/index.types";
 import { useState } from "react";
 
 const settingItems: SetupPageSettingItemType[] = [

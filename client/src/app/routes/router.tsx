@@ -1,12 +1,13 @@
-import { createBrowserRouter } from "react-router-dom";
 import {
   LandingPage,
   OnboardingPage,
+  ResultPage,
+  SetupPage,
   TestPage,
+  VotingPage,
 } from "@/app/constants/lazyload";
 import MainLayout from "@/components/layouts/main-layout";
-import SetupPage from "@/features/set-up/pages/set-up-page";
-import GameStartPage from "@/features/game-start/pages/game-start-page";
+import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -23,18 +24,22 @@ const router = createBrowserRouter([
         element: <TestPage />,
       },
       {
-        path: "onboarding",
-        element: <OnboardingPage />,
-      },
-      {
         path: "set-up",
         element: <SetupPage />,
       },
       {
-        path: "game-start",
-        element: <GameStartPage />,
+        path: "voting",
+        element: <VotingPage />,
+      },
+      {
+        path: "result",
+        element: <ResultPage />,
       },
     ],
+  },
+  {
+    path: "/onboarding",
+    element: <OnboardingPage />,
   },
 ]);
 
