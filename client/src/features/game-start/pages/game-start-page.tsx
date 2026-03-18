@@ -75,7 +75,7 @@ export default function GameStartPage() {
       <button
         type="button"
         onClick={() => navigate(-1)}
-        className="fixed left-4 top-4 z-20 rounded-xl md:left-10 md:top-6"
+        className="fixed left-4 top-4 z-20 rounded-xl md:left-10 md:top-6 cursor-pointer duration-200"
         aria-label="Back"
       >
         <img
