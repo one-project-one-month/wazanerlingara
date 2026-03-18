@@ -20,7 +20,7 @@ const settingItems: SetupPageSettingItemType[] = [
   },
   {
     id: "privacy",
-    label: "လူမသိအောင် ကိုယ်ရောင်ဖျောက်မယ်",
+    label: "ဥပဒေရေးရာနှင့် ကိုယ်ရေးလုံခြုံမှု",
     icon: <img src={incognitoIcon} alt="incognito-icon" />,
   },
   {
