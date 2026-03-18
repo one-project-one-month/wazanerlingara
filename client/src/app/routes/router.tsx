@@ -1,4 +1,5 @@
 import {
+  GameMode,
   LandingPage,
   OnboardingPage,
   ResultPage,
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
         path: "game-start",
         element: <GameStartPage />,
       },
+      {
+        path: 'game-mode',
+        element: <GameMode />
+      }
     ],
   },
   {

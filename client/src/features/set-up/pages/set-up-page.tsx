@@ -14,7 +14,7 @@ export default function SetupPage() {
     <div className="fixed inset-0 z-10 overflow-y-auto bg-black text-white lg:overflow-hidden">
       <div className="grid min-h-full w-full grid-cols-1 divide-y divide-white/10 lg:h-full lg:grid-cols-[35%_65%] lg:divide-x lg:divide-y-0">
         {/* Left */}
-        <section className="flex flex-col px-5 pb-8 pt-6 sm:px-7 lg:px-8 lg:pt-14">
+        <section className="hidden md:flex flex-col px-5 pb-8 pt-6 sm:px-7 lg:px-8 lg:pt-14">
           <div className="mb-8 flex items-center sm:mb-10">
             <img
               src={logoImage}
