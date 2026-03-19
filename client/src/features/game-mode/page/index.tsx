@@ -33,12 +33,14 @@ const GameMode = () => {
         navigate('/category')
     }
     return (
-        <section className="  flex items-start">
-            <BackButton />
+        <section className="  relative">
+            <BackButton
+                className="absolute left-0"
+            />
 
-            <div className=" flex flex-col   justify-between flex-1 max-w-2xl mx-auto h-[95dvh]">
+            <div className="py-4 flex flex-col   justify-between flex-1 max-w-xl mx-auto h-[95dvh]">
 
-                <div className="w-full  space-y-6">
+                <div className="w-full  space-y-6 mt-4">
 
                     <h1 className="text-heading-3 text-center">ဂိမ်းအမျိုးအစား ရွေးမယ်</h1>
                     <div className="space-y-4">
@@ -62,7 +64,7 @@ const GameMode = () => {
                                         <h2 className="text-heading-5">
                                             {title}
                                         </h2>
-                                        <p className="text-body-2 text-wrap">
+                                        <p className="text-body-2 ">
                                             {description}
                                         </p>
                                     </div>

@@ -7,6 +7,7 @@ import questionMarkIcon from "@/assets/svg/question-mark-icon.svg";
 import SetupPageSetting from "../components/setup-page-settings";
 import { useNavigate } from "react-router-dom";
 import { APP_CONFIG } from "@/app/config/app-config";
+import settingIcon from "@/assets/svg/setting.svg";
 
 export default function SetupPage() {
   const navigate = useNavigate();
@@ -35,6 +36,21 @@ export default function SetupPage() {
 
         {/* Right */}
         <section className="flex min-h-[56vh] flex-col px-4 pb-6 pt-4 sm:px-8 lg:min-h-0 lg:px-18 lg:pb-8 lg:pt-5 border-l">
+          <div
+            className="flex justify-end md:hidden"
+          >
+
+            <button
+              type="button"
+              onClick={() => navigate('/setting')}
+              className="cursor-pointer"
+            >
+              <img
+                src={settingIcon}
+                alt="setting-icon"
+              />
+            </button>
+          </div>
           <div className="relative flex flex-1 items-center justify-center overflow-hidden">
             <img
               src={gameSetUpImage}
