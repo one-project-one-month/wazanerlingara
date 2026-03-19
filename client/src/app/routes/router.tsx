@@ -42,7 +42,7 @@ const router = createBrowserRouter([
         element: <GameStartPage />,
       },
       {
-        path: 'game-mode',
+        path: '/game-mode',
         element: <GameMode />
       }
     ],

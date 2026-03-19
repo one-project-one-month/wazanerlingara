@@ -25,5 +25,5 @@ export const ResultPage = PageLoader(
 );
 
 export const GameMode = PageLoader(
-  lazy(() => import("@/features/game-start/pages/game-mode")),
+  lazy(() => import("@/features/game-mode/page")),
 );

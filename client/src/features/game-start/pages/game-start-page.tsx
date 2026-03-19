@@ -68,6 +68,7 @@ export default function GameStartPage() {
       `${APP_CONFIG.APP_NAME}-players`,
       JSON.stringify(validPlayers),
     );
+    navigate('/game-mode')
   };
 
   return (
