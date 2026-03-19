@@ -1,5 +1,5 @@
-import { lazy } from "react";
 import PageLoader from "@/components/core/page-loader";
+import { lazy } from "react";
 
 export const LandingPage = PageLoader(
   lazy(() => import("@/features/home/pages/landing")),
@@ -10,8 +10,8 @@ export const TestPage = PageLoader(
 );
 
 export const OnboardingPage = PageLoader(
-  lazy(() => import("@/features/onboarding/pages"))
-)
+  lazy(() => import("@/features/onboarding/pages")),
+);
 export const SetupPage = PageLoader(
   lazy(() => import("@/features/set-up/pages/set-up-page")),
 );
@@ -25,5 +25,5 @@ export const ResultPage = PageLoader(
 );
 
 export const GameMode = PageLoader(
-  lazy(() => import("@/features/game-mode/page")),
+  lazy(() => import("@/features/game-mode/page/game-mode-page")),
 );

@@ -1,6 +1,6 @@
 import { APP_CONFIG } from "@/app/config/app-config";
-import backButtonIcon from "@/assets/svg/back-button.svg";
 import plusCircleButtonIcon from "@/assets/svg/plus-circle-icon.svg";
+import BackButton from "@/components/common/back-button";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { changeToMMNumber } from "@/lib/change-to-mm-number";
@@ -68,23 +68,12 @@ export default function GameStartPage() {
       `${APP_CONFIG.APP_NAME}-players`,
       JSON.stringify(validPlayers),
     );
-    navigate('/game-mode')
+    navigate("/game-mode");
   };
 
   return (
     <section className="relative mx-auto flex min-h-[calc(100dvh-2rem)] w-full max-w-2xl flex-col px-2 pb-2 pt-1 sm:px-4">
-      <button
-        type="button"
-        onClick={() => navigate(-1)}
-        className="fixed left-4 top-4 z-20 rounded-xl md:left-10 md:top-6 cursor-pointer duration-200"
-        aria-label="Back"
-      >
-        <img
-          src={backButtonIcon}
-          alt="Back"
-          className="h-9 w-9 md:h-10 md:w-10"
-        />
-      </button>
+      <BackButton />
 
       <div className="flex flex-1 flex-col pt-8 md:pt-10">
         <header className="space-y-3 text-center md:space-y-4">
