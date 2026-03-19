@@ -4,5 +4,6 @@ export const APP_CONFIG = {
   HOME: "/",
   GAME_START: "/game-start",
   SET_UP: "/set-up",
-  CHOOSE_GAME_MODE: "/choose-game-mode",
+  CHOOSE_GAME_MODE: "/game-mode",
+  CHOOSE_CATEGORIES: "/choose-categories",
 };

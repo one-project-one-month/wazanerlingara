@@ -1,3 +1,4 @@
+import { APP_CONFIG } from "@/app/config/app-config";
 import chat from "@/assets/svg/chat-bubble.svg";
 import magnify from "@/assets/svg/magnify.svg";
 import BackButton from "@/components/common/back-button";
@@ -21,6 +22,7 @@ const GAME_TYPES = [
     image: chat,
   },
 ];
+
 const GameMode = () => {
   const [mode, setMode] = useState<GameType | undefined>();
   const navigate = useNavigate();
@@ -28,10 +30,11 @@ const GameMode = () => {
     setMode(type);
   };
 
-  const handleStartGame = () => {
+  const handleGameForward = () => {
     if (!mode) return;
-    navigate("/category");
+    navigate(APP_CONFIG.CHOOSE_CATEGORIES);
   };
+
   return (
     <section className="flex items-start">
       <BackButton />
@@ -62,7 +65,7 @@ const GameMode = () => {
             ))}
           </div>
         </div>
-        <Button onClick={handleStartGame}>ရှေ့ဆက်မယ်</Button>
+        <Button onClick={handleGameForward}>ရှေ့ဆက်မယ်</Button>
       </div>
     </section>
   );

@@ -166,7 +166,7 @@ export default function GameStartPage() {
             type="button"
             onClick={handleStartGame}
             disabled={!canStartGame}
-            className="h-14 text-[1.6rem] flex items-center justify-center tracking-wide md:h-16 md:text-[2rem]"
+            className="text-[1.6rem] flex items-center justify-center tracking-wide md:text-[2rem]"
           >
             ရှေ့ဆက်မယ်
           </Button>
