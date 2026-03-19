@@ -1,5 +1,16 @@
 import { APP_CONFIG } from "@/app/config/app-config";
 import animals from "@/assets/svg/animals.svg";
+import countries from "@/assets/svg/countries.svg";
+import foods from "@/assets/svg/foods.svg";
+import histories from "@/assets/svg/histories.svg";
+import imaginations from "@/assets/svg/imaginations.svg";
+import jobs from "@/assets/svg/jobs.svg";
+import locations from "@/assets/svg/locations.svg";
+import movies from "@/assets/svg/movies.svg";
+import nature from "@/assets/svg/nature.svg";
+import sports from "@/assets/svg/sports.svg";
+import supes from "@/assets/svg/supes.svg";
+import technologies from "@/assets/svg/technologies.svg";
 import BackButton from "@/components/common/back-button";
 import { Button } from "@/components/ui/button";
 import type { CategoryCardType, GameCategoryType } from "@/types/index.types";
@@ -15,58 +26,58 @@ const GAME_CATEGORIES: CategoryCardType[] = [
   },
   {
     type: "foods",
-    title: "အမေးအဖြေဂိမ်း",
-    image: animals,
+    title: "အစားအသောက်",
+    image: foods,
   },
   {
     type: "locations",
-    title: "အမေးအဖြေဂိမ်း",
-    image: animals,
+    title: "နေရာဒေသ",
+    image: locations,
   },
   {
     type: "countries",
-    title: "အမေးအဖြေဂိမ်း",
-    image: animals,
+    title: "နိုင်ငံများ",
+    image: countries,
   },
   {
     type: "movies",
-    title: "အမေးအဖြေဂိမ်း",
-    image: animals,
+    title: "ရုပ်ရှင်",
+    image: movies,
   },
   {
     type: "jobs",
-    title: "အမေးအဖြေဂိမ်း",
-    image: animals,
+    title: "အလုပ်အကိုင်",
+    image: jobs,
   },
   {
     type: "technologies",
-    title: "အမေးအဖြေဂိမ်း",
-    image: animals,
+    title: "နည်းပညာ",
+    image: technologies,
   },
   {
     type: "imaginations",
-    title: "အမေးအဖြေဂိမ်း",
-    image: animals,
+    title: "စိတ်ကူးယဉ် အရာများ",
+    image: imaginations,
   },
   {
     type: "supes",
-    title: "အမေးအဖြေဂိမ်း",
-    image: animals,
+    title: "စူပါဟီးရိုးများ",
+    image: supes,
   },
   {
     type: "nature",
-    title: "အမေးအဖြေဂိမ်း",
-    image: animals,
+    title: "သဘာဝ",
+    image: nature,
   },
   {
     type: "histories",
-    title: "အမေးအဖြေဂိမ်း",
-    image: animals,
+    title: "သမိုင်း",
+    image: histories,
   },
   {
     type: "sports",
-    title: "အမေးအဖြေဂိမ်း",
-    image: animals,
+    title: "အားကစား",
+    image: sports,
   },
 ];
 
@@ -86,17 +97,19 @@ export default function ChooseCategories() {
   };
 
   return (
-    <section className="relative mx-auto flex min-h-[calc(100dvh-2rem)] w-full max-w-7xl flex-col px-2 pb-2 pt-1 sm:px-4 space-y-4">
-      <BackButton />
+    <section className="relative mx-auto flex min-h-[calc(100dvh-2rem)] w-full max-w-6xl flex-col px-2 pb-2 pt-1 sm:px-4">
+      <div className="flex items-start gap-3 pt-1 md:block md:pt-0">
+        <BackButton />
 
-      <div className="flex flex-1 flex-col pt-8 md:pt-10">
-        <header className="space-y-3 text-center md:space-y-4">
+        <header className="flex-1 space-y-3 text-center md:space-y-4 md:pt-8 md:text-center">
           <h1 className="text-[2.05rem] leading-none text-netural-100 md:text-[2.45rem]">
-            ကစားမယ့်အမျိုးအစား ရွေးမယ်
+            ရွေးချယ်စရာ အမျိုးအစားများ
           </h1>
         </header>
+      </div>
 
-        <div className="mt-5 grid grid-cols-2 gap-4 pb-4 md:mt-7 md:grid-cols-3 md:gap-8">
+      <div className="mt-5 flex flex-1 flex-col md:mt-7">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-5">
           {GAME_CATEGORIES.map((item) => (
             <CategoryCard
               key={item.type}
@@ -107,15 +120,16 @@ export default function ChooseCategories() {
           ))}
         </div>
 
-        {/* <div className="flex items-center justify-center border max-w-4xl"> */}
-        <Button
-          className="text-[1.2rem] flex items-center justify-center tracking-wide md:text-[1.6rem]"
-          onClick={handleGameForward}
-          disabled={!category}
-        >
-          ရှေ့ဆက်မယ်
-        </Button>
-        {/* </div> */}
+        <div className="mt-10 space-y-3 pb-1 text-center">
+          <Button
+            type="button"
+            className="flex items-center justify-center text-[1.6rem] tracking-wide md:text-[2rem]"
+            onClick={handleGameForward}
+            disabled={!category}
+          >
+            ရှေ့ဆက်မယ်
+          </Button>
+        </div>
       </div>
     </section>
   );

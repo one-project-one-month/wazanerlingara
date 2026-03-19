@@ -18,9 +18,9 @@ export default function CategoryCard({
       onClick={() => onSelect(category.type)}
       aria-pressed={isSelected}
       className={cn(
-        "border-2 flex flex-col rounded-2xl px-4 py-3 md:px-8 md:py-4 bg-white/10 items-center justify-center cursor-pointer duration-200",
+        "border flex flex-col rounded-2xl px-4 py-3 md:px-8 md:py-4 bg-white/10 items-center justify-center cursor-pointer",
         isSelected
-          ? "border-white ring-2 ring-white"
+          ? "border-white ring-3 ring-white"
           : "border-white/70 hover:border-white",
       )}
     >
@@ -30,7 +30,7 @@ export default function CategoryCard({
         className="size-28 md:size-36"
       />
 
-      <p className="text-base md:text-lg text-center">{category.title}</p>
+      <p className="text-xl lg:text-2xl text-center">{category.title}</p>
     </button>
   );
 }

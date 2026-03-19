@@ -7,7 +7,7 @@ const BackButton = () => {
     <button
       type="button"
       onClick={() => navigate(-1)}
-      className="fixed left-4 top-4 z-20 rounded-xl md:left-10 md:top-6 cursor-pointer duration-200"
+      className="inline-flex shrink-0 cursor-pointer rounded-xl duration-200 md:fixed md:left-10 md:top-6 md:z-20"
       aria-label="Back"
     >
       <img
