@@ -10,6 +10,7 @@ from agents.imposter_agent import create_imposter_agent
 from agents.player_agent import create_player_agent
 from schema.schema import PlayRequest, ImposterRequest, HumanRequest, DeleteThread
 from config.database import delete_thread, history_thread
+from fastapi.middleware.cors import CORSMiddleware
 
 agents = {}
 
@@ -23,6 +24,14 @@ async def lifespan(app: FastAPI):
     agents.clear()
 
 app = FastAPI(lifespan=lifespan)
+
+app.add_middleware(
+    CORSMiddleware, 
+    allow_origins=["*"],
+    allow_credentials = True, 
+    allow_methods = ["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/health")
 async def health_check():
