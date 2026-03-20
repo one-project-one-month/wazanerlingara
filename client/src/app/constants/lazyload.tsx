@@ -24,6 +24,9 @@ export const ResultPage = PageLoader(
   lazy(() => import("@/features/voting/pages/result-page")),
 );
 
-export const GameMode = PageLoader(
+export const GameModePage = PageLoader(
   lazy(() => import("@/features/game-mode/pages/game-mode-page")),
+);
+export const GameSettingPage = PageLoader(
+  lazy(() => import("@/features/game-setting/pages")),
 );
