@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Progress from "@/components/ui/progress";
 import { Textarea } from "@/components/ui/textarea";
 
 function Test() {
@@ -17,6 +18,7 @@ function Test() {
       </Button>
       <Textarea placeholder="Test" rows={2} />
       <div className="card-body">Hello</div>
+      <Progress value={Math.random() * 100} max={100} />
     </div>
   );
 }
