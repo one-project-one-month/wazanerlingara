@@ -5,13 +5,17 @@ import wordMarkImage from "@/assets/svg/wazanerlingara.svg";
 import playIcon from "@/assets/svg/play-icon.svg";
 import questionMarkIcon from "@/assets/svg/question-mark-icon.svg";
 import SetupPageSetting from "../components/setup-page-settings";
+import { useNavigate } from "react-router-dom";
+import { APP_CONFIG } from "@/app/config/app-config";
+import settingIcon from "@/assets/svg/setting.svg";
 
 export default function SetupPage() {
+  const navigate = useNavigate();
   return (
     <div className="fixed inset-0 z-10 overflow-y-auto bg-black text-white lg:overflow-hidden">
       <div className="grid min-h-full w-full grid-cols-1 divide-y divide-white/10 lg:h-full lg:grid-cols-[35%_65%] lg:divide-x lg:divide-y-0">
         {/* Left */}
-        <section className="flex flex-col px-5 pb-8 pt-6 sm:px-7 lg:px-8 lg:pt-14">
+        <section className="hidden md:flex flex-col px-5 pb-8 pt-6 sm:px-7 lg:px-8 lg:pt-14">
           <div className="mb-8 flex items-center sm:mb-10">
             <img
               src={logoImage}
@@ -32,6 +36,21 @@ export default function SetupPage() {
 
         {/* Right */}
         <section className="flex min-h-[56vh] flex-col px-4 pb-6 pt-4 sm:px-8 lg:min-h-0 lg:px-18 lg:pb-8 lg:pt-5 border-l">
+          <div
+            className="flex justify-end md:hidden"
+          >
+
+            <button
+              type="button"
+              onClick={() => navigate('/setting')}
+              className="cursor-pointer"
+            >
+              <img
+                src={settingIcon}
+                alt="setting-icon"
+              />
+            </button>
+          </div>
           <div className="relative flex flex-1 items-center justify-center overflow-hidden">
             <img
               src={gameSetUpImage}
@@ -41,13 +60,13 @@ export default function SetupPage() {
           </div>
 
           <div className="mx-auto grid w-full max-w-full grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
-            <Button className="h-20 text-lg font-semibold tracking-wide sm:text-2xl">
+            <Button
+              className="h-20 text-lg font-semibold tracking-wide sm:text-2xl"
+              onClick={() => navigate(APP_CONFIG.GAME_START)}
+            >
               <span className="inline-flex items-center gap-3">
                 {/* <PlayIcon /> */}
-                <img
-                  src={playIcon}
-                  alt="play icon"
-                />
+                <img src={playIcon} alt="play-icon" className="size-10" />
                 <span>စကစားကြမယ်</span>
               </span>
             </Button>
@@ -59,7 +78,8 @@ export default function SetupPage() {
               <span className="inline-flex items-center gap-3">
                 <img
                   src={questionMarkIcon}
-                  alt="question mark icon "
+                  alt="help-icon"
+                  className="size-10"
                 />
                 <span>ဘယ်လိုကစားရမလဲ?</span>
               </span>

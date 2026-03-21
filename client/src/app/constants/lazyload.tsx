@@ -17,9 +17,13 @@ export const SetupPage = PageLoader(
 );
 
 export const VotingPage = PageLoader(
-    lazy(() => import("@/features/voting/pages/voting-page")),
+  lazy(() => import("@/features/voting/pages/voting-page")),
 );
 
 export const ResultPage = PageLoader(
-    lazy(() => import("@/features/voting/pages/result-page")),
+  lazy(() => import("@/features/voting/pages/result-page")),
+);
+
+export const GameMode = PageLoader(
+  lazy(() => import("@/features/game-mode/page")),
 );

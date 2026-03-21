@@ -32,7 +32,7 @@ const OnboardingCard = ({
                 <button
                     type='button'
                     onClick={skip}
-                    className="underline text-sm self-end cursor-pointer hover:text-primary-200"
+                    className="underline text-2xl self-end cursor-pointer hover:text-primary-200"
                 >
                     ကျော်သွားမယ်
                 </button>
@@ -44,7 +44,7 @@ const OnboardingCard = ({
 
 
                 <h1
-                    className=' text-[2.5rem] sm:text-5xl md:text-[3.5rem]  font-bold'
+                    className=' text-[2.5rem] sm:text-5xl md:text-[3.5rem]  font-medium'
                 >
                     {title}
                 </h1>
@@ -53,19 +53,22 @@ const OnboardingCard = ({
                 >
                     {description}
                 </p>
-                <div
-                    className='flex flex-col gap-4 items-center'
-                >
 
+
+                <div className='flex items-center justify-center'>
 
                     <img
                         src={image}
                         alt={'Onboarding illustration'}
 
-                        className='w-96 aspect-square rounded-full'
+                        className='max-w-sm aspect-square '
                     />
+                </div>
+                <div
+                    className='space-y-4 '
+                >
                     <div
-                        className='flex gap-2 items-center'
+                        className='flex gap-1 items-center justify-center'
                     >
 
 
@@ -77,22 +80,24 @@ const OnboardingCard = ({
                                     onClick={() => handlePageChange(item)}
                                     className={`
                                     ${step === item
-                                            ? "w-12 bg-white"
-                                            : "w-3 bg-netural-700"} 
-                                    h-3 rounded-full transition-all ease-in-out duration-500 cursor-pointer `}
+                                            ? "w-4 bg-white"
+                                            : "w-1.5 bg-netural-700"} 
+                                    h-1.5 rounded-full transition-all ease-in-out duration-500 cursor-pointer `}
                                 />
                             ))
                         }
                     </div>
-                </div>
-                <Button
-                    onClick={onNext}
-                >
-                    {
-                        isLast ? "စလိုက်ကြရအောင်" : "ရှေ့ဆက်မယ်"
-                    }
 
-                </Button>
+                    <Button
+                        onClick={onNext}
+                        className='w-full'
+                    >
+                        {
+                            isLast ? "စလိုက်ကြရအောင်" : "ရှေ့ဆက်မယ်"
+                        }
+
+                    </Button>
+                </div>
             </div>
 
         </div>
