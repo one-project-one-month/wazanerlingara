@@ -3,20 +3,21 @@ import chat from "@/assets/svg/chat-bubble.svg";
 import magnify from "@/assets/svg/magnify.svg";
 import BackButton from "@/components/common/back-button";
 import { Button } from "@/components/ui/button";
+import { useGameSettingStore } from "@/stores/game-setting-store";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-type GameType = "words" | "question and answer";
+type GameType = "WORDS" | "Q&A";
 
 const GAME_TYPES = [
   {
-    type: "words",
+    type: "WORDS ",
     title: "စကားလုံးဂိမ်း",
     description: "လျှို့ဝှက်စကားလုံး မသိတဲ့သူကို ရှာမယ်",
     image: magnify,
   },
   {
-    type: "question and answer",
+    type: "Q&A",
     title: "အမေးအဖြေဂိမ်း",
     description: "မေးခွန်းမသိဘဲ ဖြေနေတဲ့သူကို ရှာမယ်",
     image: chat,
@@ -24,6 +25,7 @@ const GAME_TYPES = [
 ];
 
 const GameMode = () => {
+  const { setMode: setGameMode } = useGameSettingStore()
   const [mode, setMode] = useState<GameType | undefined>();
   const navigate = useNavigate();
   const handleClick = (type: GameType) => {
@@ -32,6 +34,7 @@ const GameMode = () => {
 
   const handleGameForward = () => {
     if (!mode) return;
+    setGameMode(mode);
     navigate(APP_CONFIG.CHOOSE_CATEGORIES);
   };
 
