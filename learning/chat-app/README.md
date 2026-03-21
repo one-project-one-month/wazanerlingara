@@ -40,6 +40,13 @@ npm run start
 
 Frontend will be available at `http://localhost:4200/`.
 
+### Convenience scripts
+
+From `learning/chat-app/`:
+
+- Windows: `install-both.bat` / `run-both.bat` / `stop-both.bat`
+- Unix-like (WSL/Linux/macOS): `run-both.sh` / `stop-both.sh` (run `chmod +x run-both.sh stop-both.sh` once if needed)
+
 ## Notes
 
 If you add any API configuration (base URL, auth, etc.) to the frontend later, update this README with the new environment variables and setup steps.
