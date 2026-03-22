@@ -10,7 +10,7 @@ export default function MainLayout() {
 
   useEffect(() => {
     load(GAME_SFX_FILES);
-  }, []);
+  }, [load]);
 
   useEffect(() => {
     const completed = localStorage.getItem("onboarding");
