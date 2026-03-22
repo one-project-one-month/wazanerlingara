@@ -1,0 +1,73 @@
+/* Velocity Flux design system — Tailwind v4 @theme
+ * Core: Primary #006684 | Secondary #4D616C | Tertiary #5D6ED5 | Neutral #547C97
+ * Keeps Material-style token names used by login + components. */
+
+@theme {
+  /* —— Core Flux —— */
+  --color-primary: #006684;
+  --color-primary-dim: #004d5f;
+  --color-primary-container: #b3e3f0;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #003544;
+  --color-primary-fixed: #a8ddf0;
+  --color-primary-fixed-dim: #8fd0e3;
+  --color-on-primary-fixed: #002833;
+  --color-on-primary-fixed-variant: #004d62;
+  --color-inverse-primary: #a8ddf0;
+
+  --color-secondary: #4d616c;
+  --color-secondary-dim: #3e5058;
+  --color-secondary-container: #dce4e8;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #1a2226;
+  --color-secondary-fixed: #dce4e8;
+  --color-secondary-fixed-dim: #c2d4dc;
+  --color-on-secondary-fixed: #1c2529;
+  --color-on-secondary-fixed-variant: #3a4a52;
+
+  --color-tertiary: #5d6ed5;
+  --color-tertiary-dim: #4a5bc0;
+  --color-tertiary-container: #dee4fc;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #1a2374;
+  --color-tertiary-fixed: #dee4fc;
+  --color-tertiary-fixed-dim: #c5cef5;
+  --color-on-tertiary-fixed: #0f1447;
+  --color-on-tertiary-fixed-variant: #2a3480;
+
+  /* Neutral (outline / chrome) */
+  --color-outline: #547c97;
+  --color-outline-variant: #9eb4c4;
+
+  /* Surfaces (light, airy, Flux) */
+  --color-background: #eef5f9;
+  --color-on-background: #0d2f3d;
+  --color-surface: #eef5f9;
+  --color-surface-bright: #f4f9fc;
+  --color-surface-dim: #ddeaf1;
+  --color-surface-variant: #d0e8f0;
+  --color-on-surface: #0d2f3d;
+  --color-on-surface-variant: #4d616c;
+  --color-surface-tint: #006684;
+
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #e8f2f7;
+  --color-surface-container: #dceef5;
+  --color-surface-container-high: #c9e3ed;
+  --color-surface-container-highest: #b5d8e6;
+
+  --color-inverse-surface: #0d1f26;
+  --color-inverse-on-surface: #d6e8ef;
+
+  /* Error (unchanged role) */
+  --color-error: #b3261e;
+  --color-error-dim: #8c1e18;
+  --color-error-container: #f9dedc;
+  --color-on-error: #ffffff;
+  --color-on-error-container: #410e0b;
+
+  /* Typography (Flux: headline / body / label) */
+  --font-headline: Manrope, ui-sans-serif, system-ui, sans-serif;
+  --font-body: Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-label: Inter, ui-sans-serif, system-ui, sans-serif;
+}
