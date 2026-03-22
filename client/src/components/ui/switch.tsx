@@ -28,7 +28,7 @@ export default function Switch({
             type="button"
             onClick={handleToggle}
             disabled={disabled}
-            className={cn(`w-18 h-10 bg-netural-900 border border-white rounded-3xl relative p-1 flex items-center cursor-pointer transition-colors duration-300 
+            className={cn(`w-18 h-10 bg-netural-900 border border-white rounded-3xl relative p-1 flex shrink-0 items-center cursor-pointer transition-colors duration-300 
                 ${checked ? "justify-start bg-primary-400 " : "justify-end"}
                 ${className}`)}
         >
