@@ -1,18 +1,42 @@
 import info from "@/assets/svg/info-alert.svg"
-import { useGameSettingStore } from "@/stores/game-setting-store"
 import clockIcon from "@/assets/svg/timmer.svg"
 import IconGroupPeople from "@/assets/icons/icon-group-people"
 import IconPeople from "@/assets/icons/icon-people"
+import { useGameConfigStore } from "@/stores/game-config-store"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { APP_CONFIG } from "@/app/config/app-config"
 
 const TimerModeSetting = () => {
-
-    const { timerMode, timerValue, setTimerMode, setTimer, increaseTimer, decreaseTimer } = useGameSettingStore();
-
+    const navigate = useNavigate();
+    const { config, updateGameConfig } = useGameConfigStore()
+    const [timerMode, setTimerMode] = useState<"TURN" | "DURATION">("TURN");
     const isTurn = timerMode === "TURN";
-
-
+    const turnTimer = config?.gameSetting?.turnTimer ?? 5;
+    const durationTimer = config?.gameSetting?.durationTimer ?? 120;
+    const timerValue = isTurn ? turnTimer : durationTimer;
     const min = isTurn ? 5 : 60;
     const max = isTurn ? 60 : 600;
+
+    const setTimer = (newValue: number) => {
+        if (!config) return;
+        if (newValue < min || newValue > max) return;
+        updateGameConfig({
+            gameSetting: {
+                ...config.gameSetting,
+                ...(isTurn ? { turnTimer: newValue } : { durationTimer: newValue })
+            }
+        });
+        navigate(APP_CONFIG.ROLE_REVEAL)
+    };
+
+    const increaseTimer = () => {
+        if (timerValue < max) setTimer(timerValue + (isTurn ? 5 : 60));
+    };
+
+    const decreaseTimer = () => {
+        if (timerValue > min) setTimer(timerValue - (isTurn ? 5 : 60));
+    };
 
     const formatTimerValue = () => {
         let timer: string;
@@ -24,7 +48,7 @@ const TimerModeSetting = () => {
 
         return timer;
     }
-    console.log(timerMode, timerValue)
+
     return (
         <div
             className="space-y-6 border border-white rounded-2xl p-4 md:p-6 bg-background-700"

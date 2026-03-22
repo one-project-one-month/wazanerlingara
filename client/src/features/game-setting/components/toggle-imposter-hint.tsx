@@ -1,9 +1,20 @@
-import { useGameSettingStore } from "@/stores/game-setting-store";
 import lightBulb from "@/assets/svg/light-bulb.svg"
 import Switch from "@/components/ui/switch";
+import { useGameConfigStore } from "@/stores/game-config-store";
 
 const ToggleImposterHint = () => {
-    const { hint, toggleHint } = useGameSettingStore();
+    const { config, updateGameConfig } = useGameConfigStore();
+
+    const toggleHint = () => {
+        if (!config) return;
+        updateGameConfig({
+            gameSetting: {
+                ...config?.gameSetting,
+                canImposterGetHint: !config?.gameSetting.canImposterGetHint,
+            }
+        });
+    }
+
     return (
         <div
             className="flex items-center justify-between border border-white rounded-2xl px-4 py-6  bg-background-700"
@@ -22,7 +33,9 @@ const ToggleImposterHint = () => {
                     Imposterကို အရိပ်အမြွက်ပေးမလား
                 </p>
             </div>
-            <Switch checked={hint} onChange={toggleHint} />
+            <Switch
+                checked={config?.gameSetting.canImposterGetHint ?? false}
+                onChange={toggleHint} />
         </div>
     )
 }

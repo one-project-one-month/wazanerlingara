@@ -61,7 +61,7 @@ const OnboardingCard = ({
                         src={image}
                         alt={'Onboarding illustration'}
 
-                        className='max-w-sm aspect-square '
+                        className='w-full max-w-sm aspect-square '
                     />
                 </div>
                 <div

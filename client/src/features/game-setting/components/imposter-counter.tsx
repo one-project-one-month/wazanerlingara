@@ -1,12 +1,31 @@
 import { changeToMMNumber } from "@/lib/change-to-mm-number"
-import { useGameSettingStore } from "@/stores/game-setting-store"
 import peopleIcon from "@/assets/svg/people-fill.svg"
+import { useGameConfigStore } from "@/stores/game-config-store"
+
+const ImposterCounter = () => {
+    const { config, updateGameConfig } = useGameConfigStore();
+    const imposterCount = config?.gameSetting.imposterCount || 0;
+
+    const handleImposterCounter = (type: "INCREASE" | "DECREASE") => {
+        if (!config) return;
+        if (type === "INCREASE") {
+            updateGameConfig({
+                gameSetting: {
+                    ...config?.gameSetting,
+                    imposterCount: Math.min(config?.players.length - 1, imposterCount + 1),
+                }
+            });
+        } else {
+            updateGameConfig({
+                gameSetting: {
+                    ...config?.gameSetting,
+                    imposterCount: Math.max(1, imposterCount - 1),
+                }
+            });
+        }
+    }
 
 
-
-const Counter = () => {
-    const { imposterCount, increaseImposter, decreaseImposter } = useGameSettingStore();
-    console.log(imposterCount)
     return (
         <div
             className="flex items-center justify-between border border-white rounded-2xl px-4 py-6  bg-background-700"
@@ -28,7 +47,7 @@ const Counter = () => {
             <div className="flex items-center justify-center gap-2">
                 <button
                     type="button"
-                    onClick={decreaseImposter}
+                    onClick={() => handleImposterCounter("DECREASE")}
                     className="bg-white rounded-full w-6 md:w-8 h-6 md:h-8  flex items-center justify-center text-gray-700 cursor-pointer text-button "
                 >
                     -
@@ -38,17 +57,17 @@ const Counter = () => {
                 </span> {/* This should be dynamic */}
                 <button
                     type="button"
-                    onClick={increaseImposter}
+                    onClick={() => handleImposterCounter("INCREASE")}
                     className="bg-white rounded-full w-6 md:w-8 h-6 md:h-8   flex items-center justify-center text-gray-700 cursor-pointer text-button "
                 >
                     +
-                </button>
+                </button >
 
 
 
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 
-export default Counter
+export default ImposterCounter

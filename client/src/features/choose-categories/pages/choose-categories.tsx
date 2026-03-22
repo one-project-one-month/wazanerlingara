@@ -17,7 +17,7 @@ import type { CategoryCardType, GameCategoryType } from "@/types/index.types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CategoryCard from "../components/category-card";
-import { useGameSettingStore } from "@/stores/game-setting-store";
+
 
 const GAME_CATEGORIES: CategoryCardType[] = [
   {
@@ -83,7 +83,6 @@ const GAME_CATEGORIES: CategoryCardType[] = [
 ];
 
 export default function ChooseCategories() {
-  const { setCategory: setGlobalCategory } = useGameSettingStore()
   const [category, setCategory] = useState<GameCategoryType | undefined>();
   const navigate = useNavigate();
 
@@ -95,8 +94,7 @@ export default function ChooseCategories() {
     if (!category) return;
 
     localStorage.setItem(`${APP_CONFIG.APP_NAME}-category`, category);
-    setGlobalCategory(category);
-    navigate("/game-setting");
+    navigate(APP_CONFIG.GAME_SETTING);
   };
 
   return (

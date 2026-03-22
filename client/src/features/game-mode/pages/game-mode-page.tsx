@@ -3,21 +3,21 @@ import chat from "@/assets/svg/chat-bubble.svg";
 import magnify from "@/assets/svg/magnify.svg";
 import BackButton from "@/components/common/back-button";
 import { Button } from "@/components/ui/button";
-import { useGameSettingStore } from "@/stores/game-setting-store";
+import { useGameConfigStore } from "@/stores/game-config-store";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-type GameType = "WORDS" | "Q&A";
+type GameType = "word" | "question";
 
 const GAME_TYPES = [
   {
-    type: "WORDS ",
+    type: "word",
     title: "စကားလုံးဂိမ်း",
     description: "လျှို့ဝှက်စကားလုံး မသိတဲ့သူကို ရှာမယ်",
     image: magnify,
   },
   {
-    type: "Q&A",
+    type: "question",
     title: "အမေးအဖြေဂိမ်း",
     description: "မေးခွန်းမသိဘဲ ဖြေနေတဲ့သူကို ရှာမယ်",
     image: chat,
@@ -25,17 +25,18 @@ const GAME_TYPES = [
 ];
 
 const GameMode = () => {
-  const { setMode: setGameMode } = useGameSettingStore()
+  const { config, updateGameConfig } = useGameConfigStore()
   const [mode, setMode] = useState<GameType | undefined>();
   const navigate = useNavigate();
-  const handleClick = (type: GameType) => {
-    setMode(type);
-  };
 
   const handleGameForward = () => {
     if (!mode) return;
-    setGameMode(mode);
-    navigate(APP_CONFIG.CHOOSE_CATEGORIES);
+    if (config) {
+      updateGameConfig({
+        gameMode: mode,
+      });
+      navigate(APP_CONFIG.CHOOSE_CATEGORIES);
+    }
   };
 
   return (
@@ -56,7 +57,7 @@ const GameMode = () => {
             <button
               key={type}
               type="button"
-              onClick={() => handleClick(type as GameType)}
+              onClick={() => setMode(type as GameType)}
               className={`flex w-full cursor-pointer items-start gap-4 rounded-2xl border p-4 ${type === mode ? "border-white ring-2 ring-white" : "border-white/70"}`}
             >
               <img

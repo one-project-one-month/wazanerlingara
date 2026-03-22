@@ -1,7 +1,8 @@
 import {
-
+  ChooseCategory,
   GameModePage,
   GameSettingPage,
+  GameStartPage,
   LandingPage,
   OnboardingPage,
   ResultPage,
@@ -10,8 +11,6 @@ import {
   VotingPage,
 } from "@/app/constants/lazyload";
 import MainLayout from "@/components/layouts/main-layout";
-import ChooseCategories from "@/features/choose-categories/pages/choose-categories";
-import GameStartPage from "@/features/game-start/pages/game-start-page";
 import NotFound from "@/features/not-found";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -51,7 +50,7 @@ const router = createBrowserRouter([
       },
       {
         path: "choose-categories",
-        element: <ChooseCategories />,
+        element: <ChooseCategory />,
       },
       {
         path: "game-setting",

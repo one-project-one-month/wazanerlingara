@@ -4,6 +4,7 @@ import OnboadingIntroPage from "../components/onboading-intro";
 import OnboardingCard from "../components/onboarding-card";
 import { onboardingSteps } from "../components/onboarding-steps";
 import useOnboarding from "../hooks";
+import { APP_CONFIG } from "@/app/config/app-config";
 
 const OnBoardingPage = () => {
   const [page, setPage] = useState(0); //indicator of current page
@@ -14,7 +15,7 @@ const OnBoardingPage = () => {
   const handleNext = () => {
     if (page === totalSteps) {
       finish();
-      navigate("/");
+      navigate(APP_CONFIG.GAME_START);
     } else {
       setPage((prev) => prev + 1);
     }
@@ -28,7 +29,7 @@ const OnBoardingPage = () => {
   //skip onboarding
   const handleSkip = () => {
     finish();
-    navigate("/");
+    navigate(APP_CONFIG.SET_UP);
   };
 
   const currentStep = onboardingSteps[page - 1]; //to render current page data

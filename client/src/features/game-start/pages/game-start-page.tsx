@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { changeToMMNumber } from "@/lib/change-to-mm-number";
 import { cn } from "@/lib/util";
+import { useGameConfigStore } from "@/stores/game-config-store";
 import type { PlayerInputType } from "@/types/index.types";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +19,7 @@ const createPlayerInput = (name = ""): PlayerInputType => ({
 });
 
 export default function GameStartPage() {
+  const { config, setGameConfig } = useGameConfigStore()
   const navigate = useNavigate();
   const [playerInputs, setPlayerInputs] = useState<PlayerInputType[]>([
     createPlayerInput(),
@@ -63,13 +65,32 @@ export default function GameStartPage() {
     if (!canStartGame) {
       return;
     }
+    //delete or update the game config because it is demo start
+    if (!config) {
+      setGameConfig({
+        id: crypto.randomUUID(),
+        players: validPlayers.map((name) => ({
+          id: crypto.randomUUID(),
+          name,
+          imageId: null,
+        })),
+        gameMode: "word",
+        category: { id: "1", name: "word" },
+        gameSetting: {
+          imposterCount: 1,
+          turnTimer: 5,
+          durationTimer: 120,
+          canImposterGetHint: false,
+        },
+        word: null,
+        question: null,
+        roundCount: 1,
+        imposterId: null,
+      });
 
-    localStorage.setItem(
-      `${APP_CONFIG.APP_NAME}-players`,
-      JSON.stringify(validPlayers),
-    );
-    navigate("/game-mode");
-  };
+      navigate(APP_CONFIG.CHOOSE_GAME_MODE);
+    };
+  }
 
   return (
     <section className="relative mx-auto flex min-h-[calc(100dvh-2rem)] w-full max-w-2xl flex-col px-2 pb-2 pt-1 sm:px-4">
