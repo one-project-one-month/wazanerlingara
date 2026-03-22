@@ -1,9 +1,16 @@
+import { GAME_SFX_FILES } from "@/app/constants";
+import { useGameSfxStore } from "@/stores/game-sfx-store";
 import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 export default function MainLayout() {
   const location = useLocation();
   const navigate = useNavigate();
+  const load = useGameSfxStore((state: any) => state.load);
+
+  useEffect(() => {
+    load(GAME_SFX_FILES);
+  }, [load]);
 
   useEffect(() => {
     const completed = localStorage.getItem("onboarding");
