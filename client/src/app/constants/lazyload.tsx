@@ -1,5 +1,5 @@
-import { lazy } from "react";
 import PageLoader from "@/components/core/page-loader";
+import { lazy } from "react";
 
 export const LandingPage = PageLoader(
   lazy(() => import("@/features/home/pages/landing")),
@@ -10,8 +10,8 @@ export const TestPage = PageLoader(
 );
 
 export const OnboardingPage = PageLoader(
-  lazy(() => import("@/features/onboarding/pages"))
-)
+  lazy(() => import("@/features/onboarding/pages/onboarding-page")),
+);
 export const SetupPage = PageLoader(
   lazy(() => import("@/features/set-up/pages/set-up-page")),
 );
@@ -24,6 +24,15 @@ export const ResultPage = PageLoader(
   lazy(() => import("@/features/voting/pages/result-page")),
 );
 
-export const GameMode = PageLoader(
-  lazy(() => import("@/features/game-mode/page")),
+export const GameModePage = PageLoader(
+  lazy(() => import("@/features/game-mode/pages/game-mode-page")),
+);
+export const GameSettingPage = PageLoader(
+  lazy(() => import("@/features/game-setting/pages/game-setting-page")),
+);
+export const ChooseCategory = PageLoader(
+  lazy(() => import("@/features/choose-categories/pages/choose-categories")),
+);
+export const GameStartPage = PageLoader(
+  lazy(() => import("@/features/game-start/pages/game-start-page")),
 );
