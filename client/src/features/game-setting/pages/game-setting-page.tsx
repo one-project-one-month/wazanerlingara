@@ -10,7 +10,7 @@ import { APP_CONFIG } from "@/app/config/app-config"
 const GameSetting = () => {
     const navigate = useNavigate()
     return (
-        <section className="relative mx-auto flex min-h-[calc(100dvh-2rem)] w-full max-w-2xl flex-col px-2 pb-2 pt-1 sm:px-4">
+        <section className="relative mx-auto flex w-full max-w-2xl flex-col px-2 pb-2 pt-1 sm:px-4">
             <div className="flex items-start gap-3 pt-1 md:block md:pt-0">
                 <BackButton />
 
@@ -21,7 +21,7 @@ const GameSetting = () => {
                 </header>
             </div>
 
-            <main className="mt-5 flex flex-1 flex-col md:mt-7 rounded-2xl p-4">
+            <main className="mt-5 flex flex-1 flex-col md:mt-7 rounded-2xl ">
                 <div className="space-y-6">
 
                     <ImposterCounter />

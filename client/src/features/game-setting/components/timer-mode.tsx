@@ -4,11 +4,9 @@ import IconGroupPeople from "@/assets/icons/icon-group-people"
 import IconPeople from "@/assets/icons/icon-people"
 import { useGameConfigStore } from "@/stores/game-config-store"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { APP_CONFIG } from "@/app/config/app-config"
+
 
 const TimerModeSetting = () => {
-    const navigate = useNavigate();
     const { config, updateGameConfig } = useGameConfigStore()
     const [timerMode, setTimerMode] = useState<"TURN" | "DURATION">("TURN");
     const isTurn = timerMode === "TURN";
@@ -27,7 +25,6 @@ const TimerModeSetting = () => {
                 ...(isTurn ? { turnTimer: newValue } : { durationTimer: newValue })
             }
         });
-        navigate(APP_CONFIG.ROLE_REVEAL)
     };
 
     const increaseTimer = () => {
@@ -77,7 +74,7 @@ const TimerModeSetting = () => {
                 <button
                     type="button"
                     onClick={() => setTimerMode("TURN")}
-                    className={`py-4 px-6  flex-1  flex items-center gap-2  rounded-2xl 
+                    className={`py-2 sm:py-4 px-4 sm:px-6  flex-1  flex items-center gap-1 sm:gap-2  rounded-2xl 
                                 ${isTurn ? "bg-white text-black" : "bg-transparent text-white"}
         `}
                 >
@@ -87,7 +84,7 @@ const TimerModeSetting = () => {
                 <button
                     type="button"
                     onClick={() => setTimerMode("DURATION")}
-                    className={`py-4 px-6   flex-1  flex items-center gap-2  rounded-2xl 
+                    className={`py-2 sm:py-4 px-4 sm:px-6   flex-1  flex items-center gap-1 sm:gap-2  rounded-2xl 
                                      ${!isTurn ? "bg-white text-black" : "bg-transparent text-white"}
         `}
                 >
