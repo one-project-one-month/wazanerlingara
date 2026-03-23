@@ -13,11 +13,11 @@ import supes from "@/assets/svg/supes.svg";
 import technologies from "@/assets/svg/technologies.svg";
 import BackButton from "@/components/common/back-button";
 import { Button } from "@/components/ui/button";
+import { useGameConfigStore } from "@/stores/game-config-store";
 import type { CategoryCardType, GameCategoryType } from "@/types/index.types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CategoryCard from "../components/category-card";
-
 
 const GAME_CATEGORIES: CategoryCardType[] = [
   {
@@ -83,6 +83,7 @@ const GAME_CATEGORIES: CategoryCardType[] = [
 ];
 
 export default function ChooseCategories() {
+  const { config, updateGameConfig } = useGameConfigStore();
   const [category, setCategory] = useState<GameCategoryType | undefined>();
   const navigate = useNavigate();
 
@@ -93,13 +94,25 @@ export default function ChooseCategories() {
   const handleGameForward = () => {
     if (!category) return;
 
-    localStorage.setItem(`${APP_CONFIG.APP_NAME}-category`, category);
-    navigate(APP_CONFIG.GAME_SETTING);
+    const selectedCategory = GAME_CATEGORIES.find(
+      (item) => item.type === category,
+    );
+    if (!selectedCategory) return;
+
+    if (config) {
+      updateGameConfig({
+        category: {
+          id: selectedCategory.type,
+          name: selectedCategory.title,
+        },
+      });
+      navigate(APP_CONFIG.GAME_SETTING);
+    }
   };
 
   return (
-    <section className="relative mx-auto flex min-h-[calc(100dvh-2rem)] w-full max-w-6xl flex-col px-2 pb-2 pt-1 sm:px-4">
-      <div className="flex items-start gap-3 pt-1 md:block md:pt-0">
+    <section className="relative mx-auto flex min-h-[calc(100dvh-2rem)] w-full max-w-6xl flex-col py-4 px-2 lg:px-6">
+      <div className="flex items-start gap-3 md:block">
         <BackButton />
 
         <header className="flex-1 space-y-3 text-center md:space-y-4 md:pt-8 md:text-center">

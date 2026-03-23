@@ -19,7 +19,7 @@ const createPlayerInput = (name = ""): PlayerInputType => ({
 });
 
 export default function GameStartPage() {
-  const { config, setGameConfig } = useGameConfigStore()
+  const { config, setGameConfig } = useGameConfigStore();
   const navigate = useNavigate();
   const [playerInputs, setPlayerInputs] = useState<PlayerInputType[]>([
     createPlayerInput(),
@@ -89,12 +89,12 @@ export default function GameStartPage() {
       });
 
       navigate(APP_CONFIG.CHOOSE_GAME_MODE);
-    };
-  }
+    }
+  };
 
   return (
-    <section className="relative mx-auto flex min-h-[calc(100dvh-2rem)] w-full max-w-2xl flex-col px-2 pb-2 pt-1 sm:px-4">
-      <div className="flex items-start gap-3 pt-1 md:block md:pt-0">
+    <div className="relative mx-auto flex min-h-[calc(100dvh-2rem)] w-full max-w-2xl flex-col py-4 px-2 lg:px-6">
+      <div className="flex items-start gap-3 md:block">
         <BackButton />
 
         <header className="flex-1 text-center md:space-y-4 md:pt-8 md:text-center">
@@ -111,7 +111,7 @@ export default function GameStartPage() {
       <div className="mt-5 flex flex-1 flex-col space-y-3 md:mt-7">
         <p
           className={cn(
-            "pl-1 text-[1.45rem] leading-none md:text-[1.8rem]",
+            "pl-1 text-[1.2rem] leading-none md:text-[1.8rem]",
             playerCount > 0 ? "text-success-500" : "text-netural-200",
           )}
         >
@@ -128,31 +128,34 @@ export default function GameStartPage() {
                 onChange={(event) =>
                   handleInputChange(index, event.currentTarget.value)
                 }
+                autoFocus
                 placeholder="နာမည် ရိုက်ထည့်ပါ..."
                 className="h-16 text-[1.3rem] md:h-20 md:text-2xl"
               />
 
-              <button
-                type="button"
-                onClick={() => handleRemovePlayer(playerInput.id)}
-                className="absolute right-4 top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full border-2 border-netural-100 text-netural-100 md:h-8 md:w-8"
-                aria-label="Remove player"
-              >
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 14 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+              {playerCount >= 1 && (
+                <button
+                  type="button"
+                  onClick={() => handleRemovePlayer(playerInput.id)}
+                  className="absolute right-4 top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full border-2 border-netural-100 text-netural-100 md:h-8 md:w-8"
+                  aria-label="Remove player"
                 >
-                  <path
-                    d="M3 3L11 11M11 3L3 11"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </button>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3 3L11 11M11 3L3 11"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </button>
+              )}
             </div>
           ))}
         </div>
@@ -164,14 +167,14 @@ export default function GameStartPage() {
           disabled={playerInputs.length >= MAX_PLAYERS}
           className="h-16 text-[1.25rem] md:h-20 md:text-[1.75rem]"
         >
-          <span className="inline-flex items-center gap-3">
+          <span className="inline-flex items-center gap-2">
             <img
               src={plusCircleButtonIcon}
               alt="plus-circle-icon"
-              className="h-8 w-8 md:h-auto md:w-auto"
+              className="size-8"
             />
 
-            <span>နောက်တစ်ယောက်ထည့်မယ်</span>
+            <span>နောက်ထပ်ထည့်မယ်</span>
           </span>
         </Button>
 
@@ -187,12 +190,12 @@ export default function GameStartPage() {
             type="button"
             onClick={handleStartGame}
             disabled={!canStartGame}
-            className="flex items-center justify-center text-[1.6rem] tracking-wide md:text-[2rem]"
+            className="h-18 flex items-center justify-center text-2xl tracking-wide"
           >
             ရှေ့ဆက်မယ်
           </Button>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

@@ -7,7 +7,7 @@ import { useGameSfxStore } from "@/stores/game-sfx-store";
 import { useState } from "react";
 
 function Test() {
-  const [check, setcheck] = useState(false);
+  const [check, setCheck] = useState(false);
 
   const play = useGameSfxStore.getState().play;
 
@@ -30,7 +30,7 @@ function Test() {
         checked={check}
         onChange={() => {
           play("click", 0.5);
-          setcheck(!check);
+          setCheck(!check);
         }}
       />
     </div>

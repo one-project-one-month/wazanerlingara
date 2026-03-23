@@ -26,7 +26,7 @@ export default function MainLayout() {
   }, [location.pathname, navigate]);
 
   return (
-    <div className="h-dvh w-dvw py-4 px-6 bg-black text-white overflow-x-hidden">
+    <div className="h-dvh w-dvw py-4 px-4 lg:px-6 bg-black text-white overflow-x-hidden">
       <main>
         <Outlet />
       </main>

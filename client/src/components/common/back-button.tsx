@@ -10,11 +10,7 @@ const BackButton = () => {
       className="inline-flex shrink-0 cursor-pointer rounded-xl duration-200 md:fixed md:left-10 md:top-6 md:z-20"
       aria-label="Back"
     >
-      <img
-        src={backButtonIcon}
-        alt="Back"
-        className="h-9 w-9 md:h-10 md:w-10"
-      />
+      <img src={backButtonIcon} alt="Back" className="size-10" />
     </button>
   );
 };
