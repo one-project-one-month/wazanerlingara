@@ -15,7 +15,7 @@ const OnBoardingPage = () => {
   const handleNext = () => {
     if (page === totalSteps) {
       finish();
-      navigate(APP_CONFIG.GAME_START);
+      navigate(APP_CONFIG.SET_UP);
     } else {
       setPage((prev) => prev + 1);
     }

@@ -26,7 +26,7 @@ const GAME_TYPES = [
 
 const GameMode = () => {
   const { config, updateGameConfig } = useGameConfigStore();
-  const [mode, setMode] = useState<GameType | undefined>();
+  const [mode, setMode] = useState<GameType | undefined>(config?.gameMode);
   const navigate = useNavigate();
 
   const handleGameForward = () => {

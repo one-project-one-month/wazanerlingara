@@ -38,7 +38,7 @@ export type GameConfig = {
   id: string;
   players: Player[];
   gameMode: "word" | "question";
-  category: Category;
+  category?: Category;
   gameSetting: GameSetting;
   word: Word | null;
   question: Question | null;

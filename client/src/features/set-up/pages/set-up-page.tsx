@@ -8,9 +8,34 @@ import wordMarkImage from "@/assets/svg/wazanerlingara.svg";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import SetupPageSetting from "../components/setup-page-settings";
+import { useGameConfigStore } from "@/stores/game-config-store";
 
 export default function SetupPage() {
+  const { config, setGameConfig } = useGameConfigStore();
   const navigate = useNavigate();
+
+  const handleStartGame = () => {
+    if (!config) {
+      setGameConfig({
+        id: crypto.randomUUID(),
+        players: [],
+        gameMode: "word",
+        gameSetting: {
+          imposterCount: 1,
+          turnTimer: 5,
+          durationTimer: 120,
+          canImposterGetHint: false,
+        },
+        word: null,
+        question: null,
+        roundCount: 1,
+        imposterId: null,
+      });
+
+      navigate(APP_CONFIG.GAME_START);
+    }
+  }
+
   return (
     <div className="fixed inset-0 z-10 overflow-y-auto bg-black text-white lg:overflow-hidden">
       <div className="grid min-h-full w-full grid-cols-1 divide-y divide-white/10 lg:h-full lg:grid-cols-[35%_65%] lg:divide-x lg:divide-y-0 py-4 px-2 lg:px-6">
@@ -56,7 +81,7 @@ export default function SetupPage() {
           <div className="mx-auto items-center grid w-full max-w-full grid-cols-1 gap-4 lg:grid-cols-2">
             <Button
               className="h-18 flex items-center justify-center text-2xl tracking-wide"
-              onClick={() => navigate(APP_CONFIG.GAME_START)}
+              onClick={handleStartGame}
             >
               <span className="inline-flex items-center gap-2">
                 <img src={playIcon} alt="play-icon" className="size-8" />

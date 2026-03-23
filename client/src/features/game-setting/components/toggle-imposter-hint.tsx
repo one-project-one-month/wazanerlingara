@@ -1,12 +1,10 @@
 import lightBulb from "@/assets/svg/light-bulb.svg";
 import Switch from "@/components/ui/switch";
 import { useGameConfigStore } from "@/stores/game-config-store";
-import { useGameSfxStore } from "@/stores/game-sfx-store";
+
 
 const ToggleImposterHint = () => {
   const { config, updateGameConfig } = useGameConfigStore();
-  const play = useGameSfxStore.getState().play;
-
   const toggleHint = (checked: boolean) => {
     if (!config) return;
 
@@ -31,7 +29,7 @@ const ToggleImposterHint = () => {
       <Switch
         checked={config?.gameSetting.canImposterGetHint ?? false}
         onChange={(checked) => {
-          play("click", 0.5);
+
           toggleHint(checked);
         }}
       />
