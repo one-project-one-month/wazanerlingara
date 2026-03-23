@@ -1,5 +1,5 @@
-import { lazy } from "react";
 import PageLoader from "@/components/core/page-loader";
+import { lazy } from "react";
 
 export const LandingPage = PageLoader(
   lazy(() => import("@/features/home/pages/landing")),
@@ -27,3 +27,7 @@ export const ResultPage = PageLoader(
 export const GameMode = PageLoader(
   lazy(() => import("@/features/game-mode/page")),
 );
+
+export const DurationTimerPage=PageLoader(
+  lazy(()=>import('@/features/game-play/pages/duration-timer'))
+)
