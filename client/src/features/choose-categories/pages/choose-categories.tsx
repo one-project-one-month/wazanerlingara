@@ -22,7 +22,7 @@ import CategoryCard from "../components/category-card";
 const GAME_CATEGORIES: CategoryCardType[] = [
   {
     type: "animals",
-    title: "စကားလုံးဂိမ်း",
+    title: "တိရစ္ဆာန်များ",
     image: animals,
   },
   {

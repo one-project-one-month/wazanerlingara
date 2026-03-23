@@ -97,7 +97,7 @@ const TimerModeSetting = () => {
           >
             -
           </button>
-          <div className="grid gird-cols-2 flex-1 mt-2">
+          <div className="grid gird-cols-2 flex-1 mt-1">
             <input
               type="range"
               min={min}

@@ -19,7 +19,7 @@ const createPlayerInput = (name = ""): PlayerInputType => ({
 });
 
 export default function GameStartPage() {
-  const { config, setGameConfig } = useGameConfigStore();
+  const { config, updateGameConfig } = useGameConfigStore();
   const navigate = useNavigate();
   const [playerInputs, setPlayerInputs] = useState<PlayerInputType[]>([
     createPlayerInput(),
@@ -62,34 +62,17 @@ export default function GameStartPage() {
   };
 
   const handleStartGame = () => {
-    if (!canStartGame) {
+    if (!canStartGame && !config) {
       return;
     }
-    //delete or update the game config because it is demo start
-    if (!config) {
-      setGameConfig({
+    updateGameConfig({
+      players: validPlayers.map((name) => ({
         id: crypto.randomUUID(),
-        players: validPlayers.map((name) => ({
-          id: crypto.randomUUID(),
-          name,
-          imageId: null,
-        })),
-        gameMode: "word",
-        category: { id: "1", name: "word" },
-        gameSetting: {
-          imposterCount: 1,
-          turnTimer: 5,
-          durationTimer: 120,
-          canImposterGetHint: false,
-        },
-        word: null,
-        question: null,
-        roundCount: 1,
-        imposterId: null,
-      });
-
-      navigate(APP_CONFIG.CHOOSE_GAME_MODE);
-    }
+        name,
+        imageId: null,
+      })),
+    });
+    navigate(APP_CONFIG.CHOOSE_GAME_MODE)
   };
 
   return (

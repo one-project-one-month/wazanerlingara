@@ -19,7 +19,7 @@ const GameInfo = () => {
       </div>
       <div className="flex justify-between">
         <h3 className="text-heading-6">အမျိူးအစား</h3>
-        <p className="text-body-1">{config?.category.name}</p>
+        <p className="text-body-1">{config?.category?.name}</p>
       </div>
     </>
   );
