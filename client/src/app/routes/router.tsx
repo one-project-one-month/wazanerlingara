@@ -1,6 +1,9 @@
 import {
+  ChooseCategory,
   DurationTimerPage,
   GameMode,
+  GameSettingPage,
+  GameStartPage,
   LandingPage,
   OnboardingPage,
   ResultPage,
@@ -11,14 +14,14 @@ import {
 import MainLayout from "@/components/layouts/main-layout";
 import GamePlayLoading from "@/features/game-play/pages/loading";
 import GamePlayPage from "@/features/game-play/pages/page";
-import GameStartPage from "@/features/game-start/pages/game-start-page";
+import NotFound from "@/features/not-found";
 import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <div>404 Not Found</div>,
+    errorElement: <NotFound />,
     children: [
       {
         index: true,
@@ -66,7 +69,16 @@ const router = createBrowserRouter([
             path:'duration-timer',
             element:<DurationTimerPage />
           }
-        ]
+        ],
+       
+      },
+      {
+        path: "choose-categories",
+        element: <ChooseCategory />,
+      },
+      {
+        path: "game-setting",
+        element: <GameSettingPage />
       }
     ],
   },

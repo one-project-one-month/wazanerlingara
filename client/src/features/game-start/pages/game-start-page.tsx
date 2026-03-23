@@ -1,10 +1,11 @@
 import { APP_CONFIG } from "@/app/config/app-config";
-import backButtonIcon from "@/assets/svg/back-button.svg";
 import plusCircleButtonIcon from "@/assets/svg/plus-circle-icon.svg";
+import BackButton from "@/components/common/back-button";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { changeToMMNumber } from "@/lib/change-to-mm-number";
 import { cn } from "@/lib/util";
+import { useGameConfigStore } from "@/stores/game-config-store";
 import type { PlayerInputType } from "@/types/index.types";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +19,7 @@ const createPlayerInput = (name = ""): PlayerInputType => ({
 });
 
 export default function GameStartPage() {
+  const { config, updateGameConfig } = useGameConfigStore();
   const navigate = useNavigate();
   const [playerInputs, setPlayerInputs] = useState<PlayerInputType[]>([
     createPlayerInput(),
@@ -60,67 +62,61 @@ export default function GameStartPage() {
   };
 
   const handleStartGame = () => {
-    if (!canStartGame) {
+    if (!canStartGame && !config) {
       return;
     }
-
-    localStorage.setItem(
-      `${APP_CONFIG.APP_NAME}-players`,
-      JSON.stringify(validPlayers),
-    );
-    navigate('/game-mode')
+    updateGameConfig({
+      players: validPlayers.map((name) => ({
+        id: crypto.randomUUID(),
+        name,
+        imageId: null,
+      })),
+    });
+    navigate(APP_CONFIG.CHOOSE_GAME_MODE)
   };
 
   return (
-    <section className="relative mx-auto flex min-h-[calc(100dvh-2rem)] w-full max-w-2xl flex-col px-2 pb-2 pt-1 sm:px-4">
-      <button
-        type="button"
-        onClick={() => navigate(-1)}
-        className="fixed left-4 top-4 z-20 rounded-xl md:left-10 md:top-6 cursor-pointer duration-200"
-        aria-label="Back"
-      >
-        <img
-          src={backButtonIcon}
-          alt="Back"
-          className="h-9 w-9 md:h-10 md:w-10"
-        />
-      </button>
+    <div className="relative mx-auto flex min-h-[calc(100dvh-2rem)] w-full max-w-2xl flex-col py-4 px-2 lg:px-6">
+      <div className="flex items-start gap-3 md:block">
+        <BackButton />
 
-      <div className="flex flex-1 flex-col pt-8 md:pt-10">
-        <header className="space-y-3 text-center md:space-y-4">
+        <header className="flex-1 text-center md:space-y-4 md:pt-8 md:text-center">
           <h1 className="text-[2.05rem] leading-none text-netural-100 md:text-[2.45rem]">
             ဘယ်သူတွေ ကစားမလဲ
           </h1>
-          <p className="mx-auto max-w-xl text-[1.15rem] leading-snug text-netural-200 md:text-[1.4rem]">
-            ပါဝင်ကစားသွားမှာဖြစ်တဲ့ သူငယ်ချင်းတွေရဲ့ နာမည်တွေကို အောက်မှာ
-            ရိုက်ထည့်ပေးပါ။
-          </p>
         </header>
+      </div>
+      <p className="max-w-md text-xl lg:text-2xl text-center mt-4 leading-relaxed text-netural-200 mx-auto">
+        ပါဝင်ကစားသွားမှာဖြစ်တဲ့ သူငယ်ချင်းတွေရဲ့ နာမည်တွေကို အောက်မှာ
+        ရိုက်ထည့်ပေးပါ။
+      </p>
 
-        <div className="mt-5 space-y-3 md:mt-7">
-          <p
-            className={cn(
-              "pl-1 text-[1.45rem] leading-none md:text-[1.8rem]",
-              playerCount > 0 ? "text-success-500" : "text-netural-200",
-            )}
-          >
-            {changeToMMNumber(playerCount)} / {changeToMMNumber(MAX_PLAYERS)}
-          </p>
+      <div className="mt-5 flex flex-1 flex-col space-y-3 md:mt-7">
+        <p
+          className={cn(
+            "pl-1 text-[1.2rem] leading-none md:text-[1.8rem]",
+            playerCount > 0 ? "text-success-500" : "text-netural-200",
+          )}
+        >
+          {changeToMMNumber(playerCount)} / {changeToMMNumber(MAX_PLAYERS)}
+        </p>
 
-          <div className="space-y-3">
-            {playerInputs.map((playerInput, index) => (
-              <div key={playerInput.id} className="relative">
-                <Input
-                  type="text"
-                  value={playerInput.name}
-                  maxLength={28}
-                  onChange={(event) =>
-                    handleInputChange(index, event.currentTarget.value)
-                  }
-                  placeholder="နာမည် ရိုက်ထည့်ပါ..."
-                  className="h-16 text-[1.3rem] md:h-20 md:text-2xl"
-                />
+        <div className="space-y-3">
+          {playerInputs.map((playerInput, index) => (
+            <div key={playerInput.id} className="relative">
+              <Input
+                type="text"
+                value={playerInput.name}
+                maxLength={28}
+                onChange={(event) =>
+                  handleInputChange(index, event.currentTarget.value)
+                }
+                autoFocus
+                placeholder="နာမည် ရိုက်ထည့်ပါ..."
+                className="h-16 text-[1.3rem] md:h-20 md:text-2xl"
+              />
 
+              {playerCount >= 1 && (
                 <button
                   type="button"
                   onClick={() => handleRemovePlayer(playerInput.id)}
@@ -142,28 +138,28 @@ export default function GameStartPage() {
                     />
                   </svg>
                 </button>
-              </div>
-            ))}
-          </div>
-
-          <Button
-            type="button"
-            variant="outline"
-            onClick={handleAddPlayer}
-            disabled={playerInputs.length >= MAX_PLAYERS}
-            className="h-16 text-[1.25rem] md:h-20 md:text-[1.75rem]"
-          >
-            <span className="inline-flex items-center gap-3">
-              <img
-                src={plusCircleButtonIcon}
-                alt="plus-circle-icon"
-                className="h-8 w-8 md:h-auto md:w-auto"
-              />
-
-              <span>နောက်တစ်ယောက်ထည့်မယ်</span>
-            </span>
-          </Button>
+              )}
+            </div>
+          ))}
         </div>
+
+        <Button
+          type="button"
+          variant="outline"
+          onClick={handleAddPlayer}
+          disabled={playerInputs.length >= MAX_PLAYERS}
+          className="h-16 text-[1.25rem] md:h-20 md:text-[1.75rem]"
+        >
+          <span className="inline-flex items-center gap-2">
+            <img
+              src={plusCircleButtonIcon}
+              alt="plus-circle-icon"
+              className="size-8"
+            />
+
+            <span>နောက်ထပ်ထည့်မယ်</span>
+          </span>
+        </Button>
 
         <div className="mt-auto space-y-3 pb-1 text-center">
           {!canStartGame && (
@@ -177,12 +173,12 @@ export default function GameStartPage() {
             type="button"
             onClick={handleStartGame}
             disabled={!canStartGame}
-            className="h-14 text-[1.6rem] flex items-center justify-center tracking-wide md:h-16 md:text-[2rem]"
+            className="h-18 flex items-center justify-center text-2xl tracking-wide"
           >
             ရှေ့ဆက်မယ်
           </Button>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
