@@ -1,7 +1,7 @@
 import {
   ChooseCategory,
   DurationTimerPage,
-  GameMode,
+  GameModePage,
   GameSettingPage,
   GameStartPage,
   LandingPage,
@@ -48,29 +48,29 @@ const router = createBrowserRouter([
         element: <GameStartPage />,
       },
       {
-        path: '/game-mode',
-        element: <GameMode />
+        path: 'game-mode',
+        element: <GameModePage />
       },
       {
-        path:'/game-play',
-       
-        children:[
+        path: 'game-play',
+
+        children: [
 
 
           {
-            index:true,
-             element:<GamePlayLoading />,
+            index: true,
+            element: <GamePlayLoading />,
           },
           {
-            path:'turn-timer',
-            element:<GamePlayPage />
+            path: 'turn-timer',
+            element: <GamePlayPage />
           },
           {
-            path:'duration-timer',
-            element:<DurationTimerPage />
+            path: 'duration-timer',
+            element: <DurationTimerPage />
           }
         ],
-       
+
       },
       {
         path: "choose-categories",

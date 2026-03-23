@@ -6,33 +6,33 @@ interface CircularTimerProps {
   totalTime?: number;
   strokeColor?: string;
   trackColor?: string;
-  isPaused?: boolean; 
-  onComplete?: () => void; 
+  isPaused?: boolean;
+  onComplete?: () => void;
 }
 
-const CircularTimer = ({ 
-  totalTime = 5,           
-  strokeColor = "#FA0000",  
+const CircularTimer = ({
+  totalTime = 5,
+  strokeColor = "#FA0000",
   trackColor = "#374151",
-  isPaused = false,        
-  onComplete                
+  isPaused = false,
+  onComplete
 }: CircularTimerProps) => {
   const [timeLeft, setTimeLeft] = useState(totalTime);
-const minutes = Math.floor(timeLeft / 60);
-const seconds = timeLeft % 60;
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
 
-const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-  
+  const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
 
-  
+
+
   const trackRef = useRef<SVGCircleElement>(null);
   const headRef = useRef<SVGCircleElement>(null);
-  
+
   const trackAnimRef = useRef<any>(null);
   const headAnimRef = useRef<any>(null);
 
-  const radius = 45; 
-  const circumference = 2 * Math.PI * radius; 
+  const radius = 45;
+  const circumference = 2 * Math.PI * radius;
 
   useEffect(() => {
     if (timeLeft === 0) {
@@ -41,7 +41,7 @@ const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
   }, [timeLeft, onComplete]);
 
   useEffect(() => {
-    
+
     let timerId: ReturnType<typeof setInterval>;
 
     if (!isPaused) {
@@ -57,21 +57,21 @@ const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
     }
 
     return () => clearInterval(timerId);
-  }, [isPaused]); 
+  }, [isPaused]);
 
   useEffect(() => {
     setTimeLeft(totalTime);
 
     if (trackRef.current && headRef.current) {
       trackAnimRef.current = animate(trackRef.current, {
-        strokeDashoffset: [0, -circumference], 
+        strokeDashoffset: [0, -circumference],
         duration: totalTime * 1000,
         easing: 'linear',
-        autoplay: false 
+        autoplay: false
       });
 
       headAnimRef.current = animate(headRef.current, {
-        rotate: [0, 360], 
+        rotate: [0, 360],
         duration: totalTime * 1000,
         easing: 'linear',
         autoplay: false
@@ -84,18 +84,18 @@ const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
     }
 
     return () => {
-    
+
       if (trackAnimRef.current?.pause) trackAnimRef.current.pause();
       if (headAnimRef.current?.pause) headAnimRef.current.pause();
     };
 
-  }, [totalTime, circumference]); 
+  }, [totalTime, circumference, isPaused]);
 
   useEffect(() => {
     if (isPaused) {
       trackAnimRef.current?.pause();
       headAnimRef.current?.pause();
-    } else if (timeLeft > 0) { 
+    } else if (timeLeft > 0) {
       trackAnimRef.current?.play();
       headAnimRef.current?.play();
     }
@@ -104,7 +104,7 @@ const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="relative w-48 h-48">
-        
+
         <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
           <defs>
             <filter id={`glow-${strokeColor.replace('#', '')}`} x="-50%" y="-50%" width="160%" height="160%">
@@ -117,24 +117,24 @@ const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
           </defs>
 
           <circle cx="50" cy="50" r={radius} fill="transparent" stroke={trackColor} strokeWidth="3" />
-          
+
           <circle
-            ref={trackRef} 
-            cx="50" cy="50" r={radius} fill="transparent" stroke={strokeColor} 
-            strokeWidth="3" strokeLinecap="round" strokeDasharray={circumference} strokeDashoffset={0} 
+            ref={trackRef}
+            cx="50" cy="50" r={radius} fill="transparent" stroke={strokeColor}
+            strokeWidth="3" strokeLinecap="round" strokeDasharray={circumference} strokeDashoffset={0}
           />
 
           <circle
-            ref={headRef} 
-            cx="95" cy="50" r="4" fill="#ffffff" 
-            filter={`url(#glow-${strokeColor.replace('#', '')})`} 
-            style={{ transformOrigin: '50px 50px' }} 
+            ref={headRef}
+            cx="95" cy="50" r="4" fill="#ffffff"
+            filter={`url(#glow-${strokeColor.replace('#', '')})`}
+            style={{ transformOrigin: '50px 50px' }}
           />
         </svg>
 
         <div className="absolute inset-0 flex items-center justify-center">
           <span className="text-4xl font-bold text-white">
-             {changeToMMNumber(formattedTime)}
+            {changeToMMNumber(formattedTime)}
           </span>
         </div>
       </div>

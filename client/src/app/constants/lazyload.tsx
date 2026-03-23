@@ -37,6 +37,6 @@ export const GameStartPage = PageLoader(
   lazy(() => import("@/features/game-start/pages/game-start-page")),
 );
 
-export const DurationTimerPage=PageLoader(
-  lazy(()=>import('@/features/game-play/pages/duration-timer'))
-)
+export const DurationTimerPage = PageLoader(
+  lazy(() => import('@/features/game-play/pages/duration-timer')),
+);
