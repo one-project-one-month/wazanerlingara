@@ -1,10 +1,10 @@
+import { APP_CONFIG } from "@/app/config/app-config";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import OnboadingIntroPage from "../components/onboading-intro";
 import OnboardingCard from "../components/onboarding-card";
 import { onboardingSteps } from "../components/onboarding-steps";
 import useOnboarding from "../hooks";
-import { APP_CONFIG } from "@/app/config/app-config";
 
 const OnBoardingPage = () => {
   const [page, setPage] = useState(0); //indicator of current page

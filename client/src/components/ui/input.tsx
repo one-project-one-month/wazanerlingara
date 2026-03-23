@@ -1,6 +1,6 @@
-import * as React from "react";
-import { cn } from "@/lib/util";
 import IconInfoCircle from "@/assets/icons/icon-info-circle";
+import { cn } from "@/lib/util";
+import * as React from "react";
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   variant?: "default" | "success" | "error";

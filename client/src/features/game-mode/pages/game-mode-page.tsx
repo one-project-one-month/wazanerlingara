@@ -25,7 +25,7 @@ const GAME_TYPES = [
 ];
 
 const GameMode = () => {
-  const { config, updateGameConfig } = useGameConfigStore()
+  const { config, updateGameConfig } = useGameConfigStore();
   const [mode, setMode] = useState<GameType | undefined>();
   const navigate = useNavigate();
 
@@ -40,11 +40,11 @@ const GameMode = () => {
   };
 
   return (
-    <section className="relative mx-auto flex min-h-[calc(100dvh-2rem)] w-full max-w-2xl flex-col px-2 pb-2 pt-1 sm:px-4">
-      <div className="flex items-start gap-3 pt-1 md:block md:pt-0">
+    <section className="relative mx-auto flex min-h-[calc(100dvh-2rem)] w-full max-w-2xl flex-col py-4 px-2 lg:px-6">
+      <div className="flex items-start gap-3 md:block">
         <BackButton />
 
-        <header className="flex-1 space-y-3 text-center md:space-y-4 md:pt-8 md:text-center">
+        <header className="flex-1 text-center md:space-y-4 md:pt-8 md:text-center">
           <h1 className="text-[2.05rem] leading-none text-netural-100 md:text-[2.45rem]">
             ဂိမ်းအမျိုးအစား ရွေးမယ်
           </h1>
@@ -58,7 +58,7 @@ const GameMode = () => {
               key={type}
               type="button"
               onClick={() => setMode(type as GameType)}
-              className={`flex w-full cursor-pointer items-start gap-4 rounded-2xl border p-4 ${type === mode ? "border-white ring-2 ring-white" : "border-white/70"}`}
+              className={`flex w-full cursor-pointer items-center gap-4 rounded-2xl border p-4 ${type === mode ? "border-white ring-2 ring-white" : "border-white/70"}`}
             >
               <img
                 src={image}
@@ -66,10 +66,8 @@ const GameMode = () => {
                 className="aspect-square w-20 md:w-24"
               />
               <div className="flex flex-col items-start">
-                <h2 className="text-[1.25rem] text-netural-100 md:text-[1.45rem]">
-                  {title}
-                </h2>
-                <p className="text-netural-200">{description}</p>
+                <h2 className="text-3xl text-netural-100">{title}</h2>
+                <p className="text-netural-200 text-xl">{description}</p>
               </div>
             </button>
           ))}
