@@ -1,4 +1,4 @@
-import { type RefObject } from "react";
+import type { RefObject } from "react";
 import viewButton from "@/assets/svg/role-reveal-screen/ViewButton.svg";
 import imposterPic from "@/assets/svg/role-reveal-screen/ImposterPic.svg";
 import type { Player, Word } from "@/types/game.type.ts";
