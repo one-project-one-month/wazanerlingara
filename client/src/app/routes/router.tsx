@@ -1,13 +1,24 @@
-import { createBrowserRouter } from "react-router-dom";
-import { LandingPage, OnboardingPage, TestPage } from "@/app/constants/lazyload";
+import {
+  ChooseCategory,
+  GameModePage,
+  GameSettingPage,
+  GameStartPage,
+  LandingPage,
+  OnboardingPage,
+  ResultPage,
+  SetupPage,
+  TestPage,
+  VotingPage,
+} from "@/app/constants/lazyload";
 import MainLayout from "@/components/layouts/main-layout";
-import SetupPage from "@/features/set-up/pages/set-up-page";
+import NotFound from "@/features/not-found";
+import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <div>404 Not Found</div>,
+    errorElement: <NotFound />,
     children: [
       {
         index: true,
@@ -18,14 +29,38 @@ const router = createBrowserRouter([
         element: <TestPage />,
       },
       {
-        path: "onboarding",
-        element: <OnboardingPage />
-      },
-      {
         path: "set-up",
         element: <SetupPage />,
       },
+      {
+        path: "voting",
+        element: <VotingPage />,
+      },
+      {
+        path: "result",
+        element: <ResultPage />,
+      },
+      {
+        path: "game-start",
+        element: <GameStartPage />,
+      },
+      {
+        path: "game-mode",
+        element: <GameModePage />,
+      },
+      {
+        path: "choose-categories",
+        element: <ChooseCategory />,
+      },
+      {
+        path: "game-setting",
+        element: <GameSettingPage />
+      }
     ],
+  },
+  {
+    path: "/onboarding",
+    element: <OnboardingPage />,
   },
 ]);
 
