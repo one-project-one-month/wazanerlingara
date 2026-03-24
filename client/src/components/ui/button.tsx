@@ -10,7 +10,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <div
         className={cn(
-          "relative group active:scale-95 duration-300 ",
+          "relative group active:scale-95 duration-300 flex",
           props.disabled && "cursor-not-allowed pointer-events-none",
         )}
       >
@@ -66,7 +66,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             ry="7.65595"
             transform="rotate(55.8233 6.75576 5.51548)"
             fill="white"
-            fill-opacity="0.9"
+            fillOpacity="0.9"
           />
         </svg>
       </div>
