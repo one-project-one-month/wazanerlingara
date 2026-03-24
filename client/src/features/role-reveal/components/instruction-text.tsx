@@ -1,6 +1,6 @@
-type Props = {
+interface Props {
   confirmed: boolean;
-};
+}
 
 export default function InstructionText({ confirmed }: Props) {
   return (

@@ -1,4 +1,4 @@
-type Player = {
+export type Player = {
   id: string;
   name: string;
   imageId: string | null;
@@ -22,7 +22,7 @@ type Category = {
   name: string;
 };
 
-type Word = {
+export type Word = {
   id: string;
   text: string;
   imageId: string | null;

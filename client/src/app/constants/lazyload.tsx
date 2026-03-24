@@ -16,6 +16,9 @@ export const SetupPage = PageLoader(
   lazy(() => import("@/features/set-up/pages/set-up-page")),
 );
 
+export const RoleRevealPage = PageLoader(
+  lazy(() => import("@/features/role-reveal/pages/role-reveal-page")),
+);
 export const VotingPage = PageLoader(
   lazy(() => import("@/features/voting/pages/voting-page")),
 );

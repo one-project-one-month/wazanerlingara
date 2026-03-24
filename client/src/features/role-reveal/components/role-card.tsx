@@ -1,50 +1,37 @@
-import { useRef } from "react";
-import { animate } from "animejs";
+import { type RefObject } from "react";
 import viewButton from "@/assets/svg/role-reveal-screen/ViewButton.svg";
+import imposterPic from "@/assets/svg/role-reveal-screen/ImposterPic.svg";
+import type { Player, Word } from "@/types/game.type.ts";
 
-type Props = {
-  currentPlayer: number;
-  player: any;
-  current: any;
-  revealed: boolean;
+interface Props {
+  currentPlayer: Player;
+  word: Word;
   showBlur: boolean;
+  revealed: boolean;
   confirmed: boolean;
+  cardRef: RefObject<HTMLDivElement | null>;
   timeLeft: number;
-  onCardClick: () => void;
-  onReveal: (e?: React.MouseEvent) => void;
-};
+  handleClickCard: () => void;
+  handleReveal: (e?: React.MouseEvent) => void;
+}
 
 export default function RoleCard({
   currentPlayer,
-  player,
-  current,
+  word,
   revealed,
   showBlur,
   confirmed,
+  cardRef,
   timeLeft,
-  onCardClick,
-  onReveal,
+  handleClickCard,
+  handleReveal,
 }: Props) {
-  const cardRef = useRef<HTMLDivElement | null>(null);
-
-  const handleRevealInternal = (e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
-
-    onReveal(e);
-
-    if (cardRef.current) {
-      animate(cardRef.current, {
-        rotateY: [90, 0],
-        opacity: [0, 1],
-        duration: 400,
-      });
-    }
-  };
+  const imposterId = "2";
 
   return (
     <div
-      key={currentPlayer}
-      onClick={onCardClick}
+      key={currentPlayer.id}
+      onClick={handleClickCard}
       className={`
         relative
         w-65 h-90
@@ -59,6 +46,7 @@ export default function RoleCard({
         }
       `}
     >
+      {/*{glowing borders}*/}
       <div className="absolute inset-0 rounded-4xl pointer-events-none z-0 shadow-[0_0_60px_rgba(255,255,255,0.25)]" />
       <div className="absolute inset-0 rounded-4xl border-[3px] border-white/60 z-10" />
       <div className="absolute inset-2 rounded-[26px] border-2 border-white/40 z-10" />
@@ -68,35 +56,51 @@ export default function RoleCard({
           {!revealed && (
             <>
               <img
-                src={player.avatar}
+                src={currentPlayer.imageId ?? ""}
                 alt="avatar"
                 className="w-30 h-30 md:w-44 md:h-44 object-contain mb-5"
               />
               <p className="text-[16px] md:text-lg text-white/90">
-                {player.name}
+                {currentPlayer.name}
               </p>
             </>
           )}
 
           {revealed && (
-            <h2
-              className={`text-2xl md:text-3xl font-semibold ${
-                current.role === "Imposter" ? "text-red-500" : "text-white"
-              }`}
-            >
-              {current.role === "Imposter" ? "Imposter" : current.word}
-            </h2>
+            <>
+              <img
+                src={
+                  currentPlayer.id === imposterId
+                    ? imposterPic
+                    : (word.imageId ?? "")
+                }
+                alt="wordOrImposterImg"
+                className="w-30 h-30 md:w-44 md:h-44 object-contain mb-5"
+              />
+              <h2
+                className={`text-2xl md:text-3xl font-semibold ${
+                  currentPlayer.id === imposterId
+                    ? "text-red-500"
+                    : "text-white"
+                }`}
+              >
+                {currentPlayer.id === imposterId ? "Imposter" : word.text}
+              </h2>
+            </>
           )}
         </div>
 
         {showBlur && !revealed && (
           <div
-            onClick={handleRevealInternal}
+            onClick={(event) => {
+              event.stopPropagation();
+              handleReveal();
+            }}
             className="absolute inset-0 backdrop-blur-2xl z-130 flex items-center justify-center"
           >
             <div className="absolute inset-0 backdrop-blur-xl bg-white/5" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.25),rgba(0,0,0,0.6))]" />
-            <div className="absolute inset-0 opacity-30 mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+            <div className="absolute inset-0 opacity-30 mix-blend-overlay " />
 
             <img src={viewButton} alt="view" />
           </div>
