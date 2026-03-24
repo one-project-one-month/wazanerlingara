@@ -1,6 +1,7 @@
-import { useMemo } from "react";
-import { useLocation, Navigate } from "react-router-dom";
-import type {VotingRouteState} from "@/features/voting/pages/voting-page";
+import { useMemo, useCallback } from "react";
+import { useLocation, Navigate, useNavigate } from "react-router-dom";
+import type { VotingRouteState } from "@/features/voting/pages/voting-page";
+import { useGameConfigStore } from "@/stores/game-config-store.ts";
 
 import TeammatesWin from "@/assets/gif/teammates-win.svg";
 import ImposterWin from "@/assets/gif/imposter-win.svg";
@@ -53,47 +54,84 @@ const imposterTrashTalks = [
 
 const ResultPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { config, resetGameConfig } = useGameConfigStore();
 
   const state = location.state as VotingRouteState | null;
   const votedFor = state?.votedFor;
 
-  // static flow
-  const isTeammatesWin = votedFor === "စာဥ";
+  const handlePlayAgain = useCallback(() => {
+    resetGameConfig();
+    navigate("/set-up", { replace: true });
+  }, [navigate, resetGameConfig]);
+
+  const handleExit = useCallback(() => {
+    resetGameConfig();
+    navigate("/", { replace: true });
+  }, [navigate, resetGameConfig]);
+
+  const isTeammatesWin = votedFor === config?.imposterId;
 
   const randomTrashTalk = useMemo(() => {
-    if (!votedFor) return "";
+    if (!votedFor || !config) return "";
     const list = isTeammatesWin ? teammatesTrashTalks : imposterTrashTalks;
     return list[Math.floor(Math.random() * list.length)];
-  }, [isTeammatesWin, votedFor]);
+  }, [isTeammatesWin, votedFor, config]);
 
-  if (!votedFor) {
-    return <Navigate to="/voting" replace />;
+  if (!votedFor || !config) {
+    return <Navigate to="/" replace />;
   }
+
+  const imposterPlayer = config.players.find((p) => p.id === config.imposterId);
+  const imposterName = imposterPlayer?.name || "Unknown";
+
+  const hintCategory = config.category?.name || "N/A";
+  const keywordText =
+    config.gameMode === "word" ? config.word?.text : config.question?.text;
 
   const titleText = isTeammatesWin ? "Teammates Win!" : "Imposter Win!";
   const titleColor = isTeammatesWin ? "text-success-500" : "text-red-500";
   const displaySvg = isTeammatesWin ? TeammatesWin : ImposterWin;
 
   return (
-    <main className={"flex flex-col py-4 h-[calc(100dvh-2rem)] items-center justify-center"}>
-      <div className={"flex flex-col items-center justify-center gap-10 px-4 max-w-141.5"}>
+    <main
+      className={
+        "flex flex-col py-4 h-[calc(100dvh-2rem)] items-center justify-center"
+      }
+    >
+      <div
+        className={
+          "flex flex-col items-center justify-center gap-10 px-4 max-w-141.5"
+        }
+      >
         <header className={"text-center flex flex-col gap-2"}>
           <h1 className={`text-4xl md:text-5xl ${titleColor}`}>{titleText}</h1>
-          <p className={"text-base md:text-xl lg:text-2xl"}>{randomTrashTalk}</p>
+          <p className={"text-base md:text-xl lg:text-2xl"}>
+            {randomTrashTalk}
+          </p>
         </header>
         <div className={"rounded-2xl overflow-hidden"}>
-          {/*will change to GIT later*/}
-          <img src={displaySvg} alt={`${titleText} GIF`} className={"w-80 lg:w-95"} />
+          {/*will add more GIT later*/}
+          <img
+            src={displaySvg}
+            alt={`${titleText} GIF`}
+            className={"w-80 lg:w-95"}
+          />
         </div>
         <div className={"flex flex-col gap-1"}>
-          {/* I will make these dynamic later when the actual game logic is ready */}
-          <p className={"text-lg md:text-2xl"}>Imposter: စာဥ</p>
-          <p className={"text-lg md:text-2xl"}>Imposter Hint: နွေရာသီ</p>
-          <p className={"text-lg md:text-2xl"}>Keyword: ရေခဲမုန့်</p>
+          <p className={"text-lg md:text-2xl"}>Imposter: {imposterName}</p>
+          <p className={"text-lg md:text-2xl"}>Imposter Hint: {hintCategory}</p>
+          <p className={"text-lg md:text-2xl"}>
+            Keyword: {keywordText || "N/A"}
+          </p>
         </div>
       </div>
-      <div className={"flex flex-col lg:flex-row w-full lg:items-center lg:justify-center gap-4 mt-auto max-w-180"}>
-        <Button>
+      <div
+        className={
+          "flex flex-col lg:flex-row w-full lg:items-center lg:justify-center gap-4 mt-auto max-w-180"
+        }
+      >
+        <Button onClick={handlePlayAgain}>
           <div className={"flex items-center gap-2 justify-center lg:w-80"}>
             <img
               src={PlayIcon}
@@ -103,7 +141,7 @@ const ResultPage = () => {
             <p className={"text-xl"}>နောက်တစ်ပွဲဆော့မယ်</p>
           </div>
         </Button>
-        <Button variant={"outline"}>
+        <Button variant={"outline"} onClick={handleExit}>
           <div className={"flex items-center gap-2 justify-center lg:w-80"}>
             <img src={HomeIcon} alt={"Home icon"} className={"max-w-sm"} />{" "}
             <p className={"text-xl"}>ထွက်မယ်</p>

@@ -1,24 +1,30 @@
-import {useCallback, useEffect, useState} from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import VotingPlayerCard from "@/features/voting/components/voting-player-card.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import VotingConfirmationPopup from "@/features/voting/components/voting-confirmation-popup.tsx";
 import VotingLoading from "@/features/voting/components/voting-loading.tsx";
+import { useGameConfigStore } from "@/stores/game-config-store.ts";
 
 export interface VotingRouteState {
-  votedFor: string | null;
+  votedFor: string | number | null;
 }
 
 const VotingPage = () => {
-  const [selectedPlayer, setSelectedPlayer] = useState<string | null>(null);
+  const [selectedPlayerId, setSelectedPlayerId] = useState<
+    string | number | null
+  >(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
+  const { config } = useGameConfigStore();
+  const selectedPlayerName =
+    config?.players.find((p) => p.id === selectedPlayerId)?.name || "";
 
   const handleVoteClick = useCallback(() => {
-    if (selectedPlayer) setIsModalOpen(true);
-  }, [selectedPlayer]);
+    if (selectedPlayerId) setIsModalOpen(true);
+  }, [selectedPlayerId]);
 
   const confirmVote = useCallback(() => {
     setIsModalOpen(false);
@@ -28,13 +34,13 @@ const VotingPage = () => {
   useEffect(() => {
     if (isLoading) {
       const timer = setTimeout(() => {
-        const routeState: VotingRouteState = { votedFor: selectedPlayer };
+        const routeState: VotingRouteState = { votedFor: selectedPlayerId };
         navigate("/result", { state: routeState });
       }, 3500);
 
       return () => clearTimeout(timer);
     }
-  }, [isLoading, navigate, selectedPlayer]);
+  }, [isLoading, navigate, selectedPlayerId]);
 
   return (
     <main
@@ -60,12 +66,12 @@ const VotingPage = () => {
           </div>
 
           <div className="w-full flex justify-center py-4">
-            <VotingPlayerCard onSelect={(name) => setSelectedPlayer(name)} />
+            <VotingPlayerCard onSelect={(id) => setSelectedPlayerId(id)} />
           </div>
 
           <div className={"mt-auto lg:mt-8 w-full lg:max-w-xl"}>
             <Button
-              disabled={!selectedPlayer}
+              disabled={!selectedPlayerId}
               onClick={handleVoteClick}
               className="w-full cursor-pointer text-xl"
             >
@@ -77,7 +83,7 @@ const VotingPage = () => {
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
             onConfirm={confirmVote}
-            playerName={selectedPlayer || ""}
+            playerName={selectedPlayerName || ""}
           />
         </>
       )}
