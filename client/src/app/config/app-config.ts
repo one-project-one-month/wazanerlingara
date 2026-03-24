@@ -7,5 +7,6 @@ export const APP_CONFIG = {
   CHOOSE_GAME_MODE: "/game-mode",
   CHOOSE_CATEGORIES: "/choose-categories",
   GAME_SETTING: "/game-setting",
-  ROLE_REVEAL: "/role-reveal"
+  ROLE_REVEAL: "/role-reveal",
+  GAME_PLAY: "/game-play"
 };

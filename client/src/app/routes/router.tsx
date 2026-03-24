@@ -1,5 +1,6 @@
 import {
   ChooseCategory,
+  DurationTimerPage,
   GameModePage,
   GameSettingPage,
   GameStartPage,
@@ -8,9 +9,11 @@ import {
   ResultPage,
   SetupPage,
   TestPage,
-  VotingPage,
+  VotingPage
 } from "@/app/constants/lazyload";
 import MainLayout from "@/components/layouts/main-layout";
+import GamePlayLoading from "@/features/game-play/pages/loading";
+import GamePlayPage from "@/features/game-play/pages/page";
 import NotFound from "@/features/not-found";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -45,8 +48,29 @@ const router = createBrowserRouter([
         element: <GameStartPage />,
       },
       {
-        path: "game-mode",
-        element: <GameModePage />,
+        path: 'game-mode',
+        element: <GameModePage />
+      },
+      {
+        path: 'game-play',
+
+        children: [
+
+
+          {
+            index: true,
+            element: <GamePlayLoading />,
+          },
+          {
+            path: 'turn-timer',
+            element: <GamePlayPage />
+          },
+          {
+            path: 'duration-timer',
+            element: <DurationTimerPage />
+          }
+        ],
+
       },
       {
         path: "choose-categories",
