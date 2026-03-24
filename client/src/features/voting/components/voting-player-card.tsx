@@ -1,32 +1,32 @@
 import { useCallback, useState } from "react";
+import { useGameConfigStore } from "@/stores/game-config-store.ts";
+
 import Buutee from "@/assets/players/buutee.svg";
 import Arluu from "@/assets/players/arluu.svg";
 import Gawli from "@/assets/players/gawli.svg";
 import Sarou from "@/assets/players/sarou.svg";
 
 interface PlayerCardProps {
-  onSelect: (name: string) => void;
+  onSelect: (id: string | number) => void;
 }
 
-type Player = {
-  name: string;
-  icon: string;
+const IMAGE_MAP: Record<string | number, string> = {
+  1: Arluu,
+  2: Buutee,
+  3: Sarou,
+  4: Gawli,
 };
 
-const PLAYERS: Player[] = [
-  { name: "အာလူး", icon: Arluu },
-  { name: "ဘူးသီး", icon: Buutee },
-  { name: "စာဥ", icon: Sarou },
-  { name: "ဂေါ်လီ", icon: Gawli },
-];
-
 const VotingPlayerCard = ({ onSelect }: PlayerCardProps) => {
-  const [selectedName, setSelectedName] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<string | number | null>(null);
+
+  const { config } = useGameConfigStore();
+  const playersList = config?.players || [];
 
   const handleSelect = useCallback(
-    (name: string) => {
-      setSelectedName(name);
-      onSelect(name);
+    (id: string) => {
+      setSelectedId(id);
+      onSelect(id);
     },
     [onSelect],
   );
@@ -37,21 +37,22 @@ const VotingPlayerCard = ({ onSelect }: PlayerCardProps) => {
         "grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:min-h-[55vh] content-center w-full max-w-5xl mx-auto px-4"
       }
     >
-      {PLAYERS.map((player) => {
-        const isSelected = selectedName === player.name;
+      {playersList.map((player) => {
+        const isSelected = selectedId === player.id;
+        const playerImage = player.imageId ? IMAGE_MAP[player.imageId] : Arluu;
 
         return (
           <button
             type="button"
-            key={player.name}
-            onClick={() => handleSelect(player.name)}
+            key={player.id}
+            onClick={() => handleSelect(player.id)}
             className={`
                p-4 flex flex-col items-center justify-center gap-4 border rounded-3xl cursor-pointer transition-all duration-300 ease-in-out hover:scale-[97%]
                ${isSelected ? "border-3 border-primary shadow-2xl bg-primary/5" : "border border-border bg-[#0A0A0A]"}
             `}
           >
             <img
-              src={player.icon}
+              src={playerImage}
               alt={`${player.name} icon`}
               className="md:w-50"
             />
