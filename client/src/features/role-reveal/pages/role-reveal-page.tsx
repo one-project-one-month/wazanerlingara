@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { animate } from "animejs";
 
-import NextPlayerCountdown from "@/features/role-reveal/components/next-player-countdown.tsx";
 import TopSection from "@/features/role-reveal/components/top-section.tsx";
 import RoleCard from "@/features/role-reveal/components/role-card.tsx";
 import InstructionText from "@/features/role-reveal/components/instruction-text.tsx";
@@ -14,6 +13,7 @@ import avatar3 from "@/assets/svg/role-reveal-screen/Avatar3.svg";
 import avatar4 from "@/assets/svg/role-reveal-screen/Avatar4.svg";
 import iceCream from "@/assets/svg/role-reveal-screen/ice-cream.svg";
 import type { GameConfig, Player } from "@/types/game.type.ts";
+import CircularTimer from "@/components/ui/circular-timer.tsx";
 
 const players: Player[] = [
   { id: "1", name: "Shin Thant Kyaw", imageId: avatar1 },
@@ -38,16 +38,22 @@ const word = {
   text: "ရေခဲမုန့်",
   imageId: iceCream,
 };
+
+const question = {
+  id: "2",
+  text: " မန်ယူဖန်ဖြစ်ရတာဘာတွေကောင်းလည်း",
+  imageId: iceCream,
+};
 const gameConfig: GameConfig = {
   id: "1",
   players,
-  gameMode: "word",
+  gameMode: "question",
   category,
   gameSetting,
   word,
-  question: null,
+  question,
   roundCount: 3,
-  imposterId: "2",
+  imposterId: "3",
 };
 
 export default function RoleRevealPage() {
@@ -67,6 +73,10 @@ export default function RoleRevealPage() {
 
   const currentPlayer = players[currentPlayerIndex];
   const nextPlayer = players[currentPlayerIndex + 1];
+
+  const { gameMode, word, question, imposterId } = gameConfig;
+  const revealImageId = gameMode === "word" ? word?.imageId : question?.imageId;
+  const revealContent = gameMode === "word" ? word?.text : question?.text;
 
   const handleClickCard = () => {
     if (timeLeft <= 0 || revealed || showBlur || confirmed) return;
@@ -108,7 +118,9 @@ export default function RoleRevealPage() {
   useEffect(() => {
     if (timeLeft <= 0) {
       if (!confirmed) {
-        handleConfirm();
+        setConfirmed(true);
+        setRevealed(false);
+        setShowBlur(false);
       }
       return;
     }
@@ -137,7 +149,9 @@ export default function RoleRevealPage() {
 
             <RoleCard
               currentPlayer={currentPlayer}
-              word={gameConfig.word ?? word}
+              revealContent={revealContent ?? ""}
+              revealImageId={revealImageId ?? ""}
+              imposterId={imposterId!!}
               revealed={revealed}
               showBlur={showBlur}
               confirmed={confirmed}
@@ -164,10 +178,15 @@ export default function RoleRevealPage() {
 
         {showExitModal && <ExitModal onClose={() => setShowExitModal(false)} />}
         {showNextCountdown && (
-          <NextPlayerCountdown
-            nextPlayer={nextPlayer}
-            onDone={handleNextPlayerCountdownDone}
-          />
+          <div className="fixed inset-0 bg-black flex flex-col items-center justify-center text-white z-50">
+            <p className="mb-10 text-center text-sm md:text-lg lg:text-xl text-white/80">
+              ဖုန်းကို {nextPlayer.name} ဆီ ကမ်းပေးပါ။
+            </p>
+            <CircularTimer
+              totalTime={3}
+              onComplete={handleNextPlayerCountdownDone}
+            />
+          </div>
         )}
       </div>
     </div>

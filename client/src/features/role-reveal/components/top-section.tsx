@@ -16,13 +16,16 @@ export default function TopSection({
   return (
     <div className="w-full">
       <div className="flex items-center gap-3">
-        <img
+        <button
           onClick={handleClickBack}
-          src={backIcon}
-          alt="back"
-          className="w-6 h-6 md:w-12 md:h-12"
-        />
-
+          onKeyDown={(e) => {
+            if (e.key === "Enter") handleClickBack();
+          }}
+          tabIndex={0}
+          type={"button"}
+        >
+          <img src={backIcon} alt="back" className="w-6 h-6 md:w-12 md:h-12" />
+        </button>
         <div className="flex-1 h-4 md:h-7 lg:h-5 bg-gray-700 rounded-full overflow-hidden">
           <div
             className={`h-full ${

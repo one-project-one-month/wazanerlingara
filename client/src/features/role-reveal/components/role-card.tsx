@@ -1,11 +1,13 @@
 import type { RefObject } from "react";
 import viewButton from "@/assets/svg/role-reveal-screen/ViewButton.svg";
 import imposterPic from "@/assets/svg/role-reveal-screen/ImposterPic.svg";
-import type { Player, Word } from "@/types/game.type.ts";
+import type { Player } from "@/types/game.type.ts";
 
 interface Props {
   currentPlayer: Player;
-  word: Word;
+  revealContent: string;
+  revealImageId?: string;
+  imposterId: string;
   showBlur: boolean;
   revealed: boolean;
   confirmed: boolean;
@@ -17,7 +19,9 @@ interface Props {
 
 export default function RoleCard({
   currentPlayer,
-  word,
+  revealContent,
+  revealImageId,
+  imposterId,
   revealed,
   showBlur,
   confirmed,
@@ -26,12 +30,15 @@ export default function RoleCard({
   handleClickCard,
   handleReveal,
 }: Props) {
-  const imposterId = "2";
-
   return (
-    <div
+    <button
       key={currentPlayer.id}
+      type={"button"}
+      tabIndex={0}
       onClick={handleClickCard}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") handleClickCard();
+      }}
       className={`
         relative
         w-65 h-90
@@ -72,7 +79,7 @@ export default function RoleCard({
                 src={
                   currentPlayer.id === imposterId
                     ? imposterPic
-                    : (word.imageId ?? "")
+                    : (revealImageId ?? "")
                 }
                 alt="wordOrImposterImg"
                 className="w-30 h-30 md:w-44 md:h-44 object-contain mb-5"
@@ -84,17 +91,25 @@ export default function RoleCard({
                     : "text-white"
                 }`}
               >
-                {currentPlayer.id === imposterId ? "Imposter" : word.text}
+                {currentPlayer.id === imposterId ? "Imposter" : revealContent}
               </h2>
             </>
           )}
         </div>
 
         {showBlur && !revealed && (
-          <div
+          <button
+            type={"button"}
+            tabIndex={0}
             onClick={(event) => {
               event.stopPropagation();
               handleReveal();
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.stopPropagation();
+                handleReveal();
+              }
             }}
             className="absolute inset-0 backdrop-blur-2xl z-130 flex items-center justify-center"
           >
@@ -103,9 +118,9 @@ export default function RoleCard({
             <div className="absolute inset-0 opacity-30 mix-blend-overlay " />
 
             <img src={viewButton} alt="view" />
-          </div>
+          </button>
         )}
       </div>
-    </div>
+    </button>
   );
 }
