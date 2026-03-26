@@ -31,10 +31,8 @@ export default function RoleCard({
   handleReveal,
 }: Props) {
   return (
-    <button
+    <div
       key={currentPlayer.id}
-      type={"button"}
-      tabIndex={0}
       onClick={handleClickCard}
       onKeyDown={(e) => {
         if (e.key === "Enter") handleClickCard();
@@ -63,7 +61,7 @@ export default function RoleCard({
           {!revealed && (
             <>
               <img
-                src={currentPlayer.imageId ?? ""}
+                src={currentPlayer.imageId!!}
                 alt="avatar"
                 className="w-30 h-30 md:w-44 md:h-44 object-contain mb-5"
               />
@@ -121,6 +119,6 @@ export default function RoleCard({
           </button>
         )}
       </div>
-    </button>
+    </div>
   );
 }

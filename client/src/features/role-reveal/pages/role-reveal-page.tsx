@@ -12,15 +12,16 @@ import avatar2 from "@/assets/svg/role-reveal-screen/Avatar2.svg";
 import avatar3 from "@/assets/svg/role-reveal-screen/Avatar3.svg";
 import avatar4 from "@/assets/svg/role-reveal-screen/Avatar4.svg";
 import iceCream from "@/assets/svg/role-reveal-screen/ice-cream.svg";
-import type { GameConfig, Player } from "@/types/game.type.ts";
+import type { GameConfig, Image, Player } from "@/types/game.type.ts";
 import CircularTimer from "@/components/ui/circular-timer.tsx";
 
 const players: Player[] = [
-  { id: "1", name: "Shin Thant Kyaw", imageId: avatar1 },
-  { id: "2", name: "Wunna Aung", imageId: avatar2 },
-  { id: "3", name: "Wai Yann Lin", imageId: avatar3 },
-  { id: "4", name: "Thant Htoo Aung", imageId: avatar4 },
+  { id: "1", name: "Shin Thant Kyaw", imageId: null },
+  { id: "2", name: "Wunna Aung", imageId: null },
+  { id: "3", name: "Wai Yann Lin", imageId: null },
+  { id: "4", name: "Thant Htoo Aung", imageId: null },
 ];
+
 const category = {
   id: "1",
   name: "အစားအသောက်",
@@ -47,7 +48,7 @@ const question = {
 const gameConfig: GameConfig = {
   id: "1",
   players,
-  gameMode: "question",
+  gameMode: "word",
   category,
   gameSetting,
   word,
@@ -55,6 +56,13 @@ const gameConfig: GameConfig = {
   roundCount: 3,
   imposterId: "3",
 };
+
+const images: Image[] = [
+  { id: "1", url: avatar1, name: "Pic 1" },
+  { id: "2", url: avatar2, name: "Pic 2" },
+  { id: "3", url: avatar3, name: "Pic 3" },
+  { id: "4", url: avatar4, name: "Pic 4" },
+];
 
 export default function RoleRevealPage() {
   const [timeLeft, setTimeLeft] = useState(10);
@@ -69,10 +77,12 @@ export default function RoleRevealPage() {
   const [showExitModal, setShowExitModal] = useState(false);
   const [showNextCountdown, setShowNextCountdown] = useState(false);
 
+  const [playersState, setPlayersState] = useState<Player[]>(players);
+
   const cardRef = useRef<HTMLDivElement | null>(null);
 
-  const currentPlayer = players[currentPlayerIndex];
-  const nextPlayer = players[currentPlayerIndex + 1];
+  const currentPlayer = playersState[currentPlayerIndex];
+  const nextPlayer = playersState[currentPlayerIndex + 1];
 
   const { gameMode, word, question, imposterId } = gameConfig;
   const revealImageId = gameMode === "word" ? word?.imageId : question?.imageId;
@@ -131,6 +141,27 @@ export default function RoleRevealPage() {
 
     return () => clearInterval(timer);
   }, [timeLeft, confirmed]);
+
+  useEffect(() => {
+    const assignRandomImagesToPlayers = () => {
+      setPlayersState((prevPlayers) => {
+        let shuffledImages = [...images];
+        for (let i = shuffledImages.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffledImages[i], shuffledImages[j]] = [
+            shuffledImages[j],
+            shuffledImages[i],
+          ];
+        }
+
+        return prevPlayers.map((player, index) => ({
+          ...player,
+          imageId: shuffledImages[index % shuffledImages.length].url,
+        }));
+      });
+    };
+    assignRandomImagesToPlayers();
+  }, []);
 
   return (
     <div className="min-h-[97vh] bg-black text-white flex flex-col justify-between px-4 py-5 md:py-10 md:px-8 lg:py-1">
