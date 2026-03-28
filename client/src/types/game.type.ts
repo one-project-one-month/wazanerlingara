@@ -26,12 +26,14 @@ export type Word = {
   id: string;
   text: string;
   imageId: string | null;
+  hint: string;
 };
 
 type Question = {
   id: string;
   text: string;
   imageId: string | null;
+  hint: string;
 };
 
 export type GameConfig = {

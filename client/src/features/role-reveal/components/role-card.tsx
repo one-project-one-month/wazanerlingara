@@ -8,6 +8,8 @@ interface Props {
   revealContent: string;
   revealImageId?: string;
   imposterId: string;
+  imposterCanGetHint: boolean;
+  hint: string;
   showBlur: boolean;
   revealed: boolean;
   confirmed: boolean;
@@ -22,6 +24,8 @@ export default function RoleCard({
   revealContent,
   revealImageId,
   imposterId,
+  imposterCanGetHint,
+  hint,
   revealed,
   showBlur,
   confirmed,
@@ -83,7 +87,7 @@ export default function RoleCard({
                 className="w-30 h-30 md:w-44 md:h-44 object-contain mb-5"
               />
               <h2
-                className={`text-2xl md:text-3xl font-semibold ${
+                className={`text-2xl text-center md:text-3xl font-semibold ${
                   currentPlayer.id === imposterId
                     ? "text-red-500"
                     : "text-white"
@@ -91,6 +95,9 @@ export default function RoleCard({
               >
                 {currentPlayer.id === imposterId ? "Imposter" : revealContent}
               </h2>
+              {currentPlayer.id === imposterId && imposterCanGetHint
+                ? `hint- ${hint}`
+                : ""}
             </>
           )}
         </div>
