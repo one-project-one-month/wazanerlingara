@@ -34,6 +34,8 @@ import avatar24 from "@/assets/svg/role-reveal-screen/Avatars/Avatar24.svg";
 import iceCream from "@/assets/svg/role-reveal-screen/ice-cream.svg";
 import type { GameConfig, Image, Player } from "@/types/game.type.ts";
 import CircularTimer from "@/components/ui/circular-timer.tsx";
+import { useNavigate } from "react-router-dom";
+import { APP_CONFIG } from "@/app/config/app-config.ts";
 
 const players: Player[] = [
   { id: "1", name: "Shin Thant Kyaw", imageId: null },
@@ -107,6 +109,7 @@ const images: Image[] = [
 ];
 
 export default function RoleRevealPage() {
+  const navigate = useNavigate();
   const [timeLeft, setTimeLeft] = useState(10);
   const [isResettingProgressBar, setIsResettingProgressBar] = useState(false);
 
@@ -252,7 +255,12 @@ export default function RoleRevealPage() {
           handleClickNext={() => setShowNextCountdown(true)}
         />
 
-        {showExitModal && <ExitModal onClose={() => setShowExitModal(false)} />}
+        {showExitModal && (
+          <ExitModal
+            onConfirmExit={() => navigate(APP_CONFIG.GAME_SETTING)}
+            onClose={() => setShowExitModal(false)}
+          />
+        )}
         {showNextCountdown && (
           <div className="fixed inset-0 bg-black flex flex-col items-center justify-center text-white z-50">
             <p className="mb-10 text-center text-sm md:text-lg lg:text-xl text-white/80">
