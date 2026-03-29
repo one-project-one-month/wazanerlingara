@@ -9,7 +9,8 @@ import {
   ResultPage,
   SetupPage,
   TestPage,
-  VotingPage
+  RoleRevealPage,
+  VotingPage,
 } from "@/app/constants/lazyload";
 import MainLayout from "@/components/layouts/main-layout";
 import GamePlayLoading from "@/features/game-play/pages/loading";
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "set-up",
         element: <SetupPage />,
+      },
+      {
+        path: "role-reveal",
+        element: <RoleRevealPage />,
       },
       {
         path: "voting",
@@ -78,8 +83,8 @@ const router = createBrowserRouter([
       },
       {
         path: "game-setting",
-        element: <GameSettingPage />
-      }
+        element: <GameSettingPage />,
+      },
     ],
   },
   {

@@ -1,4 +1,4 @@
-type Player = {
+export type Player = {
   id: string;
   name: string;
   imageId: string | null;
@@ -8,7 +8,7 @@ export type Image = {
   id: string;
   url: string;
   name: string;
-}[];
+};
 
 type GameSetting = {
   imposterCount: number;
@@ -22,16 +22,18 @@ type Category = {
   name: string;
 };
 
-type Word = {
+export type Word = {
   id: string;
   text: string;
   imageId: string | null;
+  hint: string;
 };
 
 type Question = {
   id: string;
   text: string;
   imageId: string | null;
+  hint: string;
 };
 
 export type GameConfig = {
