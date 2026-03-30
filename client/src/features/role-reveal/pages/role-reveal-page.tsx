@@ -1,11 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import { animate } from "animejs";
+import { useEffect, useState } from "react";
 
 import TopSection from "@/features/role-reveal/components/top-section.tsx";
 import RoleCard from "@/features/role-reveal/components/role-card.tsx";
-import InstructionText from "@/features/role-reveal/components/instruction-text.tsx";
 import BottomSection from "@/features/role-reveal/components/bottom-section.tsx";
-import ExitModal from "@/features/role-reveal/components/exit-modal.tsx";
 
 import avatar1 from "@/assets/svg/role-reveal-screen/Avatars/Avatar1.svg";
 import avatar2 from "@/assets/svg/role-reveal-screen/Avatars/Avatar2.svg";
@@ -33,11 +30,16 @@ import avatar23 from "@/assets/svg/role-reveal-screen/Avatars/Avatar23.svg";
 import avatar24 from "@/assets/svg/role-reveal-screen/Avatars/Avatar24.svg";
 import iceCream from "@/assets/svg/role-reveal-screen/ice-cream.svg";
 import type { GameConfig, Image, Player } from "@/types/game.type.ts";
-import CircularTimer from "@/components/ui/circular-timer.tsx";
 import { useNavigate } from "react-router-dom";
 import { APP_CONFIG } from "@/app/config/app-config.ts";
+import ConfirmModal from "@/components/ui/confirm-modal.tsx";
 
-const players: Player[] = [
+import { useRoleReveal } from "@/features/role-reveal/hooks/use-role-reveal.ts";
+import { shuffleArray } from "@/features/role-reveal/utils/shuffle.ts";
+import NextPlayerCountdown from "@/features/role-reveal/components/next-player-countdown.tsx";
+import InstructionText from "@/features/role-reveal/components/instruction-text.tsx";
+
+const playerss: Player[] = [
   { id: "1", name: "Shin Thant Kyaw", imageId: null },
   { id: "2", name: "Wunna Aung", imageId: null },
   { id: "3", name: "Wai Yann Lin", imageId: null },
@@ -71,7 +73,7 @@ const question = {
 };
 const gameConfig: GameConfig = {
   id: "1",
-  players,
+  players: playerss,
   gameMode: "question",
   category,
   gameSetting,
@@ -110,169 +112,104 @@ const images: Image[] = [
 
 export default function RoleRevealPage() {
   const navigate = useNavigate();
-  const [timeLeft, setTimeLeft] = useState(10);
-  const [isResettingProgressBar, setIsResettingProgressBar] = useState(false);
 
-  const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
-
-  const [showBlur, setShowBlur] = useState(false);
-  const [revealed, setRevealed] = useState(false);
-  const [confirmed, setConfirmed] = useState(false);
-
-  const [showExitModal, setShowExitModal] = useState(false);
-  const [showNextCountdown, setShowNextCountdown] = useState(false);
-
-  const [playersState, setPlayersState] = useState<Player[]>(players);
-
-  const cardRef = useRef<HTMLDivElement | null>(null);
-
-  const currentPlayer = playersState[currentPlayerIndex];
-  const nextPlayer = playersState[currentPlayerIndex + 1];
+  const [players, setPlayers] = useState<Player[]>(playerss);
+  const [showExitModal, setShowExitModal] = useState<boolean>(false);
+  const [showNextPlayerCountdown, setShowNextPlayerCountdown] =
+    useState<boolean>(false);
 
   const { gameMode, word, question, imposterId } = gameConfig;
-  const revealImageId = gameMode === "word" ? word?.imageId : question?.imageId;
   const revealContent = gameMode === "word" ? word?.text : question?.text;
-  const hint =
-    gameMode === "word" ? (word?.hint ?? "") : (question?.hint ?? "");
-  const handleClickCard = () => {
-    if (timeLeft <= 0 || revealed || showBlur || confirmed) return;
-    setShowBlur(true);
-  };
+  const revealImageId = gameMode === "word" ? word?.imageId : question?.imageId;
+  const hint = gameMode === "word" ? word?.hint : question?.hint;
 
-  const handleReveal = () => {
-    setShowBlur(false);
-    setRevealed(true);
-    if (cardRef.current) {
-      animate(cardRef.current, {
-        rotateY: [90, 0],
-        opacity: [0, 1],
-        duration: 400,
-      });
-    }
-  };
-
-  const handleConfirm = () => {
-    setConfirmed(true);
-    setRevealed(false);
-    setShowBlur(false);
-  };
-
-  const handleNextPlayerCountdownDone = () => {
-    setShowNextCountdown(false);
-
-    setIsResettingProgressBar(true);
-    setCurrentPlayerIndex((currentIndex) => currentIndex + 1);
-    setTimeLeft(10);
-    setRevealed(false);
-    setShowBlur(false);
-    setConfirmed(false);
-
-    setTimeout(() => setIsResettingProgressBar(false), 50);
-  };
-
-  //timer for progress bar
-  useEffect(() => {
-    if (timeLeft <= 0) {
-      if (!confirmed) {
-        setConfirmed(true);
-        setRevealed(false);
-        setShowBlur(false);
-      }
-      return;
-    }
-
-    const timer = setInterval(() => {
-      setTimeLeft((time) => time - 1);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [timeLeft, confirmed]);
+  const {
+    currentPlayer,
+    nextPlayer,
+    currentPlayerIndex,
+    revealed,
+    confirmed,
+    showBlur,
+    timeLeft,
+    isResettingProgressBar,
+    cardRef,
+    handleClickCard,
+    handleReveal,
+    handleConfirm,
+    goToNextPlayer,
+  } = useRoleReveal({
+    players: players,
+  });
 
   useEffect(() => {
-    const assignRandomImagesToPlayers = () => {
-      setPlayersState((prevPlayers) => {
-        let shuffledImages = [...images];
-        for (let i = shuffledImages.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [shuffledImages[i], shuffledImages[j]] = [
-            shuffledImages[j],
-            shuffledImages[i],
-          ];
-        }
+    const shuffledImages = shuffleArray(images);
 
-        return prevPlayers.map((player, index) => ({
-          ...player,
-          imageId: shuffledImages[index % shuffledImages.length].url,
-        }));
-      });
-    };
-    assignRandomImagesToPlayers();
+    setPlayers((prev) =>
+      prev.map((p, i) => ({
+        ...p,
+        imageId: shuffledImages[i % shuffledImages.length].url,
+      })),
+    );
   }, []);
 
+  const handleNextPlayerCountDownDone = () => {
+    setShowNextPlayerCountdown(false);
+    goToNextPlayer();
+  };
+
   return (
-    <div className="min-h-[97vh] bg-black text-white flex flex-col justify-between px-4 py-5 md:py-10 md:px-8 lg:py-1">
-      <div className="w-full md:max-w-175 lg:max-w-150 mx-auto flex flex-col flex-1 justify-between">
-        <TopSection
-          timeLeft={timeLeft}
-          isResettingProgressBar={isResettingProgressBar}
-          handleClickBack={() => setShowExitModal(true)}
+    <div className="min-h-[97vh] bg-black text-white flex flex-col items-center justify-between px-4 py-5">
+      <TopSection
+        timeLeft={timeLeft}
+        isResettingProgressBar={isResettingProgressBar}
+        handleClickBack={() => setShowExitModal(true)}
+      />
+
+      <RoleCard
+        currentPlayer={currentPlayer}
+        revealed={revealed}
+        showBlur={showBlur}
+        confirmed={confirmed}
+        cardRef={cardRef}
+        timeLeft={timeLeft}
+        handleClickCard={handleClickCard}
+        handleReveal={handleReveal}
+        revealContent={revealContent ?? ""}
+        revealImageId={revealImageId ?? ""}
+        imposterId={imposterId!!}
+        imposterCanGetHint={gameSetting.canImposterGetHint}
+        hint={hint ?? ""}
+      />
+
+      <InstructionText confirmed={confirmed} />
+
+      <BottomSection
+        currentPlayerIndex={currentPlayerIndex}
+        playersLength={gameConfig.players.length}
+        nextPlayerName={nextPlayer?.name || ""}
+        confirmed={confirmed}
+        revealed={revealed}
+        timeLeft={timeLeft}
+        handleConfirm={handleConfirm}
+        handleClickNext={() => setShowNextPlayerCountdown(true)}
+      />
+
+      <ConfirmModal
+        open={showExitModal}
+        title="ထွက်မှာသေချာပြီလား"
+        description="အခုထွက်လိုက်ရင် ကစားလက်စပွဲစဉ် ပျက်သွားပါလိမ့်မယ်"
+        confirmText="ထွက်မယ်"
+        cancelText="ဆက်ကစားမယ်"
+        onConfirm={() => navigate(APP_CONFIG.GAME_SETTING)}
+        onClose={() => setShowExitModal(false)}
+      />
+
+      {showNextPlayerCountdown && (
+        <NextPlayerCountdown
+          nextPlayer={nextPlayer}
+          onDone={handleNextPlayerCountDownDone}
         />
-
-        <div className="flex-1 flex items-center justify-center py-4 md:py-6 lg:py-2">
-          <div className="w-full flex flex-col items-center gap-6 lg:gap-3">
-            <p className="text-center text-sm md:text-lg text-gray-300">
-              အမျိုးအစား - {gameConfig.category?.name}
-            </p>
-
-            <RoleCard
-              currentPlayer={currentPlayer}
-              revealContent={revealContent ?? ""}
-              revealImageId={revealImageId ?? ""}
-              imposterId={imposterId!!}
-              imposterCanGetHint={gameSetting.canImposterGetHint}
-              hint={hint}
-              revealed={revealed}
-              showBlur={showBlur}
-              confirmed={confirmed}
-              cardRef={cardRef}
-              timeLeft={timeLeft}
-              handleClickCard={handleClickCard}
-              handleReveal={handleReveal}
-            />
-
-            <InstructionText confirmed={confirmed} />
-          </div>
-        </div>
-
-        <BottomSection
-          currentPlayerIndex={currentPlayerIndex}
-          playersLength={players.length}
-          nextPlayerName={nextPlayer ? nextPlayer.name : ""}
-          confirmed={confirmed}
-          revealed={revealed}
-          timeLeft={timeLeft}
-          handleConfirm={handleConfirm}
-          handleClickNext={() => setShowNextCountdown(true)}
-        />
-
-        {showExitModal && (
-          <ExitModal
-            onConfirmExit={() => navigate(APP_CONFIG.GAME_SETTING)}
-            onClose={() => setShowExitModal(false)}
-          />
-        )}
-        {showNextCountdown && (
-          <div className="fixed inset-0 bg-black flex flex-col items-center justify-center text-white z-50">
-            <p className="mb-10 text-center text-sm md:text-lg lg:text-xl text-white/80">
-              ဖုန်းကို {nextPlayer.name} ဆီ ကမ်းပေးပါ။
-            </p>
-            <CircularTimer
-              totalTime={3}
-              onComplete={handleNextPlayerCountdownDone}
-            />
-          </div>
-        )}
-      </div>
+      )}
     </div>
   );
 }
