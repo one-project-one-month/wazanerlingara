@@ -1,6 +1,6 @@
-import type { Image } from "@/types/game.type";
+import type { Image as GameImage } from "@/types/game.type";
 
-function preloadOne(image: Image): Promise<void> {
+function preloadOne(image: GameImage): Promise<void> {
   return new Promise((resolve) => {
     const el = new Image();
     el.onload = () => {
@@ -24,7 +24,7 @@ function preloadOne(image: Image): Promise<void> {
 
 export class ImagePreloadManager {
   async load(
-    images: Image[],
+    images: GameImage[],
     onProgress?: (loaded: number, total: number) => void,
   ): Promise<void> {
     const total = images.length;
