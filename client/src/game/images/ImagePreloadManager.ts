@@ -4,7 +4,7 @@ function preloadOne(image: Image): Promise<void> {
   return new Promise((resolve) => {
     const el = new Image();
     el.onload = () => {
-      const decoding = el.decode?.();
+      const decoding = typeof el.decode === "function" ? el.decode() : null;
       if (decoding) {
         decoding.catch(() => {}).finally(() => resolve());
       } else {
@@ -12,7 +12,10 @@ function preloadOne(image: Image): Promise<void> {
       }
     };
     el.onerror = () => {
-      console.warn(`[ImagePreloadManager] failed to load: ${image.id}`, image.url);
+      console.warn(
+        `[ImagePreloadManager] failed to load: ${image.id}`,
+        image.url,
+      );
       resolve();
     };
     el.src = image.url;
