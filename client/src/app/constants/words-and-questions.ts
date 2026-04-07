@@ -15,36 +15,35 @@ import frogPic from "@/assets/images/ImagesForWords/Animals/Frog.png";
 
 import iceCream from "@/assets/svg/role-reveal-screen/ice-cream.svg";
 
-import animals from "@/assets/svg/animals.svg";
-import countries from "@/assets/svg/countries.svg";
-import foods from "@/assets/svg/foods.svg";
-import histories from "@/assets/svg/histories.svg";
-import imaginations from "@/assets/svg/imaginations.svg";
-import jobs from "@/assets/svg/jobs.svg";
-import locations from "@/assets/svg/locations.svg";
-import movies from "@/assets/svg/movies.svg";
-import nature from "@/assets/svg/nature.svg";
-import sports from "@/assets/svg/sports.svg";
-import supes from "@/assets/svg/supes.svg";
-import technologies from "@/assets/svg/technologies.svg";
+import animalsPic from "@/assets/svg/animals.svg";
+import countriesPic from "@/assets/svg/countries.svg";
+import foodsPic from "@/assets/svg/foods.svg";
+import historiesPic from "@/assets/svg/histories.svg";
+import imaginationsPic from "@/assets/svg/imaginations.svg";
+import jobsPic from "@/assets/svg/jobs.svg";
+import locationsPic from "@/assets/svg/locations.svg";
+import moviesPic from "@/assets/svg/movies.svg";
+import naturePic from "@/assets/svg/nature.svg";
+import sportsPic from "@/assets/svg/sports.svg";
+import superHeroesPic from "@/assets/svg/supes.svg";
+import technologiesPic from "@/assets/svg/technologies.svg";
 
 export const GAME_CATEGORIES: Category[] = [
-  { id: "animals", name: "တိရစ္ဆာန်များ", imageId: animals },
-  { id: "foods", name: "အစားအသောက်", imageId: foods },
-  { id: "locations", name: "နေရာဒေသ", imageId: locations },
-  { id: "countries", name: "နိုင်ငံများ", imageId: countries },
-  { id: "movies", name: "ရုပ်ရှင်", imageId: movies },
-  { id: "jobs", name: "အလုပ်အကိုင်", imageId: jobs },
-  { id: "technologies", name: "နည်းပညာ", imageId: technologies },
-  { id: "imaginations", name: "စိတ်ကူးယဉ် အရာများ", imageId: imaginations },
-  { id: "supes", name: "စူပါဟီးရိုးများ", imageId: supes },
-  { id: "nature", name: "သဘာဝ", imageId: nature },
-  { id: "histories", name: "သမိုင်း", imageId: histories },
-  { id: "sports", name: "အားကစား", imageId: sports },
+  { id: "animals", name: "တိရစ္ဆာန်များ", imageId: animalsPic },
+  { id: "foods", name: "အစားအသောက်", imageId: foodsPic },
+  { id: "locations", name: "နေရာဒေသ", imageId: locationsPic },
+  { id: "countries", name: "နိုင်ငံများ", imageId: countriesPic },
+  { id: "movies", name: "ရုပ်ရှင်", imageId: moviesPic },
+  { id: "jobs", name: "အလုပ်အကိုင်", imageId: jobsPic },
+  { id: "technologies", name: "နည်းပညာ", imageId: technologiesPic },
+  { id: "imaginations", name: "စိတ်ကူးယဉ် အရာများ", imageId: imaginationsPic },
+  { id: "superheroes", name: "စူပါဟီးရိုးများ", imageId: superHeroesPic },
+  { id: "nature", name: "သဘာဝ", imageId: naturePic },
+  { id: "histories", name: "သမိုင်း", imageId: historiesPic },
+  { id: "sports", name: "အားကစား", imageId: sportsPic },
 ];
 
-const rawWords: Word[] = [
-  // animals
+const animals = [
   {
     id: "",
     text: "ကြောင်",
@@ -271,8 +270,8 @@ const rawWords: Word[] = [
   //   categoryId: "animals",
   //   hint: "သယ်ယူ",
   // },
-
-  // foods
+];
+const foods = [
   {
     id: "",
     text: "မုန့်ဟင်းခါး",
@@ -301,8 +300,8 @@ const rawWords: Word[] = [
     categoryId: "foods",
     hint: "fast food",
   },
-
-  // locations
+];
+const places = [
   {
     id: "",
     text: "ကျောင်း",
@@ -331,8 +330,8 @@ const rawWords: Word[] = [
     categoryId: "locations",
     hint: "လေယာဉ်",
   },
-
-  // countries
+];
+const countries = [
   {
     id: "",
     text: "မြန်မာ",
@@ -361,8 +360,8 @@ const rawWords: Word[] = [
     categoryId: "countries",
     hint: "K-pop",
   },
-
-  // movies
+];
+const movies = [
   {
     id: "",
     text: "Titanic",
@@ -385,8 +384,8 @@ const rawWords: Word[] = [
     hint: "magic",
   },
   { id: "", text: "Frozen", imageId: null, categoryId: "movies", hint: "snow" },
-
-  // jobs
+];
+const jobs = [
   { id: "", text: "ဆရာဝန်", imageId: null, categoryId: "jobs", hint: "ဆေးရုံ" },
   { id: "", text: "ဆရာ", imageId: null, categoryId: "jobs", hint: "ကျောင်း" },
   { id: "", text: "ရဲ", imageId: null, categoryId: "jobs", hint: "လုံခြုံရေး" },
@@ -397,8 +396,8 @@ const rawWords: Word[] = [
     categoryId: "jobs",
     hint: "တည်ဆောက်",
   },
-
-  // technologies
+];
+const technologies = [
   {
     id: "",
     text: "မိုဘိုင်းဖုန်း",
@@ -427,8 +426,8 @@ const rawWords: Word[] = [
     categoryId: "technologies",
     hint: "smart",
   },
-
-  // imaginations
+];
+const imaginations = [
   {
     id: "",
     text: "နဂါး",
@@ -457,8 +456,8 @@ const rawWords: Word[] = [
     categoryId: "imaginations",
     hint: "ရှေးခေတ်",
   },
-
-  // supes
+];
+const superHeroes = [
   { id: "", text: "Superman", imageId: null, categoryId: "supes", hint: "ပျံ" },
   { id: "", text: "Batman", imageId: null, categoryId: "supes", hint: "dark" },
   {
@@ -475,8 +474,8 @@ const rawWords: Word[] = [
     categoryId: "supes",
     hint: "tech suit",
   },
-
-  // nature
+];
+const nature = [
   { id: "", text: "တောင်", imageId: null, categoryId: "nature", hint: "မြင့်" },
   { id: "", text: "မြစ်", imageId: null, categoryId: "nature", hint: "ရေ" },
   { id: "", text: "သစ်တော", imageId: null, categoryId: "nature", hint: "အပင်" },
@@ -487,8 +486,8 @@ const rawWords: Word[] = [
     categoryId: "nature",
     hint: "ကြီးမား",
   },
-
-  // histories
+];
+const histories = [
   {
     id: "",
     text: "ဘုရင့်နောင်",
@@ -517,8 +516,8 @@ const rawWords: Word[] = [
     categoryId: "histories",
     hint: "ကိုလိုနီ",
   },
-
-  // sports
+];
+const sports = [
   { id: "", text: "ဘောလုံး", imageId: null, categoryId: "sports", hint: "ကန်" },
   {
     id: "",
@@ -536,6 +535,22 @@ const rawWords: Word[] = [
   },
   { id: "", text: "ပြေး", imageId: null, categoryId: "sports", hint: "မြန်" },
 ];
+
+const rawWords: Word[] = [
+  ...animals,
+  ...foods,
+  ...places,
+  ...countries,
+  ...movies,
+  ...jobs,
+  ...technologies,
+  ...imaginations,
+  ...superHeroes,
+  ...nature,
+  ...histories,
+  ...sports,
+];
+
 const rawQuestions: Question[] = [
   // animals
   {
