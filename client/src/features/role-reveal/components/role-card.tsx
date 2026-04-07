@@ -51,7 +51,7 @@ export default function RoleCard({
         opacity: [0, 1],
         duration: 800,
       });
-  }, [playerAvatarUrl, currentPlayer]);
+  }, [currentPlayer, cardRef.current]);
 
   return (
     <div
