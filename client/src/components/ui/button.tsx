@@ -1,4 +1,5 @@
 import { cn } from "@/lib/util";
+import { useGameSfxStore } from "@/stores/game-sfx-store";
 import * as React from "react";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -6,7 +7,9 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "default", ...props }, ref) => {
+  ({ className, variant = "default", onClick, ...props }, ref) => {
+    const play = useGameSfxStore.getState().play;
+
     return (
       <div
         className={cn(
@@ -25,6 +28,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             className,
           )}
           {...props}
+          onClick={(e) => {
+            play("click", 0.5);
+            onClick?.(e);
+          }}
         />
         <svg
           width="24"
