@@ -17,22 +17,25 @@ type GameSetting = {
   canImposterGetHint: boolean;
 };
 
-type Category = {
+export type Category = {
   id: string;
   name: string;
+  imageId: string | null;
 };
 
 export type Word = {
   id: string;
   text: string;
   imageId: string | null;
+  categoryId: string | null;
   hint: string;
 };
 
-type Question = {
+export type Question = {
   id: string;
   text: string;
   imageId: string | null;
+  categoryId: string | null;
   hint: string;
 };
 
@@ -46,4 +49,7 @@ export type GameConfig = {
   question: Question | null;
   roundCount: number;
   imposterId: string | null;
+  previousWordId: string | null;
+  previousQuestionId: string | null;
+  previousImposterId: string | null;
 };

@@ -61,10 +61,12 @@ export default function GameStartPage() {
     });
   };
 
+  console.log("players ", config?.players);
   const handleStartGame = () => {
     if (!canStartGame && !config) {
       return;
     }
+
     updateGameConfig({
       players: validPlayers.map((name) => ({
         id: crypto.randomUUID(),
@@ -72,7 +74,7 @@ export default function GameStartPage() {
         imageId: null,
       })),
     });
-    navigate(APP_CONFIG.CHOOSE_GAME_MODE)
+    navigate(APP_CONFIG.CHOOSE_GAME_MODE);
   };
 
   return (

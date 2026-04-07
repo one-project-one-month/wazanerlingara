@@ -28,62 +28,20 @@ import avatar21 from "@/assets/svg/role-reveal-screen/Avatars/Avatar21.svg";
 import avatar22 from "@/assets/svg/role-reveal-screen/Avatars/Avatar22.svg";
 import avatar23 from "@/assets/svg/role-reveal-screen/Avatars/Avatar23.svg";
 import avatar24 from "@/assets/svg/role-reveal-screen/Avatars/Avatar24.svg";
-import iceCream from "@/assets/svg/role-reveal-screen/ice-cream.svg";
+//import iceCream from "@/assets/svg/role-reveal-screen/ice-cream.svg";
 import type { GameConfig, Image, Player } from "@/types/game.type.ts";
 import { useNavigate } from "react-router-dom";
 import { APP_CONFIG } from "@/app/config/app-config.ts";
 import ConfirmModal from "@/components/ui/confirm-modal.tsx";
 
 import { useRoleReveal } from "@/features/role-reveal/hooks/use-role-reveal.ts";
-import { shuffleArray } from "@/features/role-reveal/utils/shuffle.ts";
+import { shuffleArray } from "@/lib/shuffle.ts";
 import NextPlayerCountdown from "@/features/role-reveal/components/next-player-countdown.tsx";
 import InstructionText from "@/features/role-reveal/components/instruction-text.tsx";
+import { getGameConfig } from "@/features/role-reveal/utils/get-game-config.ts";
+import { GameConfigNotFound } from "@/features/role-reveal/components/game-config-not-found.tsx";
 
-const playerss: Player[] = [
-  { id: "1", name: "Shin Thant Kyaw", imageId: null },
-  { id: "2", name: "Wunna Aung", imageId: null },
-  { id: "3", name: "Wai Yann Lin", imageId: null },
-  { id: "4", name: "Thant Htoo Aung", imageId: null },
-];
-
-const category = {
-  id: "1",
-  name: "အစားအသောက်",
-};
-
-const gameSetting = {
-  imposterCount: 1,
-  turnTimer: 10,
-  durationTimer: 300,
-  canImposterGetHint: true,
-};
-
-const word = {
-  id: "1",
-  text: "ရေခဲမုန့်",
-  imageId: iceCream,
-  hint: "နွေရာသီ",
-};
-
-const question = {
-  id: "2",
-  text: " မန်ယူဖန်ဖြစ်ရတာဘယ်လိုနေလဲ?",
-  imageId: iceCream,
-  hint: "အရူးလင်လုပ်",
-};
-const gameConfig: GameConfig = {
-  id: "1",
-  players: playerss,
-  gameMode: "question",
-  category,
-  gameSetting,
-  word,
-  question,
-  roundCount: 3,
-  imposterId: "3",
-};
-
-const images: Image[] = [
+export const images: Image[] = [
   { id: "1", url: avatar1, name: "Pic 1" },
   { id: "2", url: avatar2, name: "Pic 2" },
   { id: "3", url: avatar3, name: "Pic 3" },
@@ -113,12 +71,16 @@ const images: Image[] = [
 export default function RoleRevealPage() {
   const navigate = useNavigate();
 
-  const [players, setPlayers] = useState<Player[]>(playerss);
+  const [gameConfig] = useState(getGameConfig);
+  console.log("gameConfig", gameConfig);
+
+  const { gameMode, word, question, imposterId } = gameConfig as GameConfig;
+
+  const [players, setPlayers] = useState<Player[]>(gameConfig?.players ?? []);
   const [showExitModal, setShowExitModal] = useState<boolean>(false);
   const [showNextPlayerCountdown, setShowNextPlayerCountdown] =
     useState<boolean>(false);
 
-  const { gameMode, word, question, imposterId } = gameConfig;
   const revealContent = gameMode === "word" ? word?.text : question?.text;
   const revealImageId = gameMode === "word" ? word?.imageId : question?.imageId;
   const hint = gameMode === "word" ? word?.hint : question?.hint;
@@ -147,16 +109,20 @@ export default function RoleRevealPage() {
     setPlayers((prev) =>
       prev.map((p, i) => ({
         ...p,
-        imageId: shuffledImages[i % shuffledImages.length].url,
+        imageId: shuffledImages[i % shuffledImages.length].id,
       })),
     );
   }, []);
 
+  console.log("players ", players);
   const handleNextPlayerCountDownDone = () => {
     setShowNextPlayerCountdown(false);
     goToNextPlayer();
   };
 
+  if (gameConfig == null) {
+    return <GameConfigNotFound />;
+  }
   return (
     <div className="min-h-[97vh] bg-black text-white flex flex-col items-center justify-between px-4 py-5">
       <TopSection
@@ -164,7 +130,9 @@ export default function RoleRevealPage() {
         isResettingProgressBar={isResettingProgressBar}
         handleClickBack={() => setShowExitModal(true)}
       />
-
+      <p className="text-center text-sm md:text-lg text-gray-300">
+        အမျိုးအစား - {gameConfig.category?.name}
+      </p>
       <RoleCard
         currentPlayer={currentPlayer}
         revealed={revealed}
@@ -177,7 +145,7 @@ export default function RoleRevealPage() {
         revealContent={revealContent ?? ""}
         revealImageId={revealImageId ?? ""}
         imposterId={imposterId!!}
-        imposterCanGetHint={gameSetting.canImposterGetHint}
+        imposterCanGetHint={gameConfig.gameSetting.canImposterGetHint}
         hint={hint ?? ""}
       />
 

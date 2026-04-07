@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button.tsx";
+import { useNavigate } from "react-router-dom";
+import { APP_CONFIG } from "@/app/config/app-config.ts";
 
 interface Props {
   currentPlayerIndex: number;
@@ -21,6 +23,7 @@ export default function BottomSection({
   handleConfirm,
   handleClickNext,
 }: Props) {
+  const navigate = useNavigate();
   return (
     <div className="w-full max-w-175 lg:max-w-150 mx-auto">
       {currentPlayerIndex < playersLength - 1 ? (
@@ -46,7 +49,12 @@ export default function BottomSection({
           {revealed && !confirmed ? (
             <Button onClick={handleConfirm}>ရပြီ</Button>
           ) : (
-            <Button disabled={!confirmed}>ဂိမ်း စ ဆော့ မယ်</Button>
+            <Button
+              disabled={!confirmed}
+              onClick={() => navigate(APP_CONFIG.GAME_PLAY)}
+            >
+              ဂိမ်း စ ဆော့ မယ်
+            </Button>
           )}
         </div>
       )}
