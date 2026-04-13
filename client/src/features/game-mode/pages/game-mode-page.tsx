@@ -1,6 +1,6 @@
 import { APP_CONFIG } from "@/app/config/app-config";
+import magnify from "@/assets/images/word-mode.png";
 import chat from "@/assets/svg/chat-bubble.svg";
-import magnify from "@/assets/svg/magnify.svg";
 import BackButton from "@/components/common/back-button";
 import { Button } from "@/components/ui/button";
 import { useGameConfigStore } from "@/stores/game-config-store";
