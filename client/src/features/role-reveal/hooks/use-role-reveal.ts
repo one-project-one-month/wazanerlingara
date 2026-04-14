@@ -51,7 +51,7 @@ export function useRoleReveal({ players }: Props) {
       animate(cardRef.current, {
         rotateY: [90, 0],
         opacity: [0, 1],
-        duration: 400,
+        duration: 700,
       });
     }
   };

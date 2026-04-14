@@ -30,11 +30,14 @@ export default function SetupPage() {
         question: null,
         roundCount: 1,
         imposterId: null,
+        previousWordId: null,
+        previousQuestionId: null,
+        previousImposterId: null,
       });
 
       navigate(APP_CONFIG.GAME_START);
     }
-  }
+  };
 
   return (
     <div className="fixed inset-0 z-10 overflow-y-auto bg-black text-white lg:overflow-hidden">

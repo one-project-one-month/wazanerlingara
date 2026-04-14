@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { GAME_CONFIG_STORAGE_KEY } from "../app/constants";
+import { GAME_CONFIG_STORAGE_KEY } from "@/app/constants";
 import type { GameConfig } from "../types/game.type";
 
 type GameConfigState = {

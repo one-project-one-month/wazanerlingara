@@ -1,8 +1,9 @@
 import { cn } from "@/lib/util";
-import type { CategoryCardType, GameCategoryType } from "@/types/index.types";
+import type { GameCategoryType } from "@/types/index.types";
+import type { Category } from "@/types/game.type.ts";
 
 type CategoryCardProps = {
-  category: CategoryCardType;
+  category: Category;
   isSelected: boolean;
   onSelect: (type: GameCategoryType) => void;
 };
@@ -15,7 +16,7 @@ export default function CategoryCard({
   return (
     <button
       type="button"
-      onClick={() => onSelect(category.type)}
+      onClick={() => onSelect(category.id as GameCategoryType)}
       aria-pressed={isSelected}
       className={cn(
         "border flex flex-col rounded-2xl py-2 md:py-4 bg-white/10 items-center justify-center cursor-pointer",
@@ -25,12 +26,12 @@ export default function CategoryCard({
       )}
     >
       <img
-        src={category.image}
-        alt={category.type}
+        src={category.imageId ?? ""}
+        alt={category.id}
         className="size-30 w-full md:size-36"
       />
 
-      <p className="text-xl lg:text-2xl text-center">{category.title}</p>
+      <p className="text-xl lg:text-2xl text-center">{category.name}</p>
     </button>
   );
 }

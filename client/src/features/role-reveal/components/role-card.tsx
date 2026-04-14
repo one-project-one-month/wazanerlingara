@@ -1,7 +1,9 @@
-import type { RefObject } from "react";
+import { type RefObject, useEffect, useState } from "react";
 import viewButton from "@/assets/svg/role-reveal-screen/ViewButton.svg";
 import imposterPic from "@/assets/svg/role-reveal-screen/ImposterPic.svg";
 import type { Player } from "@/types/game.type.ts";
+import { images } from "@/features/role-reveal/pages/role-reveal-page.tsx";
+import { animate } from "animejs";
 
 interface Props {
   currentPlayer: Player;
@@ -34,6 +36,23 @@ export default function RoleCard({
   handleClickCard,
   handleReveal,
 }: Props) {
+  const [playerAvatarUrl, setPlayerAvatarUrl] = useState<string | undefined>(
+    undefined,
+  );
+
+  useEffect(() => {
+    const imageId = currentPlayer.imageId ?? "1";
+    const playerAvatarUrl = images.find((image) => image.id === imageId)?.url;
+    setPlayerAvatarUrl(playerAvatarUrl);
+
+    if (cardRef.current)
+      animate(cardRef.current, {
+        rotateY: [90, 0],
+        opacity: [0, 1],
+        duration: 800,
+      });
+  }, [currentPlayer, cardRef.current]);
+
   return (
     <div
       key={currentPlayer.id}
@@ -61,14 +80,19 @@ export default function RoleCard({
       <div className="absolute inset-2 rounded-[26px] border-2 border-white/40 z-10" />
 
       <div className="absolute inset-3 rounded-3xl bg-black z-20 flex items-center justify-center overflow-hidden">
-        <div ref={cardRef} className="flex flex-col items-center">
+        <div ref={cardRef} className="  flex flex-col items-center">
           {!revealed && (
             <>
-              <img
-                src={currentPlayer.imageId!!}
-                alt="avatar"
-                className="w-30 h-30 md:w-44 md:h-44 object-contain mb-5"
-              />
+              {playerAvatarUrl ? (
+                <img
+                  loading={"lazy"}
+                  src={playerAvatarUrl}
+                  alt="avatar"
+                  className="w-40 h-40 md:w-50 md:h-50 object-contain mb-5"
+                />
+              ) : (
+                <h2>Loading Image...</h2>
+              )}
               <p className="text-[16px] md:text-lg text-white/90">
                 {currentPlayer.name}
               </p>
@@ -84,7 +108,7 @@ export default function RoleCard({
                     : (revealImageId ?? "")
                 }
                 alt="wordOrImposterImg"
-                className="w-30 h-30 md:w-44 md:h-44 object-contain mb-5"
+                className="w-50 h-50  object-contain mb-5"
               />
               <h2
                 className={`text-2xl text-center md:text-3xl font-semibold ${
