@@ -8,5 +8,6 @@ export const APP_CONFIG = {
   CHOOSE_CATEGORIES: "/choose-categories",
   GAME_SETTING: "/game-setting",
   ROLE_REVEAL: "/role-reveal",
-  GAME_PLAY: "/game-play"
+  GAME_PLAY: "/game-play",
+  SETTING: "/setting",
 };

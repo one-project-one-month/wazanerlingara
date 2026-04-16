@@ -6,38 +6,39 @@ import questionMarkIcon from "@/assets/svg/question-mark-icon.svg";
 import settingIcon from "@/assets/svg/setting.svg";
 import wordMarkImage from "@/assets/svg/wazanerlingara.svg";
 import { Button } from "@/components/ui/button";
+import { useAppNavigation } from "@/lib/use-app-navigation";
+import { useGameConfigStore } from "@/stores/game-config-store";
 import { useNavigate } from "react-router-dom";
 import SetupPageSetting from "../components/setup-page-settings";
-import { useGameConfigStore } from "@/stores/game-config-store";
 
 export default function SetupPage() {
-  const { config, setGameConfig } = useGameConfigStore();
+  const { setGameConfig } = useGameConfigStore();
   const navigate = useNavigate();
-
+  const { goTo } = useAppNavigation()
   const handleStartGame = () => {
-    if (!config) {
-      setGameConfig({
-        id: crypto.randomUUID(),
-        players: [],
-        gameMode: "word",
-        gameSetting: {
-          imposterCount: 1,
-          turnTimer: 5,
-          durationTimer: 120,
-          canImposterGetHint: false,
-        },
-        word: null,
-        question: null,
-        roundCount: 1,
-        imposterId: null,
-        previousWordId: null,
-        previousQuestionId: null,
-        previousImposterId: null,
-      });
+    setGameConfig({
+      id: crypto.randomUUID(),
+      players: [],
+      gameMode: "word",
+      gameSetting: {
+        imposterCount: 1,
+        turnTimer: 5,
+        durationTimer: 120,
+        canImposterGetHint: false,
+      },
+      word: null,
+      question: null,
+      roundCount: 1,
+      imposterId: null,
+      previousWordId: null,
+      previousQuestionId: null,
+      previousImposterId: null,
+    });
+    goTo(APP_CONFIG.GAME_START);
 
-      navigate(APP_CONFIG.GAME_START);
-    }
   };
+
+
 
   return (
     <div className="fixed inset-0 z-10 overflow-y-auto bg-black text-white lg:overflow-hidden">
@@ -95,6 +96,7 @@ export default function SetupPage() {
             <Button
               variant="outline"
               className="h-18 flex items-center justify-center text-2xl tracking-wide"
+              onClick={() => goTo(APP_CONFIG.SETTING)}
             >
               <span className="inline-flex items-center gap-2">
                 <img

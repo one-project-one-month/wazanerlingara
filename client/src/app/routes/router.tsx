@@ -7,9 +7,10 @@ import {
   LandingPage,
   OnboardingPage,
   ResultPage,
+  RoleRevealPage,
+  SettingPage,
   SetupPage,
   TestPage,
-  RoleRevealPage,
   VotingPage,
 } from "@/app/constants/lazyload";
 import MainLayout from "@/components/layouts/main-layout";
@@ -85,6 +86,22 @@ const router = createBrowserRouter([
         path: "game-setting",
         element: <GameSettingPage />,
       },
+      {
+        path: "setting",
+        children: [
+          {
+            index: true,
+            element: <SettingPage />,
+          },
+          {
+            path: 'legal',
+          },
+          {
+            path: 'contact',
+          }
+        ],
+
+      }
     ],
   },
   {
