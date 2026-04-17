@@ -22,14 +22,14 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           className={cn(
             "px-4 py-4 h-16 min-w-24 w-full shadow-[inset_-4px_-4px_8px_rgba(255,255,255,0.64),inset_4px_4px_8px_rgba(255,255,255,0.64)] duration-300 hover:border-4 rounded-full text-white",
             variant === "default" &&
-              "bg-primary-500 active:bg-primary-400 disabled:bg-primary-200 disabled:cursor-not-allowed disabled:pointer-events-none",
+            "bg-primary-500 active:bg-primary-400 disabled:bg-primary-200 disabled:cursor-not-allowed disabled:pointer-events-none",
             variant === "outline" &&
-              "bg-transparent active:bg-background-200 disabled:bg-background-400 disabled:cursor-not-allowed disabled:pointer-events-none",
+            "bg-transparent active:bg-background-200 disabled:bg-background-400 disabled:cursor-not-allowed disabled:pointer-events-none",
             className,
           )}
           {...props}
           onClick={(e) => {
-            play("click", 0.5);
+            play("click", 0.5, false);
             onClick?.(e);
           }}
         />

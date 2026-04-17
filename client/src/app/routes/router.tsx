@@ -5,6 +5,7 @@ import {
   GameModePage,
   GameSettingPage,
   GameStartPage,
+  HowToPlayPage,
   LandingPage,
   LegalAndPrivacyPage,
   OnboardingPage,
@@ -19,7 +20,7 @@ import MainLayout from "@/components/layouts/main-layout";
 import GamePlayLoading from "@/features/game-play/pages/loading";
 import GamePlayPage from "@/features/game-play/pages/page";
 import NotFound from "@/features/not-found";
-import HowToPlay from "@/features/setting/pages/how-to-play";
+import SettingRightSide from "@/features/setting/components/setting-roght-side";
 import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -93,7 +94,10 @@ const router = createBrowserRouter([
         path: "setting",
         element: <SettingPage />,
         children: [
-
+          {
+            index: true,
+            element: <SettingRightSide />
+          },
           {
             path: 'legal-privacy',
             element: <LegalAndPrivacyPage />
@@ -104,7 +108,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'how-to-play',
-            element: <HowToPlay />
+            element: <HowToPlayPage />
           },
         ],
 

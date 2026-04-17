@@ -1,3 +1,4 @@
+import backgroundMusic from "@/assets/audio/background_sound.mp3";
 import click from "@/assets/audio/click.mp3";
 import Arluu from "@/assets/players/arluu.svg";
 import Buutee from "@/assets/players/buutee.svg";
@@ -9,6 +10,7 @@ export const GAME_CONFIG_STORAGE_KEY = "wazan-game-config";
 
 export const GAME_SFX_FILES = {
   click,
+  backgroundMusic,
 };
 
 export const GAME_IMAGE_ASSETS: Image[] = [

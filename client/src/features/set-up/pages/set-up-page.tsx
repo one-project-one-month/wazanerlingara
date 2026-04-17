@@ -96,7 +96,7 @@ export default function SetupPage() {
             <Button
               variant="outline"
               className="h-18 flex items-center justify-center text-2xl tracking-wide"
-              onClick={() => goTo(APP_CONFIG.HOW_TO_PLAY)}
+              onClick={() => goTo(APP_CONFIG.SETTING)}
             >
               <span className="inline-flex items-center gap-2">
                 <img
