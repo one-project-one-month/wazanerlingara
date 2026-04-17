@@ -1,10 +1,13 @@
-import * as React from "react";
 import { cn } from "@/lib/util";
+import * as React from "react";
 
-export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
+export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  label?: string
+  description?: string
+}
 
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, ...props }, ref) => {
+  ({ label, description, className, ...props }, ref) => {
     const textareaRef = React.useRef<HTMLTextAreaElement | null>(null);
 
     const combinedRef = (node: HTMLTextAreaElement) => {
@@ -40,16 +43,24 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     return (
       <div className="relative w-full">
+        {
+          label &&
+          <p className="mb-2">{label}</p>
+        }
         <textarea
           ref={combinedRef}
           className={cn(
-            "flex min-h-[120px] w-full resize-none rounded-3xl border-4 border-white bg-background-300 p-3 pr-8 text-gray-300",
+            "flex min-h-30 w-full resize-none rounded-3xl border-4 border-white bg-background-300 p-3 pr-8 text-gray-300",
             "focus-visible:outline-none",
             "disabled:cursor-not-allowed disabled:opacity-50",
             className,
           )}
           {...props}
         />
+        {
+          description &&
+          <p className="mt-2">{description}</p>
+        }
         <div
           onMouseDown={startResize}
           className="absolute bottom-4 right-4 cursor-nwse-resize text-gray-400 select-none"
