@@ -1,17 +1,17 @@
 import type { Category, Question, Word } from "@/types/game.type.ts";
 
-import catPic from "@/assets/images/ImagesForWords/Animals/Cat.png";
-import dogPic from "@/assets/images/ImagesForWords/Animals/Dog.png";
-import tigerPic from "@/assets/images/ImagesForWords/Animals/Tiger.png";
-import elephantPic from "@/assets/images/ImagesForWords/Animals/Elephant.png";
-import cowPic from "@/assets/images/ImagesForWords/Animals/Cow.png";
-import horsePic from "@/assets/images/ImagesForWords/Animals/Horse.png";
-import pigPic from "@/assets/images/ImagesForWords/Animals/Pig.png";
-import leopardPic from "@/assets/images/ImagesForWords/Animals/Leopard.png";
-import chickenPic from "@/assets/images/ImagesForWords/Animals/Chicken.png";
-import snakePic from "@/assets/images/ImagesForWords/Animals/Snake.png";
 import birdPic from "@/assets/images/ImagesForWords/Animals/Bird.png";
+import catPic from "@/assets/images/ImagesForWords/Animals/Cat.png";
+import chickenPic from "@/assets/images/ImagesForWords/Animals/Chicken.png";
+import cowPic from "@/assets/images/ImagesForWords/Animals/Cow.png";
+import dogPic from "@/assets/images/ImagesForWords/Animals/Dog.png";
+import elephantPic from "@/assets/images/ImagesForWords/Animals/Elephant.png";
 import frogPic from "@/assets/images/ImagesForWords/Animals/Frog.png";
+import horsePic from "@/assets/images/ImagesForWords/Animals/Horse.png";
+import leopardPic from "@/assets/images/ImagesForWords/Animals/Leopard.png";
+import pigPic from "@/assets/images/ImagesForWords/Animals/Pig.png";
+import snakePic from "@/assets/images/ImagesForWords/Animals/Snake.png";
+import tigerPic from "@/assets/images/ImagesForWords/Animals/Tiger.png";
 
 import iceCream from "@/assets/svg/role-reveal-screen/ice-cream.svg";
 
@@ -42,6 +42,7 @@ export const GAME_CATEGORIES: Category[] = [
   { id: "histories", name: "သမိုင်း", imageId: historiesPic },
   { id: "sports", name: "အားကစား", imageId: sportsPic },
 ];
+
 
 const animals = [
   {

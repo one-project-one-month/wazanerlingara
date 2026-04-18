@@ -25,6 +25,7 @@ export default function SetupPage() {
         turnTimer: 5,
         durationTimer: 120,
         canImposterGetHint: false,
+        gameType: "turnTimer"
       },
       word: null,
       question: null,
@@ -96,7 +97,7 @@ export default function SetupPage() {
             <Button
               variant="outline"
               className="h-18 flex items-center justify-center text-2xl tracking-wide"
-              onClick={() => goTo(APP_CONFIG.SETTING)}
+              onClick={() => goTo(APP_CONFIG.HOW_TO_PLAY)}
             >
               <span className="inline-flex items-center gap-2">
                 <img
