@@ -1,18 +1,10 @@
 import { useEffect, useState } from "react";
 
-import TopSection from "@/features/role-reveal/components/top-section.tsx";
-import RoleCard from "@/features/role-reveal/components/role-card.tsx";
 import BottomSection from "@/features/role-reveal/components/bottom-section.tsx";
+import RoleCard from "@/features/role-reveal/components/role-card.tsx";
+import TopSection from "@/features/role-reveal/components/top-section.tsx";
 
 import avatar1 from "@/assets/svg/role-reveal-screen/Avatars/Avatar1.svg";
-import avatar2 from "@/assets/svg/role-reveal-screen/Avatars/Avatar2.svg";
-import avatar3 from "@/assets/svg/role-reveal-screen/Avatars/Avatar3.svg";
-import avatar4 from "@/assets/svg/role-reveal-screen/Avatars/Avatar4.svg";
-import avatar5 from "@/assets/svg/role-reveal-screen/Avatars/Avatar5.svg";
-import avatar6 from "@/assets/svg/role-reveal-screen/Avatars/Avatar6.svg";
-import avatar7 from "@/assets/svg/role-reveal-screen/Avatars/Avatar7.svg";
-import avatar8 from "@/assets/svg/role-reveal-screen/Avatars/Avatar8.svg";
-import avatar9 from "@/assets/svg/role-reveal-screen/Avatars/Avatar9.svg";
 import avatar10 from "@/assets/svg/role-reveal-screen/Avatars/Avatar10.svg";
 import avatar11 from "@/assets/svg/role-reveal-screen/Avatars/Avatar11.svg";
 import avatar12 from "@/assets/svg/role-reveal-screen/Avatars/Avatar12.svg";
@@ -23,23 +15,31 @@ import avatar16 from "@/assets/svg/role-reveal-screen/Avatars/Avatar16.svg";
 import avatar17 from "@/assets/svg/role-reveal-screen/Avatars/Avatar17.svg";
 import avatar18 from "@/assets/svg/role-reveal-screen/Avatars/Avatar18.svg";
 import avatar19 from "@/assets/svg/role-reveal-screen/Avatars/Avatar19.svg";
+import avatar2 from "@/assets/svg/role-reveal-screen/Avatars/Avatar2.svg";
 import avatar20 from "@/assets/svg/role-reveal-screen/Avatars/Avatar20.svg";
 import avatar21 from "@/assets/svg/role-reveal-screen/Avatars/Avatar21.svg";
 import avatar22 from "@/assets/svg/role-reveal-screen/Avatars/Avatar22.svg";
 import avatar23 from "@/assets/svg/role-reveal-screen/Avatars/Avatar23.svg";
 import avatar24 from "@/assets/svg/role-reveal-screen/Avatars/Avatar24.svg";
+import avatar3 from "@/assets/svg/role-reveal-screen/Avatars/Avatar3.svg";
+import avatar4 from "@/assets/svg/role-reveal-screen/Avatars/Avatar4.svg";
+import avatar5 from "@/assets/svg/role-reveal-screen/Avatars/Avatar5.svg";
+import avatar6 from "@/assets/svg/role-reveal-screen/Avatars/Avatar6.svg";
+import avatar7 from "@/assets/svg/role-reveal-screen/Avatars/Avatar7.svg";
+import avatar8 from "@/assets/svg/role-reveal-screen/Avatars/Avatar8.svg";
+import avatar9 from "@/assets/svg/role-reveal-screen/Avatars/Avatar9.svg";
 //import iceCream from "@/assets/svg/role-reveal-screen/ice-cream.svg";
-import type { GameConfig, Image, Player } from "@/types/game.type.ts";
-import { useNavigate } from "react-router-dom";
 import { APP_CONFIG } from "@/app/config/app-config.ts";
 import ConfirmModal from "@/components/ui/confirm-modal.tsx";
+import type { GameConfig, Image, Player } from "@/types/game.type.ts";
+import { useNavigate } from "react-router-dom";
 
-import { useRoleReveal } from "@/features/role-reveal/hooks/use-role-reveal.ts";
-import { shuffleArray } from "@/lib/shuffle.ts";
-import NextPlayerCountdown from "@/features/role-reveal/components/next-player-countdown.tsx";
-import InstructionText from "@/features/role-reveal/components/instruction-text.tsx";
-import { getGameConfig } from "@/features/role-reveal/utils/get-game-config.ts";
 import { GameConfigNotFound } from "@/features/role-reveal/components/game-config-not-found.tsx";
+import InstructionText from "@/features/role-reveal/components/instruction-text.tsx";
+import NextPlayerCountdown from "@/features/role-reveal/components/next-player-countdown.tsx";
+import { useRoleReveal } from "@/features/role-reveal/hooks/use-role-reveal.ts";
+import { getGameConfig } from "@/features/role-reveal/utils/get-game-config.ts";
+import { shuffleArray } from "@/lib/shuffle.ts";
 
 export const images: Image[] = [
   { id: "1", url: avatar1, name: "Pic 1" },
@@ -72,7 +72,7 @@ export default function RoleRevealPage() {
   const navigate = useNavigate();
 
   const [gameConfig] = useState(getGameConfig);
-  console.log("gameConfig", gameConfig);
+
 
   const { gameMode, word, question, imposterId } = gameConfig as GameConfig;
 
@@ -114,7 +114,6 @@ export default function RoleRevealPage() {
     );
   }, []);
 
-  console.log("players ", players);
   const handleNextPlayerCountDownDone = () => {
     setShowNextPlayerCountdown(false);
     goToNextPlayer();

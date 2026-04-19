@@ -21,10 +21,10 @@ const DurationTimer = () => {
 
 
   return (
-    <div className="flex flex-col h-screen w-full items-center p-4 gap-y-6">
+    <div className="flex flex-col h-screen items-center p-4 gap-6 ">
 
       <div className="flex justify-end w-full">
-        <Button variant="outline" className="text-4xl">X</Button>
+        <Button variant="outline" className="text-2xl rounded-2xl h-auto py-2 px-4 min-w-0">X</Button>
       </div>
 
 
@@ -44,22 +44,24 @@ const DurationTimer = () => {
 
       {
         isPaused
-          ? <div className="mt-auto w-full flex  items-center gap-4 pb-6">
-            <Button variant="default" className="w-full px-1.5" onClick={() => goTo(APP_CONFIG.VOTING)}>
+          ? <div className="mt-auto w-full grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl pb-6">
+            <Button variant="default" className="px-1.5 " onClick={() => goTo(APP_CONFIG.VOTING)}>
               မဲပေးမယ်
             </Button>
-            <Button variant="outline" className="w-full px-1.5" onClick={() => togglePause()}>
+            <Button variant="outline" className="px-1.5 " onClick={() => togglePause()}>
               ကစားမယ်
             </Button>
           </div>
-          : <Button variant="default" className="w-full px-1.5 mt-auto" onClick={() => togglePause()}>
-            ခဏရပ်ပြီး ဆွေးနွေးမယ်
-          </Button>
+          : <div className="mt-auto w-full grid grid-cols-1  gap-4 max-w-xl pb-6">
+            <Button variant="default" className=" px-1.5 " onClick={() => togglePause()}>
+              ခဏရပ်ပြီး ဆွေးနွေးမယ်
+            </Button>
+          </div>
       }
 
 
 
-    </div>
+    </div >
   )
 }
 

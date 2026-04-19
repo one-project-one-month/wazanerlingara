@@ -8,6 +8,7 @@ interface CircularTimerProps {
   strokeColor?: string;
   trackColor?: string;
   isPaused?: boolean;
+  formatTime?: boolean;
 }
 
 const CircularTimer = ({
@@ -16,6 +17,7 @@ const CircularTimer = ({
   strokeColor = "#FA0000",
   trackColor = "#374151",
   isPaused = false,
+  formatTime = true
 }: CircularTimerProps) => {
 
   const minutes = Math.floor(timeLeft / 60);
@@ -69,6 +71,19 @@ const CircularTimer = ({
   }, [totalTime, circumference]);
 
   useEffect(() => {
+    if (timeLeft === totalTime) {
+      trackAnimRef.current?.pause();
+      headAnimRef.current?.pause();
+      trackAnimRef.current?.seek(0);
+      headAnimRef.current?.seek(0);
+
+      if (!isPaused) {
+        trackAnimRef.current?.play();
+        headAnimRef.current?.play();
+      }
+      return;
+
+    }
     if (isPaused) {
       trackAnimRef.current?.pause();
       headAnimRef.current?.pause();
@@ -116,7 +131,7 @@ const CircularTimer = ({
 
         <div className="absolute inset-0 flex items-center justify-center">
           <span className="text-4xl font-bold text-white">
-            {changeToMMNumber(formattedTime)}
+            {changeToMMNumber(formatTime ? formattedTime : timeLeft.toString())}
           </span>
         </div>
       </div>

@@ -1,10 +1,12 @@
 import CircularTimer from "@/components/ui/circular-timer";
 import { useAppNavigation } from "@/lib/use-app-navigation";
+import { useTimer } from "@/lib/use-timer";
 import { useGameConfigStore } from "@/stores/game-config-store";
 
 const GamePlayLoading = () => {
   const gameType = useGameConfigStore(s => s.config?.gameSetting.gameType);
   const { goTo } = useAppNavigation();
+  const { totalTime, timeLeft } = useTimer(5, false, () => goTo(`/game-play/${gameType === "turnTimer" ? "turn-timer" : "duration-timer"}`));
 
   return (
 
@@ -13,8 +15,8 @@ const GamePlayLoading = () => {
 
       <h3 className="mb-2.5">ဂိမ်းစတင်ပါတော့မယ် ...</h3>
       <CircularTimer
-        totalTime={5}
-        onComplete={() => goTo(`/game-play/${gameType === "turnTimer" ? "turn-timer" : "duration-timer"}`)}
+        totalTime={totalTime}
+        timeLeft={timeLeft}
       />
 
 
