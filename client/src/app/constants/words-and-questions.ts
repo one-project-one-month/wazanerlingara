@@ -13,34 +13,21 @@ import pigPic from "@/assets/images/ImagesForWords/Animals/Pig.png";
 import snakePic from "@/assets/images/ImagesForWords/Animals/Snake.png";
 import tigerPic from "@/assets/images/ImagesForWords/Animals/Tiger.png";
 
-import iceCream from "@/assets/svg/role-reveal-screen/ice-cream.svg";
 
-import animalsPic from "@/assets/svg/animals.svg";
-import countriesPic from "@/assets/svg/countries.svg";
-import foodsPic from "@/assets/svg/foods.svg";
-import historiesPic from "@/assets/svg/histories.svg";
-import imaginationsPic from "@/assets/svg/imaginations.svg";
-import jobsPic from "@/assets/svg/jobs.svg";
-import locationsPic from "@/assets/svg/locations.svg";
-import moviesPic from "@/assets/svg/movies.svg";
-import naturePic from "@/assets/svg/nature.svg";
-import sportsPic from "@/assets/svg/sports.svg";
-import superHeroesPic from "@/assets/svg/supes.svg";
-import technologiesPic from "@/assets/svg/technologies.svg";
 
 export const GAME_CATEGORIES: Category[] = [
-  { id: "animals", name: "တိရစ္ဆာန်များ", imageId: animalsPic },
-  { id: "foods", name: "အစားအသောက်", imageId: foodsPic },
-  { id: "locations", name: "နေရာဒေသ", imageId: locationsPic },
-  { id: "countries", name: "နိုင်ငံများ", imageId: countriesPic },
-  { id: "movies", name: "ရုပ်ရှင်", imageId: moviesPic },
-  { id: "jobs", name: "အလုပ်အကိုင်", imageId: jobsPic },
-  { id: "technologies", name: "နည်းပညာ", imageId: technologiesPic },
-  { id: "imaginations", name: "စိတ်ကူးယဉ် အရာများ", imageId: imaginationsPic },
-  { id: "superheroes", name: "စူပါဟီးရိုးများ", imageId: superHeroesPic },
-  { id: "nature", name: "သဘာဝ", imageId: naturePic },
-  { id: "histories", name: "သမိုင်း", imageId: historiesPic },
-  { id: "sports", name: "အားကစား", imageId: sportsPic },
+  { id: "animals", name: "တိရစ္ဆာန်များ", imageId: "animals" },
+  { id: "foods", name: "အစားအသောက်", imageId: "foods" },
+  { id: "locations", name: "နေရာဒေသ", imageId: "locations" },
+  { id: "countries", name: "နိုင်ငံများ", imageId: "countries" },
+  { id: "movies", name: "ရုပ်ရှင်", imageId: "movies" },
+  { id: "jobs", name: "အလုပ်အကိုင်", imageId: "jobs" },
+  { id: "technologies", name: "နည်းပညာ", imageId: "technologies" },
+  { id: "imaginations", name: "စိတ်ကူးယဉ် အရာများ", imageId: "imaginations" },
+  { id: "superheroes", name: "စူပါဟီးရိုးများ", imageId: "superheroes" },
+  { id: "nature", name: "သဘာဝ", imageId: "nature" },
+  { id: "histories", name: "သမိုင်း", imageId: "histories" },
+  { id: "sports", name: "အားကစား", imageId: "sports" },
 ];
 
 
@@ -280,13 +267,7 @@ const foods = [
     categoryId: "foods",
     hint: "မနက်စာ",
   },
-  {
-    id: "",
-    text: "ရေခဲမုန့်",
-    imageId: iceCream,
-    categoryId: "foods",
-    hint: "နွေရာသီ",
-  },
+
   {
     id: "",
     text: "ပီဇာ",

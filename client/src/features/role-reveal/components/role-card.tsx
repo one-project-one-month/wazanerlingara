@@ -1,9 +1,8 @@
-import { type RefObject, useEffect, useState } from "react";
-import viewButton from "@/assets/svg/role-reveal-screen/ViewButton.svg";
-import imposterPic from "@/assets/svg/role-reveal-screen/ImposterPic.svg";
+import viewButton from "@/assets/svg/magnify.svg";
+import { useGameImageStore } from "@/stores/game-image-store";
 import type { Player } from "@/types/game.type.ts";
-import { images } from "@/features/role-reveal/pages/role-reveal-page.tsx";
 import { animate } from "animejs";
+import { type RefObject, useEffect, useState } from "react";
 
 interface Props {
   currentPlayer: Player;
@@ -36,13 +35,15 @@ export default function RoleCard({
   handleClickCard,
   handleReveal,
 }: Props) {
+  const getUrl = useGameImageStore(s => s.getImageUrl);
   const [playerAvatarUrl, setPlayerAvatarUrl] = useState<string | undefined>(
     undefined,
   );
 
+
   useEffect(() => {
     const imageId = currentPlayer.imageId ?? "1";
-    const playerAvatarUrl = images.find((image) => image.id === imageId)?.url;
+    const playerAvatarUrl = getUrl(imageId);
     setPlayerAvatarUrl(playerAvatarUrl);
 
     if (cardRef.current)
@@ -67,10 +68,9 @@ export default function RoleCard({
         lg:w-60 lg:h-75
         rounded-[30px]
         flex items-center justify-center
-        ${
-          timeLeft <= 0 || confirmed
-            ? "opacity-50 cursor-not-allowed"
-            : "cursor-pointer"
+        ${timeLeft <= 0 || confirmed
+          ? "opacity-50 cursor-not-allowed"
+          : "cursor-pointer"
         }
       `}
     >
@@ -104,18 +104,17 @@ export default function RoleCard({
               <img
                 src={
                   currentPlayer.id === imposterId
-                    ? imposterPic
+                    ? getUrl("imposter")
                     : (revealImageId ?? "")
                 }
                 alt="wordOrImposterImg"
                 className="w-50 h-50  object-contain mb-5"
               />
               <h2
-                className={`text-2xl text-center md:text-3xl font-semibold ${
-                  currentPlayer.id === imposterId
-                    ? "text-red-500"
-                    : "text-white"
-                }`}
+                className={`text-2xl text-center md:text-3xl font-semibold ${currentPlayer.id === imposterId
+                  ? "text-red-500"
+                  : "text-white"
+                  }`}
               >
                 {currentPlayer.id === imposterId ? "Imposter" : revealContent}
               </h2>

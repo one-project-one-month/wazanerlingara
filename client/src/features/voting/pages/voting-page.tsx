@@ -18,7 +18,6 @@ const VotingPage = () => {
 
   const navigate = useNavigate();
   const { config } = useGameConfigStore();
-
   const [votedPlayers, setVotedPlayers] = useState(
     config?.players.map((p) => ({ id: p.id, name: p.name, votedCount: 0 })) || [],
   )

@@ -1,8 +1,6 @@
 
-import Arluu from "@/assets/players/arluu.svg";
-import Buutee from "@/assets/players/buutee.svg";
-import Gawli from "@/assets/players/gawli.svg";
-import Sarou from "@/assets/players/sarou.svg";
+
+import { useGameImageStore } from "@/stores/game-image-store";
 import type { Player } from "@/types/game.type";
 
 interface PlayerCardProps {
@@ -11,18 +9,13 @@ interface PlayerCardProps {
   onSelect: (id: string) => void;
 }
 
-const IMAGE_MAP: Record<string | number, string> = {
-  1: Arluu,
-  2: Buutee,
-  3: Sarou,
-  4: Gawli,
-};
+
 
 const VotingPlayerCard = ({
   players,
   selectedPlayerId,
   onSelect }: PlayerCardProps) => {
-
+  const getImageurl = useGameImageStore(s => s.getImageUrl);
   return (
     <section
       className={
@@ -31,7 +24,7 @@ const VotingPlayerCard = ({
     >
       {players.map((player) => {
         const isSelected = selectedPlayerId === player.id;
-        const playerImage = player.imageId ? IMAGE_MAP[player.imageId] : Arluu;
+        const playerImage = getImageurl(player.imageId ?? "2");
 
         return (
           <button
