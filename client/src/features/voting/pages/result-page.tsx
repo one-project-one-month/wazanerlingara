@@ -1,7 +1,7 @@
 import type { VotingRouteState } from "@/features/voting/pages/voting-page";
 import { useGameConfigStore } from "@/stores/game-config-store.ts";
 import { useCallback, useMemo } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 import { APP_CONFIG } from "@/app/config/app-config";
 import ImposterWin from "@/assets/gif/imposter-win.svg";
@@ -9,6 +9,7 @@ import TeammatesWin from "@/assets/gif/teammates-win.svg";
 import HomeIcon from "@/assets/svg/home.svg";
 import PlayIcon from "@/assets/svg/play-icon.svg";
 import { Button } from "@/components/ui/button.tsx";
+import { useAppNavigation } from "@/lib/use-app-navigation";
 
 const teammatesTrashTalks = [
   "ဒါဘဲလေ ၅တန်းကျောင်းသားတောင် ရိပ်မိတယ်",
@@ -55,20 +56,19 @@ const imposterTrashTalks = [
 
 const ResultPage = () => {
   const location = useLocation();
-  const navigate = useNavigate();
+  const { goTo } = useAppNavigation();
   const { config, resetGameConfig } = useGameConfigStore();
 
   const state = location.state as VotingRouteState | null;
   const votedFor = state?.votedFor;
   const handlePlayAgain = useCallback(() => {
-    resetGameConfig();
-    navigate(APP_CONFIG.SET_UP, { replace: true });
-  }, [navigate, resetGameConfig]);
+    goTo(APP_CONFIG.CHOOSE_GAME_MODE);
+  }, [resetGameConfig]);
 
   const handleExit = useCallback(() => {
     resetGameConfig();
-    navigate("/", { replace: true });
-  }, [navigate, resetGameConfig]);
+    goTo("/");
+  }, [resetGameConfig]);
 
   const isTeammatesWin = votedFor === config?.imposterId;
 

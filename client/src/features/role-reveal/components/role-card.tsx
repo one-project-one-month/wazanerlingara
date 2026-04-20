@@ -1,4 +1,4 @@
-import viewButton from "@/assets/svg/magnify.svg";
+import viewButton from "@/assets/svg/ViewButton.svg";
 import { useGameImageStore } from "@/stores/game-image-store";
 import type { Player } from "@/types/game.type.ts";
 import { animate } from "animejs";

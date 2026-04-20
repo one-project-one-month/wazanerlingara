@@ -5,6 +5,7 @@ import { useAppNavigation } from "@/lib/use-app-navigation";
 import { useTimer } from "@/lib/use-timer";
 import { useGameConfigStore } from "@/stores/game-config-store";
 import { useState } from "react";
+import ExitButton from "../components/exit-btn";
 
 const GamePlayPage = () => {
   const config = useGameConfigStore(s => s.config)
@@ -28,9 +29,7 @@ const GamePlayPage = () => {
 
     <div className="max-w-7xl h-screen relative mx-auto py-6 flex flex-col ">
 
-      <div className="absolute top-0 right-0">
-        <Button variant="outline" className="text-2xl rounded-2xl p-0 w-fit min-w-16">X</Button>
-      </div>
+      <ExitButton />
 
 
       <div className="flex flex-col items-center gap-4 my-14 ">
