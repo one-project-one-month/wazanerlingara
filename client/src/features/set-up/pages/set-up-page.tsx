@@ -34,9 +34,9 @@ export default function SetupPage() {
         previousQuestionId: null,
         previousImposterId: null,
       });
-
-      navigate(APP_CONFIG.GAME_START);
     }
+
+    navigate(APP_CONFIG.GAME_START);
   };
 
   return (

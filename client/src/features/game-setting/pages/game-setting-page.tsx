@@ -55,13 +55,14 @@ const GameSetting = () => {
     updateGameConfig({
       word: randomWord,
       question: randomQuestion,
-      imposterId: imposter.id,
+      imposterIds: [imposter.id],
       previousWordId: randomWord.id,
       previousQuestionId: randomQuestion.id,
       previousImposterId: imposter.id,
     });
     navigate(APP_CONFIG.ROLE_REVEAL);
   };
+
   return (
     <section className="relative mx-auto flex w-full max-w-2xl flex-col py-4 px-2 lg:px-6">
       <div className="flex items-start justify-center md:block">
