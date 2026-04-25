@@ -6,12 +6,11 @@ import { Input } from "@/components/ui/input";
 import { changeToMMNumber } from "@/lib/change-to-mm-number";
 import { cn } from "@/lib/util";
 import { useGameConfigStore } from "@/stores/game-config-store";
-import type { PlayerType } from "@/types/index.types";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createPlayerInput } from "../utils/create-player-input";
 
-type Props = Pick<PlayerType, "id" | "name">;
+type Props = ReturnType<typeof createPlayerInput>;
 
 const MIN_PLAYERS = 3;
 const MAX_PLAYERS = 10;
