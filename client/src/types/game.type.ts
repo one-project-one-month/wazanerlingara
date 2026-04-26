@@ -51,5 +51,5 @@ export type GameConfig = {
   imposterIds: string[] | null;
   previousWordId: string | null;
   previousQuestionId: string | null;
-  previousImposterId: string | null;
+  previousImposterIds: string[] | null;
 };

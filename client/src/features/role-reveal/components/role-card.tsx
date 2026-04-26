@@ -9,7 +9,7 @@ interface Props {
   currentPlayer: Player;
   revealContent: string;
   revealImageId?: string;
-  imposterId: string;
+  imposterIds: string[];
   imposterCanGetHint: boolean;
   hint: string;
   showBlur: boolean;
@@ -25,7 +25,7 @@ export default function RoleCard({
   currentPlayer,
   revealContent,
   revealImageId,
-  imposterId,
+  imposterIds,
   imposterCanGetHint,
   hint,
   revealed,
@@ -53,6 +53,7 @@ export default function RoleCard({
       });
   }, [currentPlayer, cardRef.current]);
 
+  const isImposter = imposterIds.includes(currentPlayer.id);
   return (
     <div
       key={currentPlayer.id}
@@ -102,26 +103,18 @@ export default function RoleCard({
           {revealed && (
             <>
               <img
-                src={
-                  currentPlayer.id === imposterId
-                    ? imposterPic
-                    : (revealImageId ?? "")
-                }
+                src={isImposter ? imposterPic : (revealImageId ?? "")}
                 alt="wordOrImposterImg"
                 className="w-50 h-50  object-contain mb-5"
               />
               <h2
                 className={`text-2xl text-center md:text-3xl font-semibold ${
-                  currentPlayer.id === imposterId
-                    ? "text-red-500"
-                    : "text-white"
+                  isImposter ? "text-red-500" : "text-white"
                 }`}
               >
-                {currentPlayer.id === imposterId ? "Imposter" : revealContent}
+                {isImposter ? "Imposter" : revealContent}
               </h2>
-              {currentPlayer.id === imposterId && imposterCanGetHint
-                ? `hint- ${hint}`
-                : ""}
+              {isImposter && imposterCanGetHint ? `hint- ${hint}` : ""}
             </>
           )}
         </div>

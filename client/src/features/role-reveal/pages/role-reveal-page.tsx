@@ -72,9 +72,8 @@ export default function RoleRevealPage() {
   const navigate = useNavigate();
 
   const [gameConfig] = useState(getGameConfig);
-  console.log("gameConfig", gameConfig);
 
-  const { gameMode, word, question, imposterId } = gameConfig as GameConfig;
+  const { gameMode, word, question, imposterIds } = gameConfig as GameConfig;
 
   const [players, setPlayers] = useState<Player[]>(gameConfig?.players ?? []);
   const [showExitModal, setShowExitModal] = useState<boolean>(false);
@@ -114,7 +113,6 @@ export default function RoleRevealPage() {
     );
   }, []);
 
-  console.log("players ", players);
   const handleNextPlayerCountDownDone = () => {
     setShowNextPlayerCountdown(false);
     goToNextPlayer();
@@ -144,7 +142,7 @@ export default function RoleRevealPage() {
         handleReveal={handleReveal}
         revealContent={revealContent ?? ""}
         revealImageId={revealImageId ?? ""}
-        imposterId={imposterId!!}
+        imposterIds={imposterIds!!}
         imposterCanGetHint={gameConfig.gameSetting.canImposterGetHint}
         hint={hint ?? ""}
       />

@@ -29,7 +29,7 @@ export default function SetupPage() {
         word: null,
         question: null,
         roundCount: 1,
-        imposterId: null,
+        imposterIds: null,
         previousWordId: null,
         previousQuestionId: null,
         previousImposterId: null,
