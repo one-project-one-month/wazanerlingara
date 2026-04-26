@@ -32,7 +32,7 @@ export default function SetupPage() {
         imposterIds: null,
         previousWordId: null,
         previousQuestionId: null,
-        previousImposterId: null,
+        previousImposterIds: null,
       });
     }
 
