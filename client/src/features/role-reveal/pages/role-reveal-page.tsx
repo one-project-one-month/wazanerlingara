@@ -25,16 +25,10 @@ export default function RoleRevealPage() {
   const [gameConfig] = useState(getGameConfig);
 
 
-  const { gameMode, word, question, imposterId } = gameConfig as GameConfig;
-
   const [players, setPlayers] = useState<Player[]>(gameConfig?.players ?? []);
   const [showExitModal, setShowExitModal] = useState<boolean>(false);
   const [showNextPlayerCountdown, setShowNextPlayerCountdown] =
     useState<boolean>(false);
-
-  const revealContent = gameMode === "word" ? word?.text : question?.text;
-  const revealImageId = gameMode === "word" ? word?.imageId : question?.imageId;
-  const hint = gameMode === "word" ? word?.hint : question?.hint;
 
   const {
     currentPlayer,
@@ -55,14 +49,16 @@ export default function RoleRevealPage() {
   });
 
   useEffect(() => {
-    const updatedPlayers = players.map((p, i) => ({
+    if (!gameConfig?.players?.length) return;
+
+    const updatedPlayers = gameConfig.players.map((p, i) => ({
       ...p,
       imageId: shuffledImages[i % shuffledImages.length],
     }));
 
     setPlayers(updatedPlayers);
     updateGameConfig({ players: updatedPlayers });
-  }, []);
+  }, [gameConfig, updateGameConfig]);
 
   const handleNextPlayerCountDownDone = () => {
     setShowNextPlayerCountdown(false);
@@ -72,6 +68,16 @@ export default function RoleRevealPage() {
   if (gameConfig == null) {
     return <GameConfigNotFound />;
   }
+
+  const typedConfig = gameConfig as GameConfig;
+  const revealContent =
+    typedConfig.gameMode === "word" ? typedConfig.word?.text : typedConfig.question?.text;
+  const revealImageId =
+    typedConfig.gameMode === "word" ? typedConfig.word?.imageId : typedConfig.question?.imageId;
+  const hint =
+    typedConfig.gameMode === "word" ? typedConfig.word?.hint : typedConfig.question?.hint;
+  const imposterId = typedConfig.imposterId ?? "";
+
   return (
     <div className="min-h-[97vh] bg-black text-white flex flex-col items-center justify-between px-4 py-5">
       <TopSection
@@ -93,8 +99,8 @@ export default function RoleRevealPage() {
         handleReveal={handleReveal}
         revealContent={revealContent ?? ""}
         revealImageId={revealImageId ?? ""}
-        imposterId={imposterId!!}
-        imposterCanGetHint={gameConfig.gameSetting.canImposterGetHint}
+        imposterId={imposterId}
+        imposterCanGetHint={typedConfig.gameSetting.canImposterGetHint}
         hint={hint ?? ""}
       />
 
@@ -102,7 +108,7 @@ export default function RoleRevealPage() {
 
       <BottomSection
         currentPlayerIndex={currentPlayerIndex}
-        playersLength={gameConfig.players.length}
+        playersLength={typedConfig.players.length}
         nextPlayerName={nextPlayer?.name || ""}
         confirmed={confirmed}
         revealed={revealed}

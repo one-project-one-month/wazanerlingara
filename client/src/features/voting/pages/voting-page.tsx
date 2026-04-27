@@ -18,6 +18,7 @@ const VotingPage = () => {
 
   const navigate = useNavigate();
   const { config } = useGameConfigStore();
+  const playersLength = config?.players.length ?? 0;
   const [votedPlayers, setVotedPlayers] = useState(
     config?.players.map((p) => ({ id: p.id, name: p.name, votedCount: 0 })) || [],
   )
@@ -30,26 +31,31 @@ const VotingPage = () => {
   }, [selectedPlayerId]);
 
   const confirmVote = useCallback(() => {
-    if (!selectedPlayerId || voteCount > config?.players.length! - 1) return;
+    if (!selectedPlayerId || playersLength <= 0) return;
+    if (voteCount >= playersLength - 1) return;
+
     setIsModalOpen(false);
     setVotedPlayers((prev) => prev.map((p) => p.id === selectedPlayerId ? { ...p, votedCount: p.votedCount + 1 } : p));
-    setVoteCount((prev) => prev + 1);
-    if (voteCount === config?.players.length! - 1) {
+
+    const nextVoteCount = voteCount + 1;
+    setVoteCount(nextVoteCount);
+    if (nextVoteCount >= playersLength - 1) {
       console.log("All players have voted");
       setIsLoading(true);
     }
-  }, [selectedPlayerId]);
+  }, [playersLength, selectedPlayerId, voteCount]);
 
   useEffect(() => {
     if (isLoading) {
       const timer = setTimeout(() => {
-        const routeState: VotingRouteState = { votedFor: votedPlayers.sort((a, b) => b.votedCount - a.votedCount)[0].id };
+        const sorted = [...votedPlayers].sort((a, b) => b.votedCount - a.votedCount);
+        const routeState: VotingRouteState = { votedFor: sorted[0]?.id ?? null };
         navigate("/result", { state: routeState });
       }, 3500);
 
       return () => clearTimeout(timer);
     }
-  }, [isLoading, navigate, selectedPlayerId]);
+  }, [isLoading, navigate, votedPlayers]);
 
   return (
     <main

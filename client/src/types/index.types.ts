@@ -6,6 +6,7 @@ export type SetupPageSettingItemType = {
   label: string;
   icon: ReactNode;
   hasToggle?: boolean;
+  href: string | null
 };
 
 export type PlayerInputType = {

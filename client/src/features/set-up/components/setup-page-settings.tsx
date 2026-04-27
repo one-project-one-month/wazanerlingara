@@ -12,22 +12,26 @@ const settingItems: SetupPageSettingItemType[] = [
     label: "နောက်ခံသီချင်း",
     icon: <img src={musicIcon} alt="music-icon" />,
     hasToggle: true,
+    href: null,
   },
   {
     id: "sound",
     label: "အသံ",
     icon: <img src={speakerIcon} alt="speaker-icon" />,
     hasToggle: true,
+    href: null,
   },
   {
     id: "privacy",
     label: "ဥပဒေရေးရာနှင့် ကိုယ်ရေးလုံခြုံမှု",
     icon: <img src={incognitoIcon} alt="incognito-icon" />,
+    href: "/setting/legal-privacy"
   },
   {
     id: "chat",
     label: "ဆက်သွယ်ရန်",
     icon: <img src={chatIcon} alt="chat-icon" />,
+    href: "/setting/contact-us"
   },
 ];
 
@@ -60,6 +64,7 @@ export default function SetupPageSetting() {
           hasToggle={item.hasToggle}
           isOn={getCheck(item.id)}
           onToggle={() => handleToggle(item.id)}
+          href={item.href}
         />
       ))}
     </div>

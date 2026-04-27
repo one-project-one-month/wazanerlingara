@@ -26,6 +26,10 @@ import sports from "@/assets/categories/sports.svg";
 import superheroes from "@/assets/categories/supes.svg";
 import technologies from "@/assets/categories/technologies.svg";
 
+//onboarding images
+import onboarding1 from "@/assets/images/onboarding-illustration-1.svg";
+import onboarding2 from "@/assets/images/onboarding-illustration-2.svg";
+import onboarding3 from "@/assets/images/onboarding-illustration-3.svg";
 
 import type { Image } from "@/types/game.type";
 
@@ -38,6 +42,9 @@ export const GAME_SFX_FILES = {
 
 
 export const GAME_IMAGE_ASSETS: Image[] = [
+  { id: "onboarding-1", url: onboarding1, name: "Onboarding Illustration 1" },
+  { id: "onboarding-2", url: onboarding2, name: "Onboarding Illustration 2" },
+  { id: "onboarding-3", url: onboarding3, name: "Onboarding Illustration 3" },
   { id: "1", url: avatar1, name: "Pic 1" },
   { id: "2", url: avatar2, name: "Pic 2" },
   { id: "3", url: avatar3, name: "Pic 3" },

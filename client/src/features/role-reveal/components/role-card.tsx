@@ -40,25 +40,34 @@ export default function RoleCard({
     undefined,
   );
 
+  const isDisabled = timeLeft <= 0 || confirmed;
 
   useEffect(() => {
     const imageId = currentPlayer.imageId ?? "1";
     const playerAvatarUrl = getUrl(imageId);
     setPlayerAvatarUrl(playerAvatarUrl);
 
-    if (cardRef.current)
-      animate(cardRef.current, {
+    const cardEl = cardRef.current;
+    if (cardEl)
+      animate(cardEl, {
         rotateY: [90, 0],
         opacity: [0, 1],
         duration: 800,
       });
-  }, [currentPlayer, cardRef.current]);
+  }, [currentPlayer.id, currentPlayer.imageId, cardRef, getUrl]);
 
   return (
     <div
       key={currentPlayer.id}
-      onClick={handleClickCard}
+      role="button"
+      tabIndex={isDisabled ? -1 : 0}
+      aria-disabled={isDisabled}
+      onClick={() => {
+        if (isDisabled) return;
+        handleClickCard();
+      }}
       onKeyDown={(e) => {
+        if (isDisabled) return;
         if (e.key === "Enter") handleClickCard();
       }}
       className={`
@@ -68,7 +77,7 @@ export default function RoleCard({
         lg:w-60 lg:h-75
         rounded-[30px]
         flex items-center justify-center
-        ${timeLeft <= 0 || confirmed
+        ${isDisabled
           ? "opacity-50 cursor-not-allowed"
           : "cursor-pointer"
         }

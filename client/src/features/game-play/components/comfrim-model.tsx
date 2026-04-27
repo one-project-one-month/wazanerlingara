@@ -12,9 +12,10 @@ const ConfirmationModal = ({
     isOpen,
     onClose,
 }: ModalProps) => {
-    if (!isOpen) return null;
     const reset = useGameConfigStore(s => s.resetGameConfig)
     const { goTo } = useAppNavigation()
+
+    if (!isOpen) return null;
 
     return createPortal(
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">

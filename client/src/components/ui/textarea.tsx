@@ -61,9 +61,11 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           description &&
           <p className="mt-2">{description}</p>
         }
-        <div
+        <button
+          type="button"
           onMouseDown={startResize}
           className="absolute bottom-4 right-4 cursor-nwse-resize text-gray-400 select-none"
+          aria-label="Resize textarea"
         >
           <svg
             width="11"
@@ -77,7 +79,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
               fill="white"
             />
           </svg>
-        </div>
+        </button>
       </div>
     );
   },
