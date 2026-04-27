@@ -20,7 +20,7 @@ import MainLayout from "@/components/layouts/main-layout";
 import GamePlayLoading from "@/features/game-play/pages/loading";
 import GamePlayPage from "@/features/game-play/pages/page";
 import NotFound from "@/features/not-found";
-import SettingRightSide from "@/features/setting/components/setting-roght-side";
+import SettingRightSide from "@/features/setting/components/setting-right-side";
 import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([

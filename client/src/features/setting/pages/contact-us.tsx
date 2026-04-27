@@ -2,11 +2,14 @@ import BackButton from "@/components/common/back-button"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { useState } from "react"
+import ResponseModel from "../components/response-model"
 
 const ContactUs = () => {
+    const [isOpen, setIsOpen] = useState(false);
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        alert("မက်ဆေ့ချ်ကို ပေးပို့လိုက်ပါပြီ။ ကျေးဇူးတင်ပါတယ်!");
+        setIsOpen(true)
     }
     return (
         <section className="relative" onSubmit={handleSubmit}>
@@ -16,10 +19,12 @@ const ContactUs = () => {
             </div>
             <form className="flex flex-col gap-4">
                 <Input
+                    type="text"
                     label="အမည်"
                     placeholder="မောင်ဒိုင်နို"
                 />
                 <Input
+                    type="email"
                     label="အီးမေးလ လိပ်စာ"
                     description="သင့်ထံသို့ ပြန်လည်ဆက်သွယ်ရန်အတွက်သာ အသုံးပြုပါမည်။"
                     placeholder="jurassic@gmail.com"
@@ -35,6 +40,12 @@ const ContactUs = () => {
                     ‌ပေးပို့မယ်
                 </Button>
             </form>
+            <ResponseModel
+                isOpen={isOpen}
+                onClose={() => setIsOpen(false)}
+                isSuccess={true}
+            />
+
         </section>
     )
 }
