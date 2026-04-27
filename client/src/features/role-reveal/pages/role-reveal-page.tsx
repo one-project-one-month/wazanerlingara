@@ -71,11 +71,10 @@ export default function RoleRevealPage() {
 
   const typedConfig = gameConfig as GameConfig;
   const revealContent =
-    typedConfig.gameMode === "word" ? typedConfig.word?.text : typedConfig.question?.text;
-  const revealImageId =
-    typedConfig.gameMode === "word" ? typedConfig.word?.imageId : typedConfig.question?.imageId;
+    typedConfig.gameMode === "word" ? typedConfig.word?.text : typedConfig.word?.question;
+  const revealImageId = typedConfig.word?.imageId
   const hint =
-    typedConfig.gameMode === "word" ? typedConfig.word?.hint : typedConfig.question?.hint;
+    typedConfig.gameMode === "word" ? typedConfig.word?.hint : typedConfig.word?.hint;
   const imposterIds = typedConfig.imposterIds ?? "";
 
   return (

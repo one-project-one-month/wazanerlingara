@@ -3,6 +3,7 @@ import { APP_CONFIG } from "@/app/config/app-config";
 import { GAME_CATEGORIES } from "@/app/constants/words-and-questions.ts";
 import BackButton from "@/components/common/back-button";
 import { Button } from "@/components/ui/button";
+import { getWordAndQuestionByCategory } from "@/lib/get-question-word";
 import { useGameConfigStore } from "@/stores/game-config-store";
 import type { GameCategoryType } from "@/types/index.types";
 import { useState } from "react";
@@ -25,7 +26,8 @@ export default function ChooseCategories() {
       (item) => item.id === category,
     );
     if (!selectedCategory) return;
-
+    const randomQuestionAndWords = getWordAndQuestionByCategory(category, config?.previousWordId ?? "")
+    if (!randomQuestionAndWords) return console.log("Failed to get question or word.")
     if (config) {
       updateGameConfig({
         category: {
@@ -33,6 +35,9 @@ export default function ChooseCategories() {
           name: selectedCategory.name,
           imageId: selectedCategory.imageId,
         },
+        word: randomQuestionAndWords,
+        previousWordId: randomQuestionAndWords.id
+
       });
       navigate(APP_CONFIG.GAME_SETTING);
     }

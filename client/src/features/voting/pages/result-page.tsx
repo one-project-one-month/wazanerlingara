@@ -70,8 +70,7 @@ const ResultPage = () => {
     goTo("/");
   }, [resetGameConfig, goTo]);
 
-  const isTeammatesWin = votedFor === config?.imposterIds;
-
+  const isTeammatesWin = config?.imposterIds?.includes(votedFor as string);
   const randomTrashTalk = useMemo(() => {
     if (!votedFor || !config) return "";
     const list = isTeammatesWin ? teammatesTrashTalks : imposterTrashTalks;
@@ -89,8 +88,7 @@ const ResultPage = () => {
     imposterPlayers.map((player) => player.name).join(", ") || "Unknown";
 
   const hintCategory = config.category?.name || "N/A";
-  const keywordText =
-    config.gameMode === "word" ? config.word?.text : config.question?.text;
+  const keywordText = config.word?.text || "N/A";
 
   const titleText = isTeammatesWin ? "Teammates Win!" : "Imposter Win!";
   const titleColor = isTeammatesWin ? "text-success-500" : "text-red-500";

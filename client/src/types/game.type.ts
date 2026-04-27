@@ -31,6 +31,7 @@ export type Word = {
   imageId: string | null;
   categoryId: string | null;
   hint: string;
+  question: string
 };
 
 export type Question = {

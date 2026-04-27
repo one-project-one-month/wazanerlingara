@@ -10,7 +10,6 @@ import { useAppNavigation } from "@/lib/use-app-navigation";
 import { useGameConfigStore } from "@/stores/game-config-store";
 import { useNavigate } from "react-router-dom";
 import SetupPageSetting from "../components/setup-page-settings";
-
 export default function SetupPage() {
   const { setGameConfig } = useGameConfigStore();
   const navigate = useNavigate();

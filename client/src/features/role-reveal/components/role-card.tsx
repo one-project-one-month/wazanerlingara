@@ -57,20 +57,19 @@ export default function RoleCard({
   }, [currentPlayer.imageId, cardRef, getUrl]);
 
   const isImposter = imposterIds.includes(currentPlayer.id);
+  const isCardClickable = !showBlur && !revealed;
+  const cardRole = isCardClickable ? "button" : undefined;
+
   return (
-    <button
-      type="button"
-      key={currentPlayer.id}
-      tabIndex={isDisabled ? -1 : 0}
-      aria-disabled={isDisabled}
-      onClick={() => {
-        if (isDisabled) return;
-        handleClickCard();
-      }}
-      onKeyDown={(e) => {
+    <div
+      role={cardRole}
+      tabIndex={isCardClickable ? (isDisabled ? -1 : 0) : undefined}
+      aria-disabled={isCardClickable ? isDisabled : undefined}
+      onClick={isCardClickable ? () => { if (!isDisabled) handleClickCard(); } : undefined}
+      onKeyDown={isCardClickable ? (e => {
         if (isDisabled) return;
         if (e.key === "Enter") handleClickCard();
-      }}
+      }) : undefined}
       className={`
         relative
         w-65 h-90
@@ -151,6 +150,6 @@ export default function RoleCard({
           </button>
         )}
       </div>
-    </button>
+    </div>
   );
 }

@@ -1,8 +1,6 @@
 import { APP_CONFIG } from "@/app/config/app-config";
-import { questions, words } from "@/app/constants/words-and-questions.ts";
 import BackButton from "@/components/common/back-button";
 import { Button } from "@/components/ui/button";
-import { getRandomItemExcluding } from "@/lib/get-random-item-excluding.ts";
 import { getWeightedRandomItems } from "@/lib/get-weighted-random-items.ts";
 import { useAppNavigation } from "@/lib/use-app-navigation";
 import { useGameConfigStore } from "@/stores/game-config-store.ts";
@@ -19,30 +17,9 @@ const GameSetting = () => {
     if (!config?.category || !config.players?.length) return;
     const {
       gameSetting,
-      category,
       players,
-      previousWordId,
-      previousQuestionId,
       previousImposterIds,
     } = config;
-
-    const wordsByCategory = words.filter(
-      (word) => word.categoryId === category.id,
-    );
-
-    const questionsByCategory = questions.filter(
-      (q) => q.categoryId === category.id,
-    );
-
-    const randomWord = getRandomItemExcluding(
-      wordsByCategory,
-      previousWordId ?? undefined,
-    );
-
-    const randomQuestion = getRandomItemExcluding(
-      questionsByCategory,
-      previousQuestionId ?? undefined,
-    );
 
     const imposterCount = gameSetting.imposterCount;
 
@@ -53,17 +30,8 @@ const GameSetting = () => {
     });
     const imposterIds = imposters.map((imposter) => imposter.id);
 
-    if (!randomWord || !randomQuestion || !imposters.length) {
-      console.error("Game start failed: missing data");
-      return;
-    }
-
     updateGameConfig({
-      word: randomWord,
-      question: randomQuestion,
       imposterIds: imposterIds,
-      previousWordId: randomWord.id,
-      previousQuestionId: randomQuestion.id,
       previousImposterIds: imposterIds,
     });
     goTo(APP_CONFIG.ROLE_REVEAL);
