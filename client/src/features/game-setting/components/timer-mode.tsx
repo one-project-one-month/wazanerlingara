@@ -15,13 +15,23 @@ const TimerModeSetting = () => {
   const min = isTurn ? 5 : 60;
   const max = isTurn ? 60 : 600;
 
+  const handleTimerMode = (type: "TURN" | "DURATION") => {
+    if (!config) return;
+    setTimerMode(type);
+    updateGameConfig({
+      gameSetting: {
+        ...config.gameSetting,
+        ...(type === "TURN" ? { gameType: "turnTimer" } : { gameType: "durationTimer" }),
+      },
+    });
+  };
   const setTimer = (newValue: number) => {
     if (!config) return;
     if (newValue < min || newValue > max) return;
     updateGameConfig({
       gameSetting: {
         ...config.gameSetting,
-        ...(isTurn ? { turnTimer: newValue } : { durationTimer: newValue }),
+        ...(isTurn ? { turnTimer: newValue, gameType: "turnTimer" } : { durationTimer: newValue, gameType: "durationTimer" }),
       },
     });
   };
@@ -62,7 +72,7 @@ const TimerModeSetting = () => {
       <div className="flex border  border-white rounded-2xl p-1 ">
         <button
           type="button"
-          onClick={() => setTimerMode("TURN")}
+          onClick={() => handleTimerMode("TURN")}
           className={`px-2 py-4 flex-1 flex items-center justify-center gap-1 lg:gap-2 rounded-2xl ${isTurn ? "bg-white text-black" : "bg-transparent text-white"}
         `}
         >
@@ -71,7 +81,7 @@ const TimerModeSetting = () => {
         </button>
         <button
           type="button"
-          onClick={() => setTimerMode("DURATION")}
+          onClick={() => handleTimerMode("DURATION")}
           className={`px-2 py-4 flex-1 flex items-center justify-center gap-1 lg:gap-2 rounded-2xl ${!isTurn ? "bg-white text-black" : "bg-transparent text-white"}
         `}
         >

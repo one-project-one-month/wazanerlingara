@@ -1,24 +1,29 @@
-import { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import VotingPlayerCard from "@/features/voting/components/voting-player-card.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import VotingConfirmationPopup from "@/features/voting/components/voting-confirmation-popup.tsx";
 import VotingLoading from "@/features/voting/components/voting-loading.tsx";
+import VotingPlayerCard from "@/features/voting/components/voting-player-card.tsx";
 import { useGameConfigStore } from "@/stores/game-config-store.ts";
+import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export interface VotingRouteState {
   votedFor: string | number | null;
 }
 
 const VotingPage = () => {
-  const [selectedPlayerId, setSelectedPlayerId] = useState<
-    string | number | null
-  >(null);
+  const [selectedPlayerId, setSelectedPlayerId] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+
   const navigate = useNavigate();
   const { config } = useGameConfigStore();
+  const playersLength = config?.players.length ?? 0;
+  const [votedPlayers, setVotedPlayers] = useState(
+    config?.players.map((p) => ({ id: p.id, name: p.name, votedCount: 0 })) || [],
+  );
+  const [voteCount, setVoteCount] = useState(0);
+
   const selectedPlayerName =
     config?.players.find((p) => p.id === selectedPlayerId)?.name || "";
 
@@ -27,25 +32,36 @@ const VotingPage = () => {
   }, [selectedPlayerId]);
 
   const confirmVote = useCallback(() => {
+    if (!selectedPlayerId || playersLength <= 0) return;
+    if (voteCount > playersLength) return;
+
     setIsModalOpen(false);
-    setIsLoading(true);
-  }, []);
+    setVotedPlayers((prev) => prev.map((p) => p.id === selectedPlayerId ? { ...p, votedCount: p.votedCount + 1 } : p));
+
+    const nextVoteCount = voteCount + 1;
+    setVoteCount(nextVoteCount);
+    if (nextVoteCount === playersLength) {
+      console.log("All players have voted");
+      setIsLoading(true);
+    };
+  }, [playersLength, selectedPlayerId, voteCount]);
 
   useEffect(() => {
     if (isLoading) {
       const timer = setTimeout(() => {
-        const routeState: VotingRouteState = { votedFor: selectedPlayerId };
+        const sorted = [...votedPlayers].sort((a, b) => b.votedCount - a.votedCount);
+        const routeState: VotingRouteState = { votedFor: sorted[0]?.id ?? null };
         navigate("/result", { state: routeState });
       }, 3500);
 
       return () => clearTimeout(timer);
-    }
-  }, [isLoading, navigate, selectedPlayerId]);
+    };
+  }, [isLoading, navigate, votedPlayers]);
 
   return (
     <main
       className={
-        "flex flex-col items-center justify-start lg:justify-center h-[calc(100dvh-2rem)] gap-6 md:gap-8 lg:p-0 max-w-5xl mx-auto py-4"
+        "flex flex-col items-center justify-start lg:justify-center  gap-6 md:gap-8 lg:p-0 max-w-5xl mx-auto py-4"
       }
     >
       {isLoading ? (
@@ -66,7 +82,10 @@ const VotingPage = () => {
           </div>
 
           <div className="w-full flex justify-center py-4">
-            <VotingPlayerCard onSelect={(id) => setSelectedPlayerId(id)} />
+            <VotingPlayerCard
+              players={config?.players || []}
+              selectedPlayerId={selectedPlayerId}
+              onSelect={setSelectedPlayerId} />
           </div>
 
           <div className={"mt-auto lg:mt-8 w-full lg:max-w-xl"}>

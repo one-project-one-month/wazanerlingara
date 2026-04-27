@@ -1,6 +1,7 @@
 import { cn } from "@/lib/util";
-import type { GameCategoryType } from "@/types/index.types";
+import { useGameImageStore } from "@/stores/game-image-store";
 import type { Category } from "@/types/game.type.ts";
+import type { GameCategoryType } from "@/types/index.types";
 
 type CategoryCardProps = {
   category: Category;
@@ -13,6 +14,7 @@ export default function CategoryCard({
   isSelected,
   onSelect,
 }: CategoryCardProps) {
+  const { getImageUrl } = useGameImageStore()
   return (
     <button
       type="button"
@@ -26,7 +28,7 @@ export default function CategoryCard({
       )}
     >
       <img
-        src={category.imageId ?? ""}
+        src={getImageUrl(category.imageId ?? "1")}
         alt={category.id}
         className="size-30 w-full md:size-36"
       />

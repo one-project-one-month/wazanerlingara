@@ -10,11 +10,13 @@ export type Image = {
   name: string;
 };
 
+export type gameType = "turnTimer" | "durationTimer";
 type GameSetting = {
   imposterCount: number;
   turnTimer: number;
   durationTimer: number;
   canImposterGetHint: boolean;
+  gameType: gameType
 };
 
 export type Category = {
@@ -29,6 +31,7 @@ export type Word = {
   imageId: string | null;
   categoryId: string | null;
   hint: string;
+  question: string
 };
 
 export type Question = {

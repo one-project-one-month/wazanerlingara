@@ -1,76 +1,14 @@
 import { APP_CONFIG } from "@/app/config/app-config";
 
+import { GAME_CATEGORIES } from "@/app/constants/words-and-questions.ts";
 import BackButton from "@/components/common/back-button";
 import { Button } from "@/components/ui/button";
+import { getWordAndQuestionByCategory } from "@/lib/get-question-word";
 import { useGameConfigStore } from "@/stores/game-config-store";
 import type { GameCategoryType } from "@/types/index.types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CategoryCard from "../components/category-card";
-import { GAME_CATEGORIES } from "@/app/constants/words-and-questions.ts";
-
-// const GAME_CATEGORIES: CategoryCardType[] = [
-//   {
-//     type: "animals",
-//     title: "တိရစ္ဆာန်များ",
-//     image: animals,
-//   },
-//   {
-//     type: "foods",
-//     title: "အစားအသောက်",
-//     image: foods,
-//   },
-//   {
-//     type: "locations",
-//     title: "နေရာဒေသ",
-//     image: locations,
-//   },
-//   {
-//     type: "countries",
-//     title: "နိုင်ငံများ",
-//     image: countries,
-//   },
-//   {
-//     type: "movies",
-//     title: "ရုပ်ရှင်",
-//     image: movies,
-//   },
-//   {
-//     type: "jobs",
-//     title: "အလုပ်အကိုင်",
-//     image: jobs,
-//   },
-//   {
-//     type: "technologies",
-//     title: "နည်းပညာ",
-//     image: technologies,
-//   },
-//   {
-//     type: "imaginations",
-//     title: "စိတ်ကူးယဉ် အရာများ",
-//     image: imaginations,
-//   },
-//   {
-//     type: "supes",
-//     title: "စူပါဟီးရိုးများ",
-//     image: supes,
-//   },
-//   {
-//     type: "nature",
-//     title: "သဘာဝ",
-//     image: nature,
-//   },
-//   {
-//     type: "histories",
-//     title: "သမိုင်း",
-//     image: histories,
-//   },
-//   {
-//     type: "sports",
-//     title: "အားကစား",
-//     image: sports,
-//   },
-// ];
 
 export default function ChooseCategories() {
   const { config, updateGameConfig } = useGameConfigStore();
@@ -88,7 +26,8 @@ export default function ChooseCategories() {
       (item) => item.id === category,
     );
     if (!selectedCategory) return;
-
+    const randomQuestionAndWords = getWordAndQuestionByCategory(category, config?.previousWordId ?? "")
+    if (!randomQuestionAndWords) return console.log("Failed to get question or word.")
     if (config) {
       updateGameConfig({
         category: {
@@ -96,6 +35,9 @@ export default function ChooseCategories() {
           name: selectedCategory.name,
           imageId: selectedCategory.imageId,
         },
+        word: randomQuestionAndWords,
+        previousWordId: randomQuestionAndWords.id
+
       });
       navigate(APP_CONFIG.GAME_SETTING);
     }

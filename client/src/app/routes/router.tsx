@@ -1,21 +1,26 @@
 import {
   ChooseCategory,
+  ContactUsPage,
   DurationTimerPage,
   GameModePage,
   GameSettingPage,
   GameStartPage,
+  HowToPlayPage,
   LandingPage,
+  LegalAndPrivacyPage,
   OnboardingPage,
   ResultPage,
+  RoleRevealPage,
+  SettingPage,
   SetupPage,
   TestPage,
-  RoleRevealPage,
-  VotingPage,
+  VotingPage
 } from "@/app/constants/lazyload";
 import MainLayout from "@/components/layouts/main-layout";
 import GamePlayLoading from "@/features/game-play/pages/loading";
 import GamePlayPage from "@/features/game-play/pages/page";
 import NotFound from "@/features/not-found";
+import SettingRightSide from "@/features/setting/components/setting-right-side";
 import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -85,6 +90,29 @@ const router = createBrowserRouter([
         path: "game-setting",
         element: <GameSettingPage />,
       },
+      {
+        path: "setting",
+        element: <SettingPage />,
+        children: [
+          {
+            index: true,
+            element: <SettingRightSide />
+          },
+          {
+            path: 'legal-privacy',
+            element: <LegalAndPrivacyPage />
+          },
+          {
+            path: 'contact-us',
+            element: <ContactUsPage />
+          },
+          {
+            path: 'how-to-play',
+            element: <HowToPlayPage />
+          },
+        ],
+
+      }
     ],
   },
   {

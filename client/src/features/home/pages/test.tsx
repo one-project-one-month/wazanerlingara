@@ -17,7 +17,7 @@ function Test() {
       <Input type="text" placeholder="Test" variant="success" />
       <Input type="text" placeholder="Test" variant="error" />
       <Input type="text" placeholder="Test" disabled />
-      <Button onClick={() => play("click", 1)}>Primary</Button>
+      <Button onClick={() => play("click", 1, false)}>Primary</Button>
       <Button disabled>Secondary</Button>
       <Button variant="outline">Tertiary</Button>
       <Button variant="outline" disabled>
@@ -29,7 +29,7 @@ function Test() {
       <Switch
         checked={check}
         onChange={() => {
-          play("click", 0.5);
+          play("click", 0.5, false);
           setCheck(!check);
         }}
       />

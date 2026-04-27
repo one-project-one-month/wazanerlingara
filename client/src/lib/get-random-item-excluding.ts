@@ -1,9 +1,9 @@
-export function getRandomItemExcluding<T>(
+export function getRandomItemExcluding<T extends { id: string }>(
   arr: T[],
   excludeId?: string,
 ): T | null {
   const filtered = excludeId
-    ? arr.filter((item: any) => item.id !== excludeId)
+    ? arr.filter((item) => item.id !== excludeId)
     : arr;
 
   if (!filtered.length) return null;

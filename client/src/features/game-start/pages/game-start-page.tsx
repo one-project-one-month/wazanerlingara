@@ -58,8 +58,6 @@ export default function GameStartPage() {
     });
   };
 
-  //console.log("players ", config?.players);
-
   const handleStartGame = () => {
     if (!canStartGame && !config) {
       return;
