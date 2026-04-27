@@ -6,22 +6,19 @@ import { Input } from "@/components/ui/input";
 import { changeToMMNumber } from "@/lib/change-to-mm-number";
 import { cn } from "@/lib/util";
 import { useGameConfigStore } from "@/stores/game-config-store";
-import type { PlayerInputType } from "@/types/index.types";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { createPlayerInput } from "../utils/create-player-input";
+
+type Props = ReturnType<typeof createPlayerInput>;
 
 const MIN_PLAYERS = 3;
 const MAX_PLAYERS = 10;
 
-const createPlayerInput = (name = ""): PlayerInputType => ({
-  id: crypto.randomUUID(),
-  name,
-});
-
 export default function GameStartPage() {
   const { config, updateGameConfig } = useGameConfigStore();
   const navigate = useNavigate();
-  const [playerInputs, setPlayerInputs] = useState<PlayerInputType[]>([
+  const [playerInputs, setPlayerInputs] = useState<Props[]>([
     createPlayerInput(),
   ]);
 

@@ -1,60 +1,60 @@
+import { router } from "expo-router";
 import { View } from "react-native";
 
 import { ThemedText } from "@/components/themed-text";
 import { Button } from "@/components/ui/button";
+import { CONFIG } from "@/constants/config";
 import InstructionText from "@/features/role-reveal/components/instruction-text";
 
-interface Props {
+type Props = {
   currentPlayerIndex: number;
   playersLength: number;
   nextPlayerName: string;
-  confirmed: boolean;
-  revealed: boolean;
-  timeLeft: number;
-  handleConfirm: () => void;
-  handleClickNext: () => void;
-}
+  canProceedNext: boolean;
+  // handleClickNext: () => void;
+};
 
 export default function NextSection({
   currentPlayerIndex,
   playersLength,
   nextPlayerName,
-  confirmed,
-  revealed,
-  timeLeft,
-  handleConfirm,
-  handleClickNext,
+  canProceedNext,
+  // handleClickNext,
 }: Props) {
   const isLastPlayer = currentPlayerIndex >= playersLength - 1;
+  const buttonLabel = !isLastPlayer ? "နောက်တစ်ယောက်" : "ဂိမ်းစဆော့မယ်";
+
+  const handleNavigateSpinner = () => {
+    router.push({
+      pathname: CONFIG.SPINNER_SCREEN,
+      params: { mode: "next-player", nextPlayerName },
+    });
+  };
+
+  const handleGamePlay = () => {
+    router.push({
+      pathname: CONFIG.SPINNER_SCREEN,
+      params: { mode: "game-play" },
+    });
+  };
 
   return (
-    <View className="mx-auto mt-8 w-full">
-      <InstructionText confirmed={confirmed} />
+    <View className="mx-auto gap-8 w-full mt-auto">
+      <InstructionText canProceedNext={canProceedNext} />
 
-      {!isLastPlayer && (confirmed || timeLeft <= 0) ? (
-        <ThemedText type="subtitle" className="mb-2 mt-4 text-center">
-          နောက်တစ်ယောက် - {nextPlayerName}
-        </ThemedText>
-      ) : null}
+      <View className="gap-2">
+        {!isLastPlayer && canProceedNext ? (
+          <ThemedText type="description" className="text-center">
+            နောက်တစ်ယောက်: {nextPlayerName}
+          </ThemedText>
+        ) : null}
 
-      <View className="mt-4 w-full">
-        {revealed && !confirmed ? (
-          <Button onPress={handleConfirm} className="h-16 bg-primary-500">
-            <ThemedText type="subtitle" className="text-[22px]">
-              ရပြီ
-            </ThemedText>
-          </Button>
-        ) : (
-          <Button
-            disabled={!confirmed}
-            onPress={!isLastPlayer ? handleClickNext : undefined}
-            className="h-16 bg-primary-300"
-          >
-            <ThemedText type="subtitle" className="text-[22px] text-white/90">
-              {!isLastPlayer ? "နောက်တစ်ယောက်" : "ဂိမ်းစဆော့မယ်"}
-            </ThemedText>
-          </Button>
-        )}
+        <Button
+          disabled={!canProceedNext}
+          onPress={!isLastPlayer ? handleNavigateSpinner : handleGamePlay}
+        >
+          <ThemedText type="subtitle">{buttonLabel}</ThemedText>
+        </Button>
       </View>
     </View>
   );

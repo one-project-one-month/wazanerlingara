@@ -99,8 +99,8 @@ export default function RoleRevealPage() {
         handleReveal={handleReveal}
         revealContent={revealContent ?? ""}
         revealImageId={revealImageId ?? ""}
-        imposterId={imposterId}
-        imposterCanGetHint={typedConfig.gameSetting.canImposterGetHint}
+        imposterIds={imposterIds!!}
+        imposterCanGetHint={gameConfig.gameSetting.canImposterGetHint}
         hint={hint ?? ""}
       />
 

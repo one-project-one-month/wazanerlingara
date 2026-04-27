@@ -1,15 +1,20 @@
-import { Pressable, View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { Image, Pressable, View } from "react-native";
 
 import { ThemedText } from "@/components/themed-text";
-import { SvgAsset } from "@/components/ui/svg-asset";
-import { svg } from "@/constants/icons";
+import { ImageKey, images } from "@/constants/icons";
+import { ThemeTokens } from "@/constants/theme";
+import { themeTokens } from "@/constants/theme-tokens";
+import { useAudioSettings } from "@/hooks/use-audio-settings";
+import { isImposter } from "@/lib/imposter";
 import { RoleCardType } from "@/types/index.types";
 
 export default function RoleCard({
   currentPlayer,
+  gameMode,
   revealContent,
-  revealImageId,
-  imposterId,
+  revealImage,
+  imposterIds,
   imposterCanGetHint,
   hint,
   showBlur,
@@ -19,60 +24,103 @@ export default function RoleCard({
   handleClickCard,
   handleReveal,
 }: RoleCardType) {
+  const { playClickSound } = useAudioSettings();
   const shouldDimCard = timeLeft <= 0 || confirmed;
   const canReveal = timeLeft > 0 && !confirmed;
+  const imageKey = currentPlayer?.image as ImageKey | null;
+  const playerAvatarSource = imageKey ? images[imageKey] : images.avatar1;
+  const playerIsImposter = isImposter(currentPlayer.id, imposterIds);
 
   return (
     <View
       key={currentPlayer.id}
-      style={{ elevation: 24 }}
-      className={`flex-1 rounded-3xl p-3 ${shouldDimCard ? "opacity-55" : ""}`}
+      className="flex-1 items-center justify-center max-h-[500px]"
     >
-      <View className="flex-1 rounded-3xl border border-white p-4">
+      <View
+        className={`flex-1 w-[340px] rounded-3xl border border-white/5 bg-black p-2 ${shouldDimCard ? "opacity-35" : ""}`}
+        style={{ shadowColor: "white", elevation: 8 }}
+      >
         {!revealed ? (
           <Pressable
             tabIndex={0}
             disabled={!canReveal}
             onPress={() => {
+              if (showBlur) {
+                handleReveal();
+                return;
+              }
+
               handleClickCard();
-              handleReveal();
+              playClickSound();
             }}
-            className={`flex-1 items-center justify-center bg-white/20 ${showBlur ? "opacity-95" : "opacity-100"}`}
+            className="relative flex-1 items-center justify-center rounded-3xl px-4 border border-white/40"
           >
-            <SvgAsset
-              source={require("@/assets/svg/view-eye.svg")}
-              width={80}
-              height={80}
-            />
+            <View className="relative h-[300px] w-full max-w-[290px] items-center justify-center overflow-hidden rounded-3xl">
+              <Image
+                source={playerAvatarSource}
+                width={300}
+                height={330}
+                resizeMode="contain"
+                blurRadius={showBlur ? 16 : 0}
+              />
+
+              {showBlur ? (
+                <View className="absolute inset-0 items-center justify-center gap-2 bg-black/65">
+                  <Ionicons
+                    name="eye-sharp"
+                    size={34}
+                    color={themeTokens.ui.white}
+                  />
+                  <ThemedText type="description">ကြည့်မယ်</ThemedText>
+                </View>
+              ) : null}
+            </View>
+
+            {!showBlur && (
+              <ThemedText type="title" className="text-center">
+                {currentPlayer.name}
+              </ThemedText>
+            )}
           </Pressable>
         ) : (
-          <View className="flex-1 flex-col gap-16 items-center justify-center rounded-3xl bg-black px-4">
-            <SvgAsset
-              source={
-                currentPlayer.id === imposterId
-                  ? require("@/assets/svg/avatars/ImposterPic.svg")
-                  : currentPlayer.imageId || revealImageId || svg.avatar1Svg
-              }
-              width={250}
-              height={300}
-            />
+          <View className="flex-1 flex-col items-center justify-center gap-8 rounded-3xl bg-black px-4">
+            <View className="gap-2">
+              {!playerIsImposter && (
+                <ThemedText type="description" className="text-center">
+                  {gameMode === "question"
+                    ? "လျှို့ဝှက်မေးခွန်း"
+                    : "လျှို့ဝှက်စကားလုံး"}
+                </ThemedText>
+              )}
 
-            <ThemedText
-              type="subtitle"
-              className={`text-center ${
-                currentPlayer.id === imposterId ? "text-red-500" : "text-white"
-              }`}
-            >
-              {currentPlayer.id === imposterId
-                ? "Imposter"
-                : currentPlayer.name}
-            </ThemedText>
-
-            {currentPlayer.id === imposterId && imposterCanGetHint && hint ? (
-              <ThemedText className="mt-3 text-center text-[16px] text-white/85">
-                hint - {hint}
+              <ThemedText
+                type="title"
+                className="text-center"
+                style={{
+                  color: playerIsImposter
+                    ? ThemeTokens.ui.danger
+                    : ThemeTokens.ui.white,
+                }}
+              >
+                {playerIsImposter ? "Imposter" : revealContent || "Secret"}
               </ThemedText>
-            ) : null}
+
+              {playerIsImposter && imposterCanGetHint && hint ? (
+                <ThemedText type="subtitle" className="mt-3 text-center">
+                  Hint: {hint}
+                </ThemedText>
+              ) : null}
+            </View>
+            <Image
+              source={
+                playerIsImposter
+                  ? require("@/assets/images/avatar/imposter.png")
+                  : revealImage || playerAvatarSource
+              }
+              width={300}
+              height={330}
+              resizeMode="contain"
+            />
           </View>
         )}
       </View>

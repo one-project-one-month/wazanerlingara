@@ -1,39 +1,46 @@
-import {
-  ImageSourcePropType,
-  type StyleProp,
-  type ViewStyle,
-} from "react-native";
+import { Href } from "expo-router";
+import { type StyleProp, type ViewStyle } from "react-native";
 
 import type { SvgKey } from "@/constants/icons";
 
-import type { ReactNode } from "react";
-
 export type GameType = "word" | "question";
-
-export type PlayerType = {
-  id: string;
-  name: string;
-  imageId: string | null;
-};
+export type TimerModeType = "turn" | "duration";
 
 export type ModeType = {
   id: GameType;
   title: string;
   desc: string;
-  icon: any;
+  icon: string | null;
 };
 
-export type SetupSettingItemType = {
-  id: string;
-  label: string;
-  icon: ReactNode;
-  hasToggle?: boolean;
-};
-
-export type PlayerInputType = {
+export type PlayerType = {
   id: string;
   name: string;
+  image: string | null;
+  imageId?: string;
 };
+
+export type SettingType =
+  | {
+      id: string;
+      label: string;
+      icon: {
+        family: "Ionicons" | "MaterialCommunityIcons";
+        name: string;
+      };
+      hasToggle: true;
+      route?: never;
+    }
+  | {
+      id: string;
+      label: string;
+      icon: {
+        family: "Ionicons" | "MaterialCommunityIcons";
+        name: string;
+      };
+      hasToggle?: false;
+      route: Href;
+    };
 
 export type CategoryType =
   | "animals"
@@ -52,7 +59,7 @@ export type CategoryType =
 export type CategoryCardType = {
   type: CategoryType;
   title: string;
-  image: ImageSourcePropType;
+  image: string;
 };
 
 export type SvgAssetType = {
@@ -65,9 +72,10 @@ export type SvgAssetType = {
 
 export type RoleCardType = {
   currentPlayer: PlayerType;
+  gameMode: GameType;
   revealContent: string;
-  revealImageId?: string;
-  imposterId: string;
+  revealImage?: string;
+  imposterIds: string[];
   imposterCanGetHint: boolean;
   hint: string;
   showBlur: boolean;
@@ -105,6 +113,7 @@ export type AudioSettingsContextType = AudioSettingsType & {
 
 export type GameSettingType = {
   imposterCount: number;
+  timerMode: TimerModeType;
   turnTimer: number;
   durationTimer: number;
   canImposterGetHint: boolean;
@@ -113,13 +122,13 @@ export type GameSettingType = {
 export type WordType = {
   id: string;
   text: string;
-  imageId: string | null;
+  image: string | null;
   hint: string;
 };
 export type QuestionType = {
   id: string;
   text: string;
-  imageId: string | null;
+  image: string | null;
   hint: string;
 };
 
@@ -133,10 +142,14 @@ export type GameConfigType = {
   word: WordType | null;
   question: QuestionType | null;
   roundCount: number;
-  imposterId: string;
+  imposterIds: string[];
+  roleRevealTime: number;
 };
 
-export type GameConfigPatchType = Partial<GameConfigType> & {
+export type GameConfigPatchType = Omit<
+  Partial<GameConfigType>,
+  "gameSetting"
+> & {
   gameSetting?: Partial<GameSettingType>;
 };
 

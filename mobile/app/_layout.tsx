@@ -6,7 +6,7 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 
 import MainLayout from "@/components/layout/main-layout";
-import { svg } from "@/constants/icons";
+import { svgs } from "@/constants/icons";
 import "@/global.css";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 import { GameConfigProvider } from "@/hooks/use-game-config";
@@ -25,7 +25,7 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    Asset.loadAsync(Object.values(svg)).catch(() => undefined);
+    Asset.loadAsync(Object.values(svgs)).catch(() => undefined);
   }, []);
 
   useEffect(() => {
@@ -42,16 +42,20 @@ export default function RootLayout() {
     >
       <Stack.Screen name="onboarding" />
       <Stack.Screen name="index" />
-      <Stack.Screen name="start" />
-      <Stack.Screen name="mode" />
-      <Stack.Screen name="categories" />
       <Stack.Screen name="setting" />
-      <Stack.Screen name="game-setting" />
-      <Stack.Screen name="role-reveal" />
       <Stack.Screen name="how-to-play" />
       <Stack.Screen name="privacy" />
       <Stack.Screen name="contact" />
-      <Stack.Screen name="test-screen" />
+      <Stack.Screen name="start" />
+      <Stack.Screen name="mode" />
+      <Stack.Screen name="categories" />
+      <Stack.Screen name="game-setting" />
+      <Stack.Screen name="role-reveal" />
+      <Stack.Screen name="spinner-screen" />
+      <Stack.Screen name="game-play" />
+      <Stack.Screen name="vote" />
+      <Stack.Screen name="vote-transition" />
+      <Stack.Screen name="vote-result" />
     </Stack>
   );
 

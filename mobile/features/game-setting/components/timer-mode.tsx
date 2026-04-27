@@ -1,18 +1,22 @@
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { Pressable, View } from "react-native";
 
 import { ThemedText } from "@/components/themed-text";
-import { SvgAsset } from "@/components/ui/svg-asset";
 import { ThemeTokens } from "@/constants/theme";
+import { themeTokens } from "@/constants/theme-tokens";
+import { useAudioSettings } from "@/hooks/use-audio-settings";
 import { useGameConfig } from "@/hooks/use-game-config";
 
 export default function TimerMode() {
   const { config, updateGameConfig } = useGameConfig();
-  const [timerMode, setTimerMode] = useState<"turn" | "duration">("duration");
+  const { playClickSound } = useAudioSettings();
+
   const [pressedButton, setPressedButton] = useState<
     "increase" | "decrease" | null
   >(null);
 
+  const timerMode = config?.gameSetting.timerMode ?? "turn";
   const isTurn = timerMode === "turn";
   const turnTimer = config?.gameSetting.turnTimer || 5;
   const durationTimer = config?.gameSetting.durationTimer || 120;
@@ -49,10 +53,12 @@ export default function TimerMode() {
 
   const increaseTimer = () => {
     if (timerValue < max) setTimer(timerValue + step);
+    playClickSound();
   };
 
   const decreaseTimer = () => {
     if (timerValue > min) setTimer(timerValue - step);
+    playClickSound();
   };
 
   const formatTimerValue = () => {
@@ -66,46 +72,63 @@ export default function TimerMode() {
   return (
     <View className="rounded-3xl border border-white p-4 bg-neutral-500/10">
       <View className="mb-6 flex-row items-center gap-2">
-        <SvgAsset
-          source={require("@/assets/svg/timer.svg")}
-          width={30}
-          height={30}
+        <MaterialCommunityIcons
+          name="timer-outline"
+          size={34}
+          color={themeTokens.ui.white}
         />
         <ThemedText type="description">Timing Modeကို ရွေးချယ်ပါ</ThemedText>
       </View>
 
       <View className="mb-6 flex-row items-center gap-1 rounded-2xl border border-white p-1">
         <Pressable
-          onPress={() => setTimerMode("turn")}
+          onPress={() => {
+            updateGameConfig({
+              gameSetting: {
+                timerMode: "turn",
+              },
+            });
+            playClickSound();
+          }}
           className={`flex-1 px-3 py-4 flex-row items-center justify-center gap-1 rounded-2xl ${isTurn ? "bg-white" : "bg-transparent"}`}
         >
-          <SvgAsset
-            source={require("@/assets/svg/profile.svg")}
-            width={22}
-            height={22}
-            color={isTurn ? ThemeTokens.ui.black : ThemeTokens.ui.white}
+          <Ionicons
+            name="person-sharp"
+            size={32}
+            color={isTurn ? themeTokens.ui.black : themeTokens.ui.white}
           />
+
           <ThemedText
             type="description"
-            className={isTurn ? "text-black" : "text-white"}
+            style={{
+              color: isTurn ? ThemeTokens.ui.black : ThemeTokens.ui.white,
+            }}
           >
             Turn Timer
           </ThemedText>
         </Pressable>
 
         <Pressable
-          onPress={() => setTimerMode("duration")}
-          className={`flex-1 px-3 py-4 flex-row items-center justify-center gap-1 rounded-2xl ${!isTurn ? "bg-white" : "bg-transparent"}`}
+          onPress={() => {
+            updateGameConfig({
+              gameSetting: {
+                timerMode: "duration",
+              },
+            });
+            playClickSound();
+          }}
+          className={`flex-1 px-3 py-4 flex-row items-center justify-center gap-2 rounded-2xl ${!isTurn ? "bg-white" : "bg-transparent"}`}
         >
-          <SvgAsset
-            source={require("@/assets/svg/people-fill.svg")}
-            width={22}
-            height={22}
-            color={!isTurn ? ThemeTokens.ui.black : ThemeTokens.ui.white}
+          <Ionicons
+            name="people-sharp"
+            size={34}
+            color={!isTurn ? themeTokens.ui.black : themeTokens.ui.white}
           />
           <ThemedText
             type="description"
-            className={!isTurn ? "text-black" : "text-white"}
+            style={{
+              color: !isTurn ? ThemeTokens.ui.black : ThemeTokens.ui.white,
+            }}
           >
             Duration Timer
           </ThemedText>
@@ -127,14 +150,19 @@ export default function TimerMode() {
           >
             <ThemedText
               type="defaultSemiBold"
-              className="text-black"
-              style={{ fontSize: 30, lineHeight: 28 }}
+              style={{
+                color: isPressed("decrease")
+                  ? ThemeTokens.ui.white
+                  : ThemeTokens.ui.black,
+                fontSize: 30,
+                lineHeight: 28,
+              }}
             >
               −
             </ThemedText>
           </Pressable>
 
-          <View className="flex-1">
+          <View className="flex-1 mt-1.5">
             <View className="relative h-4 justify-center">
               <View
                 className="h-1.5 w-full rounded-full border-b border-white"
@@ -148,7 +176,7 @@ export default function TimerMode() {
                 }}
               />
               <View
-                className="absolute h-6 w-6 rounded-full bg-white"
+                className="absolute h-5 w-5 rounded-full bg-white"
                 style={{ left: `${progressPercent}%`, marginLeft: -8 }}
               />
             </View>
@@ -171,8 +199,13 @@ export default function TimerMode() {
           >
             <ThemedText
               type="defaultSemiBold"
-              className="text-black"
-              style={{ fontSize: 30, lineHeight: 28 }}
+              style={{
+                color: isPressed("increase")
+                  ? ThemeTokens.ui.white
+                  : ThemeTokens.ui.black,
+                fontSize: 30,
+                lineHeight: 24,
+              }}
             >
               +
             </ThemedText>
@@ -180,15 +213,19 @@ export default function TimerMode() {
         </View>
 
         <View className="flex-row items-start my-4 gap-2">
-          <SvgAsset
-            source={require("@/assets/svg/info-alert.svg")}
-            width={24}
-            height={24}
+          <MaterialCommunityIcons
+            name="alert-circle-outline"
+            size={22}
+            color={themeTokens.palette.info[400]}
           />
-          <ThemedText type="default" className="flex-1 text-white">
+          <ThemedText
+            type="default"
+            style={{ color: ThemeTokens.ui.white }}
+            className="flex-1"
+          >
             {isTurn
-              ? "ကစားသမား တစ်ယောက်ချင်းစီအတွက် (ဥပမာ- စက္ကန့်၃၀စီ) ညီတူညီမျှ အချိန်ရပါမယ်။ ကိုယ့်အလှည့်ပြီးရင် နောက်တစ်ယောက်အတွက် Timerအသစ် ပြန်စပါမယ်။"
-              : "ကစားပွဲတစ်ခုလုံးအတွက် အချိန်တစ်ခုပဲ ရှိပါမယ် (ဥပမာ - ၃မိနစ်)။ သတ်မှတ်ထားတဲ့ အချိန်အတွင်းမှာပဲ အားလုံး တလှည့်စီ ကစားရမှာဖြစ်ပြီး၊ အချင်းချင်း ဆွေးနွေးငြင်းခုံချင်တယ်ဆိုရင်တော့ Timer ကိုခေတ္တရပ် (Pause)နိုင်ပါတယ်။"}
+              ? "ကစားသမား တစ်ယောက်ချင်းစီအတွက် (ဥပမာ- စက္ကန့် ၃၀ စီ) ညီတူညီမျှ အချိန်ရပါမယ်။ ကိုယ့်အလှည့်ပြီးရင် နောက်တစ်ယောက်အတွက် Timerအသစ် ပြန်စပါမယ်။"
+              : "ကစားပွဲတစ်ခုလုံးအတွက် အချိန်တစ်ခုပဲ ရှိပါမယ် (ဥပမာ- ၃ မိနစ်)။ သတ်မှတ်ထားတဲ့ အချိန်အတွင်းမှာပဲ အားလုံး တလှည့်စီ ကစားရမှာဖြစ်ပြီး၊ အချင်းချင်း ဆွေးနွေးငြင်းခုံချင်တယ်ဆိုရင်တော့ Timer ကိုခေတ္တရပ် (Pause) နိုင်ပါတယ်။"}
           </ThemedText>
         </View>
       </View>

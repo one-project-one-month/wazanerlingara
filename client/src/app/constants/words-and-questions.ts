@@ -1,17 +1,28 @@
 import type { Category, Question, Word } from "@/types/game.type.ts";
 
+import bearPic from "@/assets/images/ImagesForWords/Animals/Bear.png";
 import birdPic from "@/assets/images/ImagesForWords/Animals/Bird.png";
 import catPic from "@/assets/images/ImagesForWords/Animals/Cat.png";
 import chickenPic from "@/assets/images/ImagesForWords/Animals/Chicken.png";
 import cowPic from "@/assets/images/ImagesForWords/Animals/Cow.png";
+import crocodilePic from "@/assets/images/ImagesForWords/Animals/Crocodile.png";
 import dogPic from "@/assets/images/ImagesForWords/Animals/Dog.png";
+import eaglePic from "@/assets/images/ImagesForWords/Animals/Eagle.png";
 import elephantPic from "@/assets/images/ImagesForWords/Animals/Elephant.png";
+import fishPic from "@/assets/images/ImagesForWords/Animals/Fish.png";
 import frogPic from "@/assets/images/ImagesForWords/Animals/Frog.png";
+import giraffePic from "@/assets/images/ImagesForWords/Animals/Giraffe.png";
 import horsePic from "@/assets/images/ImagesForWords/Animals/Horse.png";
+import kangarooPic from "@/assets/images/ImagesForWords/Animals/Kangaroo.png";
 import leopardPic from "@/assets/images/ImagesForWords/Animals/Leopard.png";
+import monkeyPic from "@/assets/images/ImagesForWords/Animals/Monkey.png";
+import ostrichPic from "@/assets/images/ImagesForWords/Animals/Ostrich.png";
+import penguinPic from "@/assets/images/ImagesForWords/Animals/Penguin.png";
 import pigPic from "@/assets/images/ImagesForWords/Animals/Pig.png";
 import snakePic from "@/assets/images/ImagesForWords/Animals/Snake.png";
 import tigerPic from "@/assets/images/ImagesForWords/Animals/Tiger.png";
+import turtlePic from "@/assets/images/ImagesForWords/Animals/Turtle.png";
+import zebraPic from "@/assets/images/ImagesForWords/Animals/Zebra.png";
 
 
 
@@ -116,71 +127,77 @@ const animals = [
     categoryId: "animals",
     hint: "ခုန်",
   },
-  // { id: "", text: "ငါး", imageId: fishPic, categoryId: "animals", hint: "ရေ" },
-  // {
-  //   id: "",
-  //   text: "ကလေးငယ် (လင်းယုန်)",
-  //   imageId: eaglePic,
-  //   categoryId: "animals",
-  //   hint: "အားကြီး",
-  // },
-  // {
-  //   id: "",
-  //   text: "လိပ်",
-  //   imageId: turtlePic,
-  //   categoryId: "animals",
-  //   hint: "အကာ",
-  // },
-  // {
-  //   id: "",
-  //   text: "သစ်ကုလားအုတ်",
-  //   imageId: giraffePic,
-  //   categoryId: "animals",
-  //   hint: "လည်ရှည်",
-  // },
-  // {
-  //   id: "",
-  //   text: "ဇီးဘရာ",
-  //   imageId: zebraPic,
-  //   categoryId: "animals",
-  //   hint: "ကြားကြား",
-  // },
-  // { id: "", text: "ဝံ", imageId: bearPic, categoryId: "animals", hint: "တော" },
-  // {
-  //   id: "",
-  //   text: "မြွေချောင်း",
-  //   imageId: crocodilePic,
-  //   categoryId: "animals",
-  //   hint: "ရေတော",
-  // },
-  // {
-  //   id: "",
-  //   text: "တိမ်ကြီး (ခေါင်းကြီးငှက်)",
-  //   imageId: ostrichPic,
-  //   categoryId: "animals",
-  //   hint: "မပျံ",
-  // },
-  // {
-  //   id: "",
-  //   text: "မျောက်",
-  //   imageId: monkeyPic,
-  //   categoryId: "animals",
-  //   hint: "တက်",
-  // },
-  // {
-  //   id: "",
-  //   text: "ကန်ဂရူး",
-  //   imageId: kangarooPic,
-  //   categoryId: "animals",
-  //   hint: "ခုန်",
-  // },
-  // {
-  //   id: "",
-  //   text: "ပင်ဂွင်း",
-  //   imageId: penguinPic,
-  //   categoryId: "animals",
-  //   hint: "အအေး",
-  // },
+  { id: "", text: "ငါး", imageId: fishPic, categoryId: "animals", hint: "ရေ" },
+  {
+    id: "",
+    text: "လင်းယုန်",
+    imageId: eaglePic,
+    categoryId: "animals",
+    hint: "ပျံ",
+  },
+  {
+    id: "",
+    text: "လိပ်",
+    imageId: turtlePic,
+    categoryId: "animals",
+    hint: "ယက်",
+  },
+  {
+    id: "",
+    text: "သစ်ကုလားအုတ်",
+    imageId: giraffePic,
+    categoryId: "animals",
+    hint: "ရှည်",
+  },
+  {
+    id: "",
+    text: "မြင်းကျား",
+    imageId: zebraPic,
+    categoryId: "animals",
+    hint: "ကြား",
+  },
+  {
+    id: "",
+    text: "ဝက်ဝံ",
+    imageId: bearPic,
+    categoryId: "animals",
+    hint: "တော",
+  },
+  {
+    id: "",
+    text: "မိကျောင်း",
+    imageId: crocodilePic,
+    categoryId: "animals",
+    hint: "ရေ",
+  },
+  {
+    id: "",
+    text: "ငှက်ကုလားအုတ်",
+    imageId: ostrichPic,
+    categoryId: "animals",
+    hint: "မြန်",
+  },
+  {
+    id: "",
+    text: "မျောက်",
+    imageId: monkeyPic,
+    categoryId: "animals",
+    hint: "တက်",
+  },
+  {
+    id: "",
+    text: "သားပိုက်ကောင်",
+    imageId: kangarooPic,
+    categoryId: "animals",
+    hint: "ခုန်",
+  },
+  {
+    id: "",
+    text: "ပင်ဂွင်း",
+    imageId: penguinPic,
+    categoryId: "animals",
+    hint: "အေး",
+  },
   // {
   //   id: "",
   //   text: "ဝါးပန်ဒါ",

@@ -9,7 +9,7 @@ import ToggleImposterHint from "../components/toggle-imposter-hint";
 import { useGameConfigStore } from "@/stores/game-config-store.ts";
 import { questions, words } from "@/app/constants/words-and-questions.ts";
 import { getRandomItemExcluding } from "@/lib/get-random-item-excluding.ts";
-import { getRandomItem } from "@/lib/get-random-item.ts";
+import { getWeightedRandomItems } from "@/lib/get-weighted-random-items.ts";
 
 const GameSetting = () => {
   const navigate = useNavigate();
@@ -18,11 +18,12 @@ const GameSetting = () => {
   const handleGameStarted = () => {
     if (!config?.category || !config.players?.length) return;
     const {
+      gameSetting,
       category,
       players,
       previousWordId,
       previousQuestionId,
-      previousImposterId,
+      previousImposterIds,
     } = config;
 
     const wordsByCategory = words.filter(
@@ -43,11 +44,17 @@ const GameSetting = () => {
       previousQuestionId ?? undefined,
     );
 
-    const imposter =
-      getRandomItemExcluding(players, previousImposterId ?? undefined) ||
-      getRandomItem(players);
+    const imposterCount = gameSetting.imposterCount;
 
-    if (!randomWord || !randomQuestion || !imposter) {
+    const imposters = getWeightedRandomItems({
+      players,
+      count: imposterCount,
+      previousIds: previousImposterIds ?? [],
+    });
+
+    const imposterIds = imposters.map((imposter) => imposter.id);
+
+    if (!randomWord || !randomQuestion || !imposters.length) {
       console.error("Game start failed: missing data");
       return;
     }
@@ -55,13 +62,14 @@ const GameSetting = () => {
     updateGameConfig({
       word: randomWord,
       question: randomQuestion,
-      imposterId: imposter.id,
+      imposterIds: imposterIds,
       previousWordId: randomWord.id,
       previousQuestionId: randomQuestion.id,
-      previousImposterId: imposter.id,
+      previousImposterIds: imposterIds,
     });
     navigate(APP_CONFIG.ROLE_REVEAL);
   };
+
   return (
     <section className="relative mx-auto flex w-full max-w-2xl flex-col py-4 px-2 lg:px-6">
       <div className="flex items-start justify-center md:block">

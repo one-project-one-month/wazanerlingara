@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 
-import { CONFIG } from "@/constants/config";
+import { CONFIG, DEFAULT_GAME_CONFIG } from "@/constants/config";
 import {
   GameConfigContextType,
   GameConfigPatchType,
@@ -17,21 +17,9 @@ import {
 } from "@/types/index.types";
 
 const GAME_CONFIG_KEY = CONFIG.APP_NAME;
-const DEFAULT_GAME_CONFIG: GameConfigType = {
-  id: `${CONFIG.APP_NAME}-game-config`,
-  players: [],
-  gameMode: "word",
-  category: "animals",
-  gameSetting: {
-    imposterCount: 1,
-    turnTimer: 5,
-    durationTimer: 120,
-    canImposterGetHint: false,
-  },
-  word: null,
-  question: null,
-  roundCount: 3,
-  imposterId: "",
+
+type LegacyStoredGameConfig = Partial<GameConfigType> & {
+  imposterId?: string;
 };
 
 const noop = () => undefined;
@@ -46,7 +34,7 @@ const GameConfigContext = createContext<GameConfigContextType>({
 });
 
 const normalizeConfig = (
-  storedConfig: Partial<GameConfigType>,
+  storedConfig: LegacyStoredGameConfig,
 ): GameConfigType => ({
   ...DEFAULT_GAME_CONFIG,
   ...storedConfig,
@@ -57,6 +45,11 @@ const normalizeConfig = (
     ...DEFAULT_GAME_CONFIG.gameSetting,
     ...(storedConfig.gameSetting ?? {}),
   },
+  imposterIds: Array.isArray(storedConfig.imposterIds)
+    ? storedConfig.imposterIds.filter(Boolean)
+    : storedConfig.imposterId
+      ? [storedConfig.imposterId]
+      : DEFAULT_GAME_CONFIG.imposterIds,
 });
 
 export function GameConfigProvider({ children }: { children: ReactNode }) {

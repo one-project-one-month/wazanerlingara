@@ -12,7 +12,7 @@ import { cn } from "@/lib/util";
 
 export type AppModalProps = {
   visible: boolean;
-  variant: "success" | "error";
+  variant: "success" | "error" | (string & {});
   title?: string;
   message?: string;
   primaryButtonText?: string;
@@ -34,33 +34,46 @@ export default function Modal({
   modalProps,
 }: AppModalProps) {
   const isSuccess = variant === "success";
+  const isError = variant === "error";
   const borderColor = isSuccess ? "border-green-500" : "border-red-500";
+  const titleColor = isSuccess
+    ? ThemeTokens.palette.success[500]
+    : isError
+      ? ThemeTokens.ui.danger
+      : ThemeTokens.ui.white;
 
   return (
     <RNModal
       visible={visible}
       transparent
-      animationType="fade"
+      animationType="slide"
       statusBarTranslucent
       onRequestClose={onSecondaryPress || onPrimaryPress}
       {...modalProps}
     >
-      <View className="flex-1 items-center justify-center bg-black/60 px-3">
+      <View className="flex-1 items-center justify-center bg-black/80 px-2">
         <View
-          className={cn(
-            "w-full max-w-[470px] rounded-2xl p-6",
-            borderColor,
-            "border",
-          )}
+          className={cn("w-full rounded-3xl py-6 px-4", "border", borderColor)}
           style={{ backgroundColor: ThemeTokens.ui.modalBackground }}
         >
-          <View className="mb-6 flex-col items-center justify-center gap-3">
-            <ThemedText type="title">{title}</ThemedText>
-            <ThemedText type="description">{message}</ThemedText>
+          <View className="mb-6 flex-col items-center justify-center gap-2">
+            <ThemedText
+              type="title"
+              className="text-center max-w-[380px]"
+              style={{ color: titleColor }}
+            >
+              {title}
+            </ThemedText>
+            <ThemedText
+              type="description"
+              className="text-center max-w-[360px]"
+            >
+              {message}
+            </ThemedText>
           </View>
 
           <View className="gap-4">
-            <Button variant="default" onPress={onPrimaryPress ?? (() => {})}>
+            <Button variant="default" onPress={onPrimaryPress}>
               <ThemedText type="subtitle">{primaryButtonText}</ThemedText>
             </Button>
             {!isSuccess && onSecondaryPress && secondaryButtonText && (
