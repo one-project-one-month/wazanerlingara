@@ -27,9 +27,9 @@ import superheroes from "@/assets/categories/supes.svg";
 import technologies from "@/assets/categories/technologies.svg";
 
 //onboarding images
-import onboarding1 from "@/assets/images/onboarding-illustration-1.svg";
-import onboarding2 from "@/assets/images/onboarding-illustration-2.svg";
-import onboarding3 from "@/assets/images/onboarding-illustration-3.svg";
+import onboarding1 from "@/assets/images/onboarding-Illustration-1.svg";
+import onboarding2 from "@/assets/images/onboarding-Illustration-2.svg";
+import onboarding3 from "@/assets/images/onboarding-Illustration-3.svg";
 
 import type { Image } from "@/types/game.type";
 

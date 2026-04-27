@@ -17,14 +17,14 @@ const TimerModeSetting = () => {
 
   const handleTimerMode = (type: "TURN" | "DURATION") => {
     if (!config) return;
-    setTimerMode(type)
+    setTimerMode(type);
     updateGameConfig({
       gameSetting: {
         ...config.gameSetting,
         ...(type === "TURN" ? { gameType: "turnTimer" } : { gameType: "durationTimer" }),
       },
     });
-  }
+  };
   const setTimer = (newValue: number) => {
     if (!config) return;
     if (newValue < min || newValue > max) return;

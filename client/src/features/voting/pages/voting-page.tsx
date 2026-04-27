@@ -21,7 +21,7 @@ const VotingPage = () => {
   const playersLength = config?.players.length ?? 0;
   const [votedPlayers, setVotedPlayers] = useState(
     config?.players.map((p) => ({ id: p.id, name: p.name, votedCount: 0 })) || [],
-  )
+  );
   const [voteCount, setVoteCount] = useState(0);
 
   const selectedPlayerName =
@@ -43,7 +43,7 @@ const VotingPage = () => {
     if (nextVoteCount === playersLength) {
       console.log("All players have voted");
       setIsLoading(true);
-    }
+    };
   }, [playersLength, selectedPlayerId, voteCount]);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const VotingPage = () => {
       }, 3500);
 
       return () => clearTimeout(timer);
-    }
+    };
   }, [isLoading, navigate, votedPlayers]);
 
   return (
