@@ -29,14 +29,14 @@ export default function SetupPage() {
         word: null,
         question: null,
         roundCount: 1,
-        imposterId: null,
+        imposterIds: null,
         previousWordId: null,
         previousQuestionId: null,
-        previousImposterId: null,
+        previousImposterIds: null,
       });
-
-      navigate(APP_CONFIG.GAME_START);
     }
+
+    navigate(APP_CONFIG.GAME_START);
   };
 
   return (

@@ -10,3 +10,16 @@ export function getRandomItemExcluding<T>(
 
   return filtered[Math.floor(Math.random() * filtered.length)];
 }
+
+export function getRandomItemsExcluding<T>(
+  arr: T[],
+  count: number,
+  excludeIds: string[] = [],
+): T[] {
+  const filtered = arr.filter((item: any) => !excludeIds.includes(item.id));
+
+  // Shuffle array
+  const shuffled = [...filtered].sort(() => Math.random() - 0.5);
+
+  return shuffled.slice(0, count);
+}

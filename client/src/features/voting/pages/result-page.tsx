@@ -70,7 +70,7 @@ const ResultPage = () => {
     navigate("/", { replace: true });
   }, [navigate, resetGameConfig]);
 
-  const isTeammatesWin = votedFor === config?.imposterId;
+  const isTeammatesWin = votedFor === config?.imposterIds;
 
   const randomTrashTalk = useMemo(() => {
     if (!votedFor || !config) return "";
@@ -82,8 +82,11 @@ const ResultPage = () => {
     return <Navigate to="/" replace />;
   }
 
-  const imposterPlayer = config.players.find((p) => p.id === config.imposterId);
-  const imposterName = imposterPlayer?.name || "Unknown";
+  const imposterPlayers = config.players.filter((p) =>
+    config.imposterIds?.includes(p.id),
+  );
+  const imposterNames =
+    imposterPlayers.map((player) => player.name).join(", ") || "Unknown";
 
   const hintCategory = config.category?.name || "N/A";
   const keywordText =
@@ -119,7 +122,7 @@ const ResultPage = () => {
           />
         </div>
         <div className={"flex flex-col gap-1"}>
-          <p className={"text-lg md:text-2xl"}>Imposter: {imposterName}</p>
+          <p className={"text-lg md:text-2xl"}>Imposter: {imposterNames}</p>
           <p className={"text-lg md:text-2xl"}>Imposter Hint: {hintCategory}</p>
           <p className={"text-lg md:text-2xl"}>
             Keyword: {keywordText || "N/A"}

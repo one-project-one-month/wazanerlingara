@@ -12,6 +12,17 @@ import chickenPic from "@/assets/images/ImagesForWords/Animals/Chicken.png";
 import snakePic from "@/assets/images/ImagesForWords/Animals/Snake.png";
 import birdPic from "@/assets/images/ImagesForWords/Animals/Bird.png";
 import frogPic from "@/assets/images/ImagesForWords/Animals/Frog.png";
+import fishPic from "@/assets/images/ImagesForWords/Animals/Fish.png";
+import eaglePic from "@/assets/images/ImagesForWords/Animals/Eagle.png";
+import crocodilePic from "@/assets/images/ImagesForWords/Animals/Crocodile.png";
+import zebraPic from "@/assets/images/ImagesForWords/Animals/Zebra.png";
+import bearPic from "@/assets/images/ImagesForWords/Animals/Bear.png";
+import turtlePic from "@/assets/images/ImagesForWords/Animals/Turtle.png";
+import monkeyPic from "@/assets/images/ImagesForWords/Animals/Monkey.png";
+import penguinPic from "@/assets/images/ImagesForWords/Animals/Penguin.png";
+import kangarooPic from "@/assets/images/ImagesForWords/Animals/Kangaroo.png";
+import ostrichPic from "@/assets/images/ImagesForWords/Animals/Ostrich.png";
+import giraffePic from "@/assets/images/ImagesForWords/Animals/Giraffe.png";
 
 import iceCream from "@/assets/svg/role-reveal-screen/ice-cream.svg";
 
@@ -128,71 +139,77 @@ const animals = [
     categoryId: "animals",
     hint: "ခုန်",
   },
-  // { id: "", text: "ငါး", imageId: fishPic, categoryId: "animals", hint: "ရေ" },
-  // {
-  //   id: "",
-  //   text: "ကလေးငယ် (လင်းယုန်)",
-  //   imageId: eaglePic,
-  //   categoryId: "animals",
-  //   hint: "အားကြီး",
-  // },
-  // {
-  //   id: "",
-  //   text: "လိပ်",
-  //   imageId: turtlePic,
-  //   categoryId: "animals",
-  //   hint: "အကာ",
-  // },
-  // {
-  //   id: "",
-  //   text: "သစ်ကုလားအုတ်",
-  //   imageId: giraffePic,
-  //   categoryId: "animals",
-  //   hint: "လည်ရှည်",
-  // },
-  // {
-  //   id: "",
-  //   text: "ဇီးဘရာ",
-  //   imageId: zebraPic,
-  //   categoryId: "animals",
-  //   hint: "ကြားကြား",
-  // },
-  // { id: "", text: "ဝံ", imageId: bearPic, categoryId: "animals", hint: "တော" },
-  // {
-  //   id: "",
-  //   text: "မြွေချောင်း",
-  //   imageId: crocodilePic,
-  //   categoryId: "animals",
-  //   hint: "ရေတော",
-  // },
-  // {
-  //   id: "",
-  //   text: "တိမ်ကြီး (ခေါင်းကြီးငှက်)",
-  //   imageId: ostrichPic,
-  //   categoryId: "animals",
-  //   hint: "မပျံ",
-  // },
-  // {
-  //   id: "",
-  //   text: "မျောက်",
-  //   imageId: monkeyPic,
-  //   categoryId: "animals",
-  //   hint: "တက်",
-  // },
-  // {
-  //   id: "",
-  //   text: "ကန်ဂရူး",
-  //   imageId: kangarooPic,
-  //   categoryId: "animals",
-  //   hint: "ခုန်",
-  // },
-  // {
-  //   id: "",
-  //   text: "ပင်ဂွင်း",
-  //   imageId: penguinPic,
-  //   categoryId: "animals",
-  //   hint: "အအေး",
-  // },
+  { id: "", text: "ငါး", imageId: fishPic, categoryId: "animals", hint: "ရေ" },
+  {
+    id: "",
+    text: "လင်းယုန်",
+    imageId: eaglePic,
+    categoryId: "animals",
+    hint: "ပျံ",
+  },
+  {
+    id: "",
+    text: "လိပ်",
+    imageId: turtlePic,
+    categoryId: "animals",
+    hint: "ယက်",
+  },
+  {
+    id: "",
+    text: "သစ်ကုလားအုတ်",
+    imageId: giraffePic,
+    categoryId: "animals",
+    hint: "ရှည်",
+  },
+  {
+    id: "",
+    text: "မြင်းကျား",
+    imageId: zebraPic,
+    categoryId: "animals",
+    hint: "ကြား",
+  },
+  {
+    id: "",
+    text: "ဝက်ဝံ",
+    imageId: bearPic,
+    categoryId: "animals",
+    hint: "တော",
+  },
+  {
+    id: "",
+    text: "မိကျောင်း",
+    imageId: crocodilePic,
+    categoryId: "animals",
+    hint: "ရေ",
+  },
+  {
+    id: "",
+    text: "ငှက်ကုလားအုတ်",
+    imageId: ostrichPic,
+    categoryId: "animals",
+    hint: "မြန်",
+  },
+  {
+    id: "",
+    text: "မျောက်",
+    imageId: monkeyPic,
+    categoryId: "animals",
+    hint: "တက်",
+  },
+  {
+    id: "",
+    text: "သားပိုက်ကောင်",
+    imageId: kangarooPic,
+    categoryId: "animals",
+    hint: "ခုန်",
+  },
+  {
+    id: "",
+    text: "ပင်ဂွင်း",
+    imageId: penguinPic,
+    categoryId: "animals",
+    hint: "အေး",
+  },
   // {
   //   id: "",
   //   text: "ဝါးပန်ဒါ",
