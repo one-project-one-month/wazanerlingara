@@ -63,12 +63,12 @@ const ResultPage = () => {
   const votedFor = state?.votedFor;
   const handlePlayAgain = useCallback(() => {
     goTo(APP_CONFIG.CHOOSE_GAME_MODE);
-  }, [resetGameConfig]);
+  }, [goTo]);
 
   const handleExit = useCallback(() => {
     resetGameConfig();
     goTo("/");
-  }, [resetGameConfig]);
+  }, [resetGameConfig, goTo]);
 
   const isTeammatesWin = votedFor === config?.imposterId;
 

@@ -14,7 +14,7 @@
 		],
 		"skipLibCheck": true,
 		/* Bundler mode */
-		"ignoreDeprecations": "6.0",
+		// "ignoreDeprecations": "6.0",
 		"baseUrl": ".",
 		"moduleResolution": "bundler",
 		"allowImportingTsExtensions": true,

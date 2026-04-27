@@ -23,7 +23,7 @@ export default function Switch({
     const play = useGameSfxStore.getState().play;
     const handleToggle = () => {
         if (disabled) return;
-        play("click", 0.5);
+        play("click", 0.5, false);
         onChange(!checked);
     };
 

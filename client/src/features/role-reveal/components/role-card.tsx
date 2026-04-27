@@ -54,12 +54,12 @@ export default function RoleCard({
         opacity: [0, 1],
         duration: 800,
       });
-  }, [currentPlayer.id, currentPlayer.imageId, cardRef, getUrl]);
+  }, [currentPlayer.imageId, cardRef, getUrl]);
 
   return (
-    <div
+    <button
+      type="button"
       key={currentPlayer.id}
-      role="button"
       tabIndex={isDisabled ? -1 : 0}
       aria-disabled={isDisabled}
       onClick={() => {
@@ -158,6 +158,6 @@ export default function RoleCard({
           </button>
         )}
       </div>
-    </div>
+    </button>
   );
 }

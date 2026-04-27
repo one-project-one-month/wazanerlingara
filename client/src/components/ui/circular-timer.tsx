@@ -26,12 +26,12 @@ const CircularTimer = ({
   const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
 
 
-
   const trackRef = useRef<SVGCircleElement>(null);
   const headRef = useRef<SVGCircleElement>(null);
+  type AnimatedHandleType = ReturnType<typeof animate> | null;
 
-  const trackAnimRef = useRef<any>(null);
-  const headAnimRef = useRef<any>(null);
+  const trackAnimRef = useRef<AnimatedHandleType>(null);
+  const headAnimRef = useRef<AnimatedHandleType>(null);
 
   const radius = 45;
   const circumference = 2 * Math.PI * radius;
@@ -68,7 +68,7 @@ const CircularTimer = ({
       if (headAnimRef.current?.pause) headAnimRef.current.pause();
     };
 
-  }, [totalTime, circumference]);
+  }, [totalTime, circumference, timeLeft]);
 
   useEffect(() => {
     if (timeLeft === totalTime) {
@@ -89,8 +89,10 @@ const CircularTimer = ({
       headAnimRef.current?.pause();
 
       const elapsedTime = (totalTime - timeLeft) * 1000;
-      trackAnimRef.current.seek(elapsedTime);
-      headAnimRef.current.seek(elapsedTime);
+      if (trackAnimRef.current && headAnimRef.current) {
+        trackAnimRef.current.seek(elapsedTime);
+        headAnimRef.current.seek(elapsedTime);
+      }
 
     } else if (timeLeft > 0) {
       trackAnimRef.current?.play();

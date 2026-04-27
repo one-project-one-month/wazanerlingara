@@ -23,6 +23,7 @@ const VotingPage = () => {
     config?.players.map((p) => ({ id: p.id, name: p.name, votedCount: 0 })) || [],
   )
   const [voteCount, setVoteCount] = useState(0);
+
   const selectedPlayerName =
     config?.players.find((p) => p.id === selectedPlayerId)?.name || "";
 
@@ -32,14 +33,14 @@ const VotingPage = () => {
 
   const confirmVote = useCallback(() => {
     if (!selectedPlayerId || playersLength <= 0) return;
-    if (voteCount >= playersLength - 1) return;
+    if (voteCount > playersLength) return;
 
     setIsModalOpen(false);
     setVotedPlayers((prev) => prev.map((p) => p.id === selectedPlayerId ? { ...p, votedCount: p.votedCount + 1 } : p));
 
     const nextVoteCount = voteCount + 1;
     setVoteCount(nextVoteCount);
-    if (nextVoteCount >= playersLength - 1) {
+    if (nextVoteCount === playersLength) {
       console.log("All players have voted");
       setIsLoading(true);
     }
