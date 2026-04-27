@@ -1,67 +1,42 @@
 import { APP_CONFIG } from "@/app/config/app-config";
 import BackButton from "@/components/common/back-button";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+import { getWeightedRandomItems } from "@/lib/get-weighted-random-items.ts";
+import { useAppNavigation } from "@/lib/use-app-navigation";
+import { useGameConfigStore } from "@/stores/game-config-store.ts";
 import GameInfo from "../components/game-info";
 import ImposterCounter from "../components/imposter-counter";
 import TimerModeSetting from "../components/timer-mode";
 import ToggleImposterHint from "../components/toggle-imposter-hint";
-import { useGameConfigStore } from "@/stores/game-config-store.ts";
-import { questions, words } from "@/app/constants/words-and-questions.ts";
-import { getRandomItemExcluding } from "@/lib/get-random-item-excluding.ts";
-import { getRandomItem } from "@/lib/get-random-item.ts";
 
 const GameSetting = () => {
-  const navigate = useNavigate();
+  const { goTo } = useAppNavigation();
   const { config, updateGameConfig } = useGameConfigStore();
 
   const handleGameStarted = () => {
     if (!config?.category || !config.players?.length) return;
     const {
-      category,
+      gameSetting,
       players,
-      previousWordId,
-      previousQuestionId,
-      previousImposterId,
+      previousImposterIds,
     } = config;
 
-    const wordsByCategory = words.filter(
-      (word) => word.categoryId === category.id,
-    );
+    const imposterCount = gameSetting.imposterCount;
 
-    const questionsByCategory = questions.filter(
-      (q) => q.categoryId === category.id,
-    );
-
-    const randomWord = getRandomItemExcluding(
-      wordsByCategory,
-      previousWordId ?? undefined,
-    );
-
-    const randomQuestion = getRandomItemExcluding(
-      questionsByCategory,
-      previousQuestionId ?? undefined,
-    );
-
-    const imposter =
-      getRandomItemExcluding(players, previousImposterId ?? undefined) ||
-      getRandomItem(players);
-
-    if (!randomWord || !randomQuestion || !imposter) {
-      console.error("Game start failed: missing data");
-      return;
-    }
+    const imposters = getWeightedRandomItems({
+      players,
+      count: imposterCount,
+      previousIds: previousImposterIds ?? [],
+    });
+    const imposterIds = imposters.map((imposter) => imposter.id);
 
     updateGameConfig({
-      word: randomWord,
-      question: randomQuestion,
-      imposterId: imposter.id,
-      previousWordId: randomWord.id,
-      previousQuestionId: randomQuestion.id,
-      previousImposterId: imposter.id,
+      imposterIds: imposterIds,
+      previousImposterIds: imposterIds,
     });
-    navigate(APP_CONFIG.ROLE_REVEAL);
+    goTo(APP_CONFIG.ROLE_REVEAL);
   };
+
   return (
     <section className="relative mx-auto flex w-full max-w-2xl flex-col py-4 px-2 lg:px-6">
       <div className="flex items-start justify-center md:block">

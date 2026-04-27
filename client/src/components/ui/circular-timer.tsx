@@ -1,66 +1,43 @@
 import { changeToMMNumber } from '@/lib/change-to-mm-number';
 import { animate } from 'animejs';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface CircularTimerProps {
-  totalTime?: number;
+  totalTime: number;
+  timeLeft: number;
   strokeColor?: string;
   trackColor?: string;
   isPaused?: boolean;
-  onComplete?: () => void;
+  formatTime?: boolean;
 }
 
 const CircularTimer = ({
   totalTime = 5,
+  timeLeft,
   strokeColor = "#FA0000",
   trackColor = "#374151",
   isPaused = false,
-  onComplete
+  formatTime = true
 }: CircularTimerProps) => {
-  const [timeLeft, setTimeLeft] = useState(totalTime);
+
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
 
   const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
 
 
-
   const trackRef = useRef<SVGCircleElement>(null);
   const headRef = useRef<SVGCircleElement>(null);
+  type AnimatedHandleType = ReturnType<typeof animate> | null;
 
-  const trackAnimRef = useRef<any>(null);
-  const headAnimRef = useRef<any>(null);
+  const trackAnimRef = useRef<AnimatedHandleType>(null);
+  const headAnimRef = useRef<AnimatedHandleType>(null);
 
   const radius = 45;
   const circumference = 2 * Math.PI * radius;
 
-  useEffect(() => {
-    if (timeLeft === 0) {
-      onComplete?.();
-    }
-  }, [timeLeft, onComplete]);
 
   useEffect(() => {
-
-    let timerId: ReturnType<typeof setInterval>;
-
-    if (!isPaused) {
-      timerId = setInterval(() => {
-        setTimeLeft((prev) => {
-          if (prev <= 1) {
-            clearInterval(timerId);
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    }
-
-    return () => clearInterval(timerId);
-  }, [isPaused]);
-
-  useEffect(() => {
-    setTimeLeft(totalTime);
 
     if (trackRef.current && headRef.current) {
       trackAnimRef.current = animate(trackRef.current, {
@@ -77,10 +54,12 @@ const CircularTimer = ({
         autoplay: false
       });
 
-      if (!isPaused) {
-        trackAnimRef.current.play();
-        headAnimRef.current.play();
+      const elapsedTime = (totalTime - timeLeft) * 1000;
+      if (elapsedTime > 0) {
+        trackAnimRef.current.seek(elapsedTime);
+        headAnimRef.current.seek(elapsedTime);
       }
+
     }
 
     return () => {
@@ -89,17 +68,37 @@ const CircularTimer = ({
       if (headAnimRef.current?.pause) headAnimRef.current.pause();
     };
 
-  }, [totalTime, circumference, isPaused]);
+  }, [totalTime, circumference, timeLeft]);
 
   useEffect(() => {
+    if (timeLeft === totalTime) {
+      trackAnimRef.current?.pause();
+      headAnimRef.current?.pause();
+      trackAnimRef.current?.seek(0);
+      headAnimRef.current?.seek(0);
+
+      if (!isPaused) {
+        trackAnimRef.current?.play();
+        headAnimRef.current?.play();
+      }
+      return;
+
+    }
     if (isPaused) {
       trackAnimRef.current?.pause();
       headAnimRef.current?.pause();
+
+      const elapsedTime = (totalTime - timeLeft) * 1000;
+      if (trackAnimRef.current && headAnimRef.current) {
+        trackAnimRef.current.seek(elapsedTime);
+        headAnimRef.current.seek(elapsedTime);
+      }
+
     } else if (timeLeft > 0) {
       trackAnimRef.current?.play();
       headAnimRef.current?.play();
     }
-  }, [isPaused, timeLeft]);
+  }, [isPaused, timeLeft, totalTime]);
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -134,7 +133,7 @@ const CircularTimer = ({
 
         <div className="absolute inset-0 flex items-center justify-center">
           <span className="text-4xl font-bold text-white">
-            {changeToMMNumber(formattedTime)}
+            {changeToMMNumber(formatTime ? formattedTime : timeLeft.toString())}
           </span>
         </div>
       </div>

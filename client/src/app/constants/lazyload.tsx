@@ -43,3 +43,16 @@ export const GameStartPage = PageLoader(
 export const DurationTimerPage = PageLoader(
   lazy(() => import('@/features/game-play/pages/duration-timer')),
 );
+export const SettingPage = PageLoader(
+  lazy(() => import('@/features/setting/pages/setting')),
+);
+export const HowToPlayPage = PageLoader(
+  lazy(() => import('@/features/setting/pages/how-to-play')),
+);
+export const LegalAndPrivacyPage = PageLoader(
+  lazy(() => import('@/features/setting/pages/legal-privacy')),
+);
+export const ContactUsPage = PageLoader(
+  lazy(() => import('@/features/setting/pages/contact-us')),
+);
+

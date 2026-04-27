@@ -42,7 +42,7 @@ const ImposterCounter = () => {
         >
           -
         </button>
-        <span className="text-body-1 w-5 text-center">
+        <span className="text-body-1 w-6 h-6 flex justify-center items-center">
           {changeToMMNumber(imposterCount)}
         </span>{" "}
         {/* This should be dynamic */}

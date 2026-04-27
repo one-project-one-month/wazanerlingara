@@ -1,3 +1,4 @@
+import { APP_CONFIG } from "@/app/config/app-config";
 import { GAME_IMAGE_ASSETS, GAME_SFX_FILES } from "@/app/constants";
 import AssetPreloadScreen from "@/components/core/asset-preload-screen";
 import { useGameImageStore } from "@/stores/game-image-store";
@@ -7,7 +8,7 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 export default function MainLayout() {
   const location = useLocation();
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const loadSfx = useGameSfxStore((s) => s.load);
   const loadImages = useGameImageStore((s) => s.load);
   const imagesLoaded = useGameImageStore((s) => s.isLoaded);
@@ -25,11 +26,11 @@ export default function MainLayout() {
 
     const completed = localStorage.getItem("onboarding");
     if (!completed && location.pathname !== "/onboarding") {
-      navigate("/onboarding", { replace: true });
+      navigate(APP_CONFIG.ONBOARDING, { replace: true });
     }
 
-    if (completed && location.pathname === "/onboarding") {
-      navigate("/", { replace: true });
+    if (completed && location.pathname === "/") {
+      navigate(APP_CONFIG.SET_UP, { replace: true });
     }
   }, [imagesLoaded, location.pathname, navigate]);
 

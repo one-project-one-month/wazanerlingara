@@ -1,13 +1,15 @@
-import { useMemo, useCallback } from "react";
-import { useLocation, Navigate, useNavigate } from "react-router-dom";
 import type { VotingRouteState } from "@/features/voting/pages/voting-page";
 import { useGameConfigStore } from "@/stores/game-config-store.ts";
+import { useCallback, useMemo } from "react";
+import { Navigate, useLocation } from "react-router-dom";
 
-import TeammatesWin from "@/assets/gif/teammates-win.svg";
+import { APP_CONFIG } from "@/app/config/app-config";
 import ImposterWin from "@/assets/gif/imposter-win.svg";
-import PlayIcon from "@/assets/svg/play-icon.svg";
+import TeammatesWin from "@/assets/gif/teammates-win.svg";
 import HomeIcon from "@/assets/svg/home.svg";
+import PlayIcon from "@/assets/svg/play-icon.svg";
 import { Button } from "@/components/ui/button.tsx";
+import { useAppNavigation } from "@/lib/use-app-navigation";
 
 const teammatesTrashTalks = [
   "ဒါဘဲလေ ၅တန်းကျောင်းသားတောင် ရိပ်မိတယ်",
@@ -54,24 +56,21 @@ const imposterTrashTalks = [
 
 const ResultPage = () => {
   const location = useLocation();
-  const navigate = useNavigate();
+  const { goTo } = useAppNavigation();
   const { config, resetGameConfig } = useGameConfigStore();
 
   const state = location.state as VotingRouteState | null;
   const votedFor = state?.votedFor;
-
   const handlePlayAgain = useCallback(() => {
-    resetGameConfig();
-    navigate("/set-up", { replace: true });
-  }, [navigate, resetGameConfig]);
+    goTo(APP_CONFIG.CHOOSE_GAME_MODE);
+  }, [goTo]);
 
   const handleExit = useCallback(() => {
     resetGameConfig();
-    navigate("/", { replace: true });
-  }, [navigate, resetGameConfig]);
+    goTo("/");
+  }, [resetGameConfig, goTo]);
 
-  const isTeammatesWin = votedFor === config?.imposterId;
-
+  const isTeammatesWin = config?.imposterIds?.includes(votedFor as string);
   const randomTrashTalk = useMemo(() => {
     if (!votedFor || !config) return "";
     const list = isTeammatesWin ? teammatesTrashTalks : imposterTrashTalks;
@@ -82,12 +81,14 @@ const ResultPage = () => {
     return <Navigate to="/" replace />;
   }
 
-  const imposterPlayer = config.players.find((p) => p.id === config.imposterId);
-  const imposterName = imposterPlayer?.name || "Unknown";
+  const imposterPlayers = config.players.filter((p) =>
+    config.imposterIds?.includes(p.id),
+  );
+  const imposterNames =
+    imposterPlayers.map((player) => player.name).join(", ") || "Unknown";
 
   const hintCategory = config.category?.name || "N/A";
-  const keywordText =
-    config.gameMode === "word" ? config.word?.text : config.question?.text;
+  const keywordText = config.word?.text || "N/A";
 
   const titleText = isTeammatesWin ? "Teammates Win!" : "Imposter Win!";
   const titleColor = isTeammatesWin ? "text-success-500" : "text-red-500";
@@ -96,12 +97,12 @@ const ResultPage = () => {
   return (
     <main
       className={
-        "flex flex-col py-4 h-[calc(100dvh-2rem)] items-center justify-center"
+        "flex flex-col py-4  items-center justify-center"
       }
     >
       <div
         className={
-          "flex flex-col items-center justify-center gap-10 px-4 max-w-141.5"
+          "flex flex-col items-center justify-center gap-8 px-4 max-w-141.5"
         }
       >
         <header className={"text-center flex flex-col gap-2"}>
@@ -115,11 +116,11 @@ const ResultPage = () => {
           <img
             src={displaySvg}
             alt={`${titleText} GIF`}
-            className={"w-80 lg:w-95"}
+            className={"w-72 lg:w-80 aspect-square"}
           />
         </div>
         <div className={"flex flex-col gap-1"}>
-          <p className={"text-lg md:text-2xl"}>Imposter: {imposterName}</p>
+          <p className={"text-lg md:text-2xl"}>Imposter: {imposterNames}</p>
           <p className={"text-lg md:text-2xl"}>Imposter Hint: {hintCategory}</p>
           <p className={"text-lg md:text-2xl"}>
             Keyword: {keywordText || "N/A"}
@@ -128,7 +129,7 @@ const ResultPage = () => {
       </div>
       <div
         className={
-          "flex flex-col lg:flex-row w-full lg:items-center lg:justify-center gap-4 mt-auto max-w-180"
+          "flex flex-col lg:flex-row w-full lg:items-center lg:justify-center gap-4  max-w-xl mt-6"
         }
       >
         <Button onClick={handlePlayAgain}>
