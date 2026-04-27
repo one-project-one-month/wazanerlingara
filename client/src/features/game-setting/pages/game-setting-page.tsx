@@ -1,18 +1,18 @@
 import { APP_CONFIG } from "@/app/config/app-config";
+import { questions, words } from "@/app/constants/words-and-questions.ts";
 import BackButton from "@/components/common/back-button";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+import { getRandomItemExcluding } from "@/lib/get-random-item-excluding.ts";
+import { getWeightedRandomItems } from "@/lib/get-weighted-random-items.ts";
+import { useAppNavigation } from "@/lib/use-app-navigation";
+import { useGameConfigStore } from "@/stores/game-config-store.ts";
 import GameInfo from "../components/game-info";
 import ImposterCounter from "../components/imposter-counter";
 import TimerModeSetting from "../components/timer-mode";
 import ToggleImposterHint from "../components/toggle-imposter-hint";
-import { useGameConfigStore } from "@/stores/game-config-store.ts";
-import { questions, words } from "@/app/constants/words-and-questions.ts";
-import { getRandomItemExcluding } from "@/lib/get-random-item-excluding.ts";
-import { getWeightedRandomItems } from "@/lib/get-weighted-random-items.ts";
 
 const GameSetting = () => {
-  const navigate = useNavigate();
+  const { goTo } = useAppNavigation();
   const { config, updateGameConfig } = useGameConfigStore();
 
   const handleGameStarted = () => {
@@ -51,7 +51,6 @@ const GameSetting = () => {
       count: imposterCount,
       previousIds: previousImposterIds ?? [],
     });
-
     const imposterIds = imposters.map((imposter) => imposter.id);
 
     if (!randomWord || !randomQuestion || !imposters.length) {
@@ -67,7 +66,7 @@ const GameSetting = () => {
       previousQuestionId: randomQuestion.id,
       previousImposterIds: imposterIds,
     });
-    navigate(APP_CONFIG.ROLE_REVEAL);
+    goTo(APP_CONFIG.ROLE_REVEAL);
   };
 
   return (

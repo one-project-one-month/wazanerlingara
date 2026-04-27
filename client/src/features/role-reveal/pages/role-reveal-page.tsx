@@ -76,7 +76,7 @@ export default function RoleRevealPage() {
     typedConfig.gameMode === "word" ? typedConfig.word?.imageId : typedConfig.question?.imageId;
   const hint =
     typedConfig.gameMode === "word" ? typedConfig.word?.hint : typedConfig.question?.hint;
-  const imposterId = typedConfig.imposterId ?? "";
+  const imposterIds = typedConfig.imposterIds ?? "";
 
   return (
     <div className="min-h-[97vh] bg-black text-white flex flex-col items-center justify-between px-4 py-5">
@@ -99,7 +99,7 @@ export default function RoleRevealPage() {
         handleReveal={handleReveal}
         revealContent={revealContent ?? ""}
         revealImageId={revealImageId ?? ""}
-        imposterIds={imposterIds!!}
+        imposterIds={imposterIds || []}
         imposterCanGetHint={gameConfig.gameSetting.canImposterGetHint}
         hint={hint ?? ""}
       />
