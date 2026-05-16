@@ -1,21 +1,18 @@
-
-
 import { useGameImageStore } from "@/stores/game-image-store";
 import type { Player } from "@/types/game.type";
 
 interface PlayerCardProps {
   players: Player[];
-  selectedPlayerId: string | null;
+  selectedPlayerIds: string[];
   onSelect: (id: string) => void;
 }
 
-
-
 const VotingPlayerCard = ({
   players,
-  selectedPlayerId,
-  onSelect }: PlayerCardProps) => {
-  const getImageurl = useGameImageStore(s => s.getImageUrl);
+  selectedPlayerIds,
+  onSelect,
+}: PlayerCardProps) => {
+  const getImageurl = useGameImageStore((s) => s.getImageUrl);
   return (
     <section
       className={
@@ -23,7 +20,7 @@ const VotingPlayerCard = ({
       }
     >
       {players.map((player) => {
-        const isSelected = selectedPlayerId === player.id;
+        const isSelected = selectedPlayerIds.includes(player.id);
         const playerImage = getImageurl(player.imageId ?? "2");
 
         return (

@@ -70,7 +70,12 @@ const ResultPage = () => {
     goTo("/");
   }, [resetGameConfig, goTo]);
 
-  const isTeammatesWin = config?.imposterIds?.includes(votedFor as string);
+  const votedIds = votedFor as string[];
+  const imposterIds = config?.imposterIds ?? [];
+
+  // check if every imposter is in voted list
+  const isTeammatesWin = imposterIds.every((id) => votedIds.includes(id));
+
   const randomTrashTalk = useMemo(() => {
     if (!votedFor || !config) return "";
     const list = isTeammatesWin ? teammatesTrashTalks : imposterTrashTalks;
@@ -95,11 +100,7 @@ const ResultPage = () => {
   const displaySvg = isTeammatesWin ? TeammatesWin : ImposterWin;
 
   return (
-    <main
-      className={
-        "flex flex-col py-4  items-center justify-center"
-      }
-    >
+    <main className={"flex flex-col py-4  items-center justify-center"}>
       <div
         className={
           "flex flex-col items-center justify-center gap-8 px-4 max-w-141.5"

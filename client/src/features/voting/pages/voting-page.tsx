@@ -7,56 +7,99 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export interface VotingRouteState {
-  votedFor: string | number | null;
+  votedFor: string[];
 }
 
 const VotingPage = () => {
-  const [selectedPlayerId, setSelectedPlayerId] = useState<string | null>(null);
+  const [selectedPlayerIds, setSelectedPlayerIds] = useState<string[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
 
   const navigate = useNavigate();
   const { config } = useGameConfigStore();
   const playersLength = config?.players.length ?? 0;
   const [votedPlayers, setVotedPlayers] = useState(
-    config?.players.map((p) => ({ id: p.id, name: p.name, votedCount: 0 })) || [],
+    config?.players.map((p) => ({ id: p.id, name: p.name, votedCount: 0 })) ||
+      [],
   );
   const [voteCount, setVoteCount] = useState(0);
 
-  const selectedPlayerName =
-    config?.players.find((p) => p.id === selectedPlayerId)?.name || "";
+  const selectedPlayerNames = (() => {
+    const names =
+      config?.players
+        .filter((p) => selectedPlayerIds.includes(p.id))
+        .map((p) => p.name) || [];
+
+    if (names.length === 0) return "";
+    if (names.length === 1) return names[0];
+
+    return `${names.slice(0, -1).join(", ")} နဲ့ ${names[names.length - 1]}`;
+  })();
+
+  const imposterCount = config?.gameSetting.imposterCount ?? 1;
+
+  const toggleSelectPlayer = (id: string) => {
+    setSelectedPlayerIds((prev) => {
+      if (prev.includes(id)) {
+        return prev.filter((p) => p !== id);
+      }
+
+      // limit selection to imposterCount
+      if (prev.length >= (config?.gameSetting.imposterCount ?? 1)) {
+        return prev;
+      }
+
+      return [...prev, id];
+    });
+  };
 
   const handleVoteClick = useCallback(() => {
-    if (selectedPlayerId) setIsModalOpen(true);
-  }, [selectedPlayerId]);
+    if (selectedPlayerIds.length === imposterCount) setIsModalOpen(true);
+  }, [selectedPlayerIds, imposterCount]);
 
   const confirmVote = useCallback(() => {
-    if (!selectedPlayerId || playersLength <= 0) return;
+    if (!selectedPlayerIds.length || playersLength <= 0) return;
     if (voteCount > playersLength) return;
 
     setIsModalOpen(false);
-    setVotedPlayers((prev) => prev.map((p) => p.id === selectedPlayerId ? { ...p, votedCount: p.votedCount + 1 } : p));
+    setVotedPlayers((prev) =>
+      prev.map((p) =>
+        selectedPlayerIds.includes(p.id)
+          ? { ...p, votedCount: p.votedCount + 1 }
+          : p,
+      ),
+    );
+
+    setSelectedPlayerIds([]);
 
     const nextVoteCount = voteCount + 1;
     setVoteCount(nextVoteCount);
     if (nextVoteCount === playersLength) {
       console.log("All players have voted");
       setIsLoading(true);
-    };
-  }, [playersLength, selectedPlayerId, voteCount]);
+    }
+  }, [playersLength, selectedPlayerIds, voteCount]);
 
   useEffect(() => {
     if (isLoading) {
       const timer = setTimeout(() => {
-        const sorted = [...votedPlayers].sort((a, b) => b.votedCount - a.votedCount);
-        const routeState: VotingRouteState = { votedFor: sorted[0]?.id ?? null };
+        const sorted = [...votedPlayers].sort(
+          (a, b) => b.votedCount - a.votedCount,
+        );
+        const imposterCount = config?.gameSetting.imposterCount ?? 1;
+
+        const topVoted = sorted.slice(0, imposterCount);
+
+        const routeState: VotingRouteState = {
+          votedFor: topVoted.map((p) => p.id),
+        };
+
         navigate("/result", { state: routeState });
       }, 3500);
 
       return () => clearTimeout(timer);
-    };
-  }, [isLoading, navigate, votedPlayers]);
+    }
+  }, [isLoading, navigate, votedPlayers, config]);
 
   return (
     <main
@@ -74,23 +117,35 @@ const VotingPage = () => {
             }
           >
             <h1 className={"text-3xl md:text-4xl lg:text-5xl "}>
-              ဘယ်သူက Imposter လဲ
+              ဘယ်သူ{imposterCount > 1 ? `တွေ` : ``}က Imposter{" "}
+              {imposterCount > 1 ? `တွေ` : ``}လဲ
             </h1>
             <p className={"text-xl lg:text-3xl opacity-80"}>
-              သံသယအရှိဆုံး တစ်ယောက်ကို ရွေးပါ။
+              {imposterCount > 1
+                ? `သံသယအရှိဆုံး ${imposterCount} ယောက်ကိုရွေးပါ`
+                : `သံသယအရှိဆုံး တစ်ယောက်ကို ရွေးပါ။`}
             </p>
+            <div className="flex">
+              <h1 className={"text-xl md:text-2xl  "}>
+                လက်ရှိ vote ရန်အလှည့်ကျသူ :
+              </h1>
+              <span className={"ml-1 text-xl lg:text-3xl opacity-80"}>
+                {config?.players[voteCount].name}
+              </span>
+            </div>
           </div>
 
           <div className="w-full flex justify-center py-4">
             <VotingPlayerCard
               players={config?.players || []}
-              selectedPlayerId={selectedPlayerId}
-              onSelect={setSelectedPlayerId} />
+              selectedPlayerIds={selectedPlayerIds}
+              onSelect={toggleSelectPlayer}
+            />
           </div>
 
           <div className={"mt-auto lg:mt-8 w-full lg:max-w-xl"}>
             <Button
-              disabled={!selectedPlayerId}
+              disabled={selectedPlayerIds.length !== imposterCount}
               onClick={handleVoteClick}
               className="w-full cursor-pointer text-xl"
             >
@@ -102,7 +157,7 @@ const VotingPage = () => {
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
             onConfirm={confirmVote}
-            playerName={selectedPlayerName || ""}
+            playerName={selectedPlayerNames || ""}
           />
         </>
       )}
