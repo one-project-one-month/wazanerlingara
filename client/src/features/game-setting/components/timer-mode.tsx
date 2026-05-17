@@ -21,7 +21,9 @@ const TimerModeSetting = () => {
     updateGameConfig({
       gameSetting: {
         ...config.gameSetting,
-        ...(type === "TURN" ? { gameType: "turnTimer" } : { gameType: "durationTimer" }),
+        ...(type === "TURN"
+          ? { gameType: "turnTimer" }
+          : { gameType: "durationTimer" }),
       },
     });
   };
@@ -31,17 +33,19 @@ const TimerModeSetting = () => {
     updateGameConfig({
       gameSetting: {
         ...config.gameSetting,
-        ...(isTurn ? { turnTimer: newValue, gameType: "turnTimer" } : { durationTimer: newValue, gameType: "durationTimer" }),
+        ...(isTurn
+          ? { turnTimer: newValue, gameType: "turnTimer" }
+          : { durationTimer: newValue, gameType: "durationTimer" }),
       },
     });
   };
 
   const increaseTimer = () => {
-    if (timerValue < max) setTimer(timerValue + (isTurn ? 5 : 60));
+    if (timerValue < max) setTimer(timerValue + (isTurn ? 5 : 30));
   };
 
   const decreaseTimer = () => {
-    if (timerValue > min) setTimer(timerValue - (isTurn ? 5 : 60));
+    if (timerValue > min) setTimer(timerValue - (isTurn ? 5 : 30));
   };
 
   const formatTimerValue = () => {
