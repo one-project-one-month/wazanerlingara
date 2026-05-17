@@ -13,7 +13,7 @@ import SetupPageSetting from "../components/setup-page-settings";
 export default function SetupPage() {
   const { setGameConfig } = useGameConfigStore();
   const navigate = useNavigate();
-  const { goTo } = useAppNavigation()
+  const { goTo } = useAppNavigation();
   const handleStartGame = () => {
     setGameConfig({
       id: crypto.randomUUID(),
@@ -23,8 +23,8 @@ export default function SetupPage() {
         imposterCount: 1,
         turnTimer: 5,
         durationTimer: 120,
-        canImposterGetHint: false,
-        gameType: "turnTimer"
+        canImposterGetHint: true,
+        gameType: "turnTimer",
       },
       word: null,
       question: null,
@@ -35,10 +35,7 @@ export default function SetupPage() {
       previousImposterIds: null,
     });
     goTo(APP_CONFIG.GAME_START);
-
   };
-
-
 
   return (
     <div className="fixed inset-0 z-10 overflow-y-auto bg-black text-white lg:overflow-hidden">

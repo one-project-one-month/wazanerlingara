@@ -1,530 +1,530 @@
 [
-    {
-        "id": "animal_cat",
-        "question": "ကြွက်ဖမ်းတတ်ပြီး အိမ်မှာမွေးလေ့ရှိတဲ့ တိရစ္ဆာန်မှာ အဘယ်နည်း။",
-        "text": "ကြောင်",
-        "imageId": "/images/Cat.png",
-        "categoryId": "animals",
-        "hint": "အိမ်မွေး"
-    },
-    {
-        "id": "animal_dog",
-        "question": "သစ္စာရှိပြီး အိမ်စောင့်ပေးတတ်သော တိရစ္ဆာန်မှာ အဘယ်နည်း။",
-        "text": "ခွေး",
-        "imageId": "/images/Dog.png",
-        "categoryId": "animals",
-        "hint": "လုံခြုံရေး"
-    },
-    {
-        "id": "animal_tiger",
-        "question": "ဟိန်းသံပြင်းပြီး တောထဲမှာနေထိုင်သော အသားစားသတ္တဝါမှာ အဘယ်နည်း။",
-        "text": "ကျား",
-        "imageId": "/images/Tiger.png",
-        "categoryId": "animals",
-        "hint": "တော"
-    },
-    {
-        "id": "animal_elephant",
-        "question": "နှာမောင်းရှည်ပြီး အကောင်အကြီးဆုံးသော ကုန်းသတ္တဝါမှာ အဘယ်နည်း။",
-        "text": "ဆင်",
-        "imageId": "/images/Elephnat.png",
-        "categoryId": "animals",
-        "hint": "ကြီးမား"
-    },
-    {
-        "id": "animal_cow",
-        "question": "လူသားတို့အတွက် အာဟာရဖြစ်စေသော နို့ကိုပေးသည့် တိရစ္ဆာန်မှာ အဘယ်နည်း။",
-        "text": "နွား",
-        "imageId": "/images/Cow.png",
-        "categoryId": "animals",
-        "hint": "နို့"
-    },
-    {
-        "id": "animal_horse",
-        "question": "အပြေးမြန်ပြီး လူတို့စီးနင်းရန် အသုံးပြုသော တိရစ္ဆာန်မှာ အဘယ်နည်း။",
-        "text": "မြင်း",
-        "imageId": "/images/Horse.png",
-        "categoryId": "animals",
-        "hint": "မြန်"
-    },
-    {
-        "id": "animal_pig",
-        "question": "အသားကို အဓိကစားသုံးရန် မွေးမြူကြသော တိရစ္ဆာန်မှာ အဘယ်နည်း။",
-        "text": "ဝက်",
-        "imageId": "/images/Pig.png",
-        "categoryId": "animals",
-        "hint": "စားသုံး"
-    },
-    {
-        "id": "animal_leopard",
-        "question": "ကိုယ်လုံးပေါ်တွင် အမည်းစက်ကွက်များပါရှိပြီး သစ်ပင်တက်ကျွမ်းကျင်သော သတ္တဝါမှာ အဘယ်နည်း။",
-        "text": "ကျားသစ်",
-        "imageId": "/images/Leopard.png",
-        "categoryId": "animals",
-        "hint": "စက်ကွက်"
-    },
-    {
-        "id": "animal_chicken",
-        "question": "လူတို့နေ့စဉ်စားသုံးသော ဥများကို ပေးစွမ်းသည့် အိမ်မွေးငှက်မှာ အဘယ်နည်း။",
-        "text": "ကြက်",
-        "imageId": "images/Chicken.png",
-        "categoryId": "animals",
-        "hint": "ဥ"
-    },
-    {
-        "id": "animal_bird",
-        "question": "အတောင်ပံရှိပြီး ကောင်းကင်ယံမှာ ပျံသန်းနိုင်သော သတ္တဝါမှာ အဘယ်နည်း။",
-        "text": "ငှက်",
-        "imageId": "images/Bird.png",
-        "categoryId": "animals",
-        "hint": "ပျံ"
-    },
-    {
-        "id": "animal_snake",
-        "question": "ခြေထောက်မရှိဘဲ ကိုယ်လုံးရှည်လျားကာ တွားသွားတတ်သော သတ္တဝါမှာ အဘယ်နည်း။",
-        "text": "မြွေ",
-        "imageId": "images/Snake.png",
-        "categoryId": "animals",
-        "hint": "ရှည်"
-    },
-    {
-        "id": "animal_frog",
-        "question": "ကုန်းတလှည့် ရေတလှည့်နေထိုင်ပြီး ခုန်ဆွခုန်ဆွ သွားတတ်သော သတ္တဝါမှာ အဘယ်နည်း။",
-        "text": "ဖား",
-        "imageId": "/images/Frog.png",
-        "categoryId": "animals",
-        "hint": "ခုန်"
-    },
-    {
-        "id": "animal_fish",
-        "question": "ရေထဲတွင် ကူးခတ်ရှင်သန်ပြီး ပါးဟက်ဖြင့် အသက်ရှူသော သတ္တဝါမှာ အဘယ်နည်း။",
-        "text": "ငါး",
-        "imageId": "/images/Fish.png",
-        "categoryId": "animals",
-        "hint": "ရေ"
-    },
-    {
-        "id": "animal_eagle",
-        "question": "အမြင်အာရုံစူးရှပြီး အမြင့်ပျံနိုင်သော ငှက်ရဲမှာ အဘယ်နည်း။",
-        "text": "လင်းယုန်",
-        "imageId": "/images/Eagle.png",
-        "categoryId": "animals",
-        "hint": "ပျံ"
-    },
-    {
-        "id": "animal_turtle",
-        "question": "မာကျောသော အခွံရှိပြီး အသွားအလာ နှေးကွေးသော သတ္တဝါမှာ အဘယ်နည်း။",
-        "text": "လိပ်",
-        "imageId": "/images/Turtle",
-        "categoryId": "animals",
-        "hint": "ယက်"
-    },
-    {
-        "id": "animal_giraffe",
-        "question": "လည်ပင်းအရှည်ဆုံးဖြစ်ပြီး သစ်ပင်အမြင့်မှ သစ်ရွက်များကို စားတတ်သော တိရစ္ဆာန်မှာ အဘယ်နည်း။",
-        "text": "သစ်ကုလားအုတ်",
-        "imageId": "/images/Giraffe.png",
-        "categoryId": "animals",
-        "hint": "ရှည်"
-    },
-    {
-        "id": "animal_zebra",
-        "question": "ကိုယ်လုံးပေါ်တွင် အဖြူအမည်း အစင်းကြားများပါသော မြင်းနှင့်တူသည့် တိရစ္ဆာန်မှာ အဘယ်နည်း။",
-        "text": "မြင်းကျား",
-        "imageId": "/images/Zebra.png",
-        "categoryId": "animals",
-        "hint": "ကြား"
-    },
-    {
-        "id": "animal_bear",
-        "question": "အမွှေးထူပြီး ကိုယ်လုံးကြီးမားကာ ပျားရည်ကြိုက်တတ်သော တောရိုင်းတိရစ္ဆာန်မှာ အဘယ်နည်း။",
-        "text": "ဝက်ဝံ",
-        "imageId": "/images/Bear.png",
-        "categoryId": "animals",
-        "hint": "တော"
-    },
-    {
-        "id": "animal_crocodile",
-        "question": "ရေထဲတွင်နေထိုင်ပြီး အလွန်ကြောက်စရာကောင်းသော ရေနေတွားသွားသတ္တဝါမှာ အဘယ်နည်း။",
-        "text": "မိကျောင်း",
-        "imageId": "/images/Crocodile.png",
-        "categoryId": "animals",
-        "hint": "ရေ"
-    },
-    {
-        "id": "animal_ostrich",
-        "question": "မပျံသန်းနိုင်သော်လည်း အပြေးအလွန်မြန်သော ကမ္ဘာ့အကြီးဆုံးငှက်မှာ အဘယ်နည်း။",
-        "text": "ငှက်ကုလားအုတ်",
-        "imageId": "/images/Ostrich.png",
-        "categoryId": "animals",
-        "hint": "မြန်"
-    },
-    {
-        "id": "animal_monkey",
-        "question": "သစ်ပင်တက်ကျွမ်းကျင်ပြီး လူနှင့်အနီးစပ်ဆုံး တူသောတိရစ္ဆာန်မှာ အဘယ်နည်း။",
-        "text": "မျောက်",
-        "imageId": "/images/Monkey.png",
-        "categoryId": "animals",
-        "hint": "တက်"
-    },
-    {
-        "id": "animal_kangaroo",
-        "question": "ရင်ဘတ်တွင် အိတ်ပါရှိပြီး သားငယ်ကို ထည့်ကာ ခုန်သွားတတ်သော တိရစ္ဆာန်မှာ အဘယ်နည်း။",
-        "text": "သားပိုက်ကောင်",
-        "imageId": "/images/Kangaroo.png",
-        "categoryId": "animals",
-        "hint": "ခုန်"
-    },
-    {
-        "id": "animal_penguin",
-        "question": "အလွန်အေးသော ဒေသများတွင် နေထိုင်ပြီး မပျံနိုင်သော ရေငှက်မှာ အဘယ်နည်း။",
-        "text": "ပင်ဂွင်း",
-        "imageId": "/images/Penguin.png",
-        "categoryId": "animals",
-        "hint": "အေး"
-    },
-    {
-        "id": "food_mohinga",
-        "question": "မြန်မာနိုင်ငံ၏ နာမည်ကျော် မနက်စာဖြစ်ပြီး ငါးဟင်းရည်ဖြင့် စားသုံးရသော အစားအစာမှာ အဘယ်နည်း။",
-        "text": "မုန့်ဟင်းခါး",
-        "imageId": null,
-        "categoryId": "foods",
-        "hint": "မနက်စာ"
-    },
-    {
-        "id": "food_pizza",
-        "question": "အီတလီနိုင်ငံမှ စတင်ခဲ့ပြီး ဂျုံပြားပေါ်တွင် ချိစ်နှင့် အသားများတင်ကာ ဖုတ်ထားသော အနောက်တိုင်းအစားအစာမှာ အဘယ်နည်း။",
-        "text": "ပီဇာ",
-        "imageId": null,
-        "categoryId": "foods",
-        "hint": "အနောက်တိုင်း"
-    },
-    {
-        "id": "food_hamburger",
-        "question": "အသားပြားကို ပေါင်မုန့်နှစ်ချပ်ကြားညှပ်ထားသော နာမည်ကြီး fast food မှာ အဘယ်နည်း။",
-        "text": "ဟမ်ဘာဂါ",
-        "imageId": null,
-        "categoryId": "foods",
-        "hint": "fast food"
-    },
-    {
-        "id": "loc_school",
-        "question": "ကလေးငယ်များ ပညာသင်ကြားရာ နေရာမှာ အဘယ်နည်း။",
-        "text": "ကျောင်း",
-        "imageId": null,
-        "categoryId": "locations",
-        "hint": "သင်ကြား"
-    },
-    {
-        "id": "loc_hospital",
-        "question": "ဖျားနာသူများကို ကုသပေးရာ ကျန်းမာရေးစောင့်ရှောက်မှု ဌာနမှာ အဘယ်နည်း။",
-        "text": "ဆေးရုံ",
-        "imageId": null,
-        "categoryId": "locations",
-        "hint": "ကျန်းမာရေး"
-    },
-    {
-        "id": "loc_market",
-        "question": "ဟင်းသီးဟင်းရွက်နှင့် ကုန်ပစ္စည်းများကို ရောင်းဝယ်ဖောက်ကားရာ နေရာမှာ အဘယ်နည်း။",
-        "text": "စျေး",
-        "imageId": null,
-        "categoryId": "locations",
-        "hint": "ဝယ်ယူ"
-    },
-    {
-        "id": "loc_airport",
-        "question": "လေယာဉ်များ ဆိုက်ကပ်ရာနှင့် ထွက်ခွာရာ နေရာမှာ အဘယ်နည်း။",
-        "text": "လေဆိပ်",
-        "imageId": null,
-        "categoryId": "locations",
-        "hint": "လေယာဉ်"
-    },
-    {
-        "id": "country_myanmar",
-        "question": "အရှေ့တောင်အာရှတွင် တည်ရှိပြီး ရွှေတိဂုံဘုရားရှိသော နိုင်ငံမှာ အဘယ်နည်း။",
-        "text": "မြန်မာ",
-        "imageId": null,
-        "categoryId": "countries",
-        "hint": "အာရှ"
-    },
-    {
-        "id": "country_japan",
-        "question": "အရှေ့အာရှတွင် တည်ရှိပြီး နည်းပညာနှင့် ချယ်ရီပန်းများကြောင့် ကျော်ကြားသော နိုင်ငံမှာ အဘယ်နည်း။",
-        "text": "ဂျပန်",
-        "imageId": null,
-        "categoryId": "countries",
-        "hint": "နည်းပညာ"
-    },
-    {
-        "id": "country_usa",
-        "question": "မြောက်အမေရိကတိုက်တွင် တည်ရှိပြီး အင်အားကြီးမားသော နိုင်ငံမှာ အဘယ်နည်း။",
-        "text": "အမေရိကန်",
-        "imageId": null,
-        "categoryId": "countries",
-        "hint": "ကြီးမား"
-    },
-    {
-        "id": "country_korea",
-        "question": "K-pop နှင့် Kimchi ကြောင့် ကမ္ဘာတစ်ဝှမ်း ကျော်ကြားသော နိုင်ငံမှာ အဘယ်နည်း။",
-        "text": "ကိုရီးယား",
-        "imageId": null,
-        "categoryId": "countries",
-        "hint": "K-pop"
-    },
-    {
-        "id": "movie_titanic",
-        "question": "သမုဒ္ဒရာထဲတွင် သင်္ဘောကြီး နစ်မြုပ်ခဲ့သော ဖြစ်ရပ်မှန်ကို အခြေခံရိုက်ကူးထားသည့် ဇာတ်ကားမှာ အဘယ်နည်း။",
-        "text": "Titanic",
-        "imageId": null,
-        "categoryId": "movies",
-        "hint": "သင်္ဘော"
-    },
-    {
-        "id": "movie_avengers",
-        "question": "စွမ်းအားရှင် (Superheroes) များစွာ စုပေါင်းပြီး ကမ္ဘာကြီးကို ကာကွယ်သော ဇာတ်ကားမှာ အဘယ်နည်း။",
-        "text": "Avengers",
-        "imageId": null,
-        "categoryId": "movies",
-        "hint": "hero"
-    },
-    {
-        "id": "movie_harry_potter",
-        "question": "မှော်ပညာသင်ကျောင်းနှင့် မှော်ဆရာလေးအကြောင်း ရိုက်ကူးထားသော ဇာတ်ကားမှာ အဘယ်နည်း။",
-        "text": "Harry Potter",
-        "imageId": null,
-        "categoryId": "movies",
-        "hint": "magic"
-    },
-    {
-        "id": "movie_frozen",
-        "question": "နှင်းဘုရင်မ အယ်လ်ဆာနှင့် သူမ၏ ညီမလေး အန်နာတို့အကြောင်း ရိုက်ကူးထားသော ကာတွန်းဇာတ်ကားမှာ အဘယ်နည်း။",
-        "text": "Frozen",
-        "imageId": null,
-        "categoryId": "movies",
-        "hint": "snow"
-    },
-    {
-        "id": "job_doctor",
-        "question": "ဆေးရုံတွင် လူနာများကို ဆေးကုသပေးသော အသက်မွေးဝမ်းကြောင်းမှာ အဘယ်နည်း။",
-        "text": "ဆရာဝန်",
-        "imageId": null,
-        "categoryId": "jobs",
-        "hint": "ဆေးရုံ"
-    },
-    {
-        "id": "job_teacher",
-        "question": "ကျောင်းတွင် ကျောင်းသားများကို ပညာသင်ကြားပေးသော ပုဂ္ဂိုလ်မှာ အဘယ်နည်း။",
-        "text": "ဆရာ",
-        "imageId": null,
-        "categoryId": "jobs",
-        "hint": "ကျောင်း"
-    },
-    {
-        "id": "job_police",
-        "question": "ပြည်သူများ၏ လုံခြုံရေးကို ကာကွယ်ပေးပြီး တရားဥပဒေကို ထိန်းသိမ်းသူမှာ အဘယ်နည်း။",
-        "text": "ရဲ",
-        "imageId": null,
-        "categoryId": "jobs",
-        "hint": "လုံခြုံရေး"
-    },
-    {
-        "id": "job_engineer",
-        "question": "အဆောက်အဦးများ၊ လမ်းတံတားများနှင့် စက်ပစ္စည်းများကို ဒီဇိုင်းဆွဲ တည်ဆောက်သူမှာ အဘယ်နည်း။",
-        "text": "အင်ဂျင်နီယာ",
-        "imageId": null,
-        "categoryId": "jobs",
-        "hint": "တည်ဆောက်"
-    },
-    {
-        "id": "tech_mobile",
-        "question": "နေရာမရွေး သယ်ဆောင်သွားနိုင်ပြီး ဖုန်းခေါ်ဆိုရန်နှင့် အင်တာနက်သုံးရန် အသုံးပြုသော ကိရိယာမှာ အဘယ်နည်း။",
-        "text": "မိုဘိုင်းဖုန်း",
-        "imageId": null,
-        "categoryId": "technologies",
-        "hint": "ဆက်သွယ်"
-    },
-    {
-        "id": "tech_laptop",
-        "question": "သယ်ဆောင်ရလွယ်ကူသော ကွန်ပျူတာတစ်မျိုးဖြစ်ပြီး အလုပ်လုပ်ရန် အသုံးပြုသော ကိရိယာမှာ အဘယ်နည်း။",
-        "text": "လက်ပ်တော့",
-        "imageId": null,
-        "categoryId": "technologies",
-        "hint": "အလုပ်"
-    },
-    {
-        "id": "tech_internet",
-        "question": "တစ်ကမ္ဘာလုံးကို ချိတ်ဆက်ပေးထားသော ကွန်ရက်ကြီးမှာ အဘယ်နည်း။",
-        "text": "အင်တာနက်",
-        "imageId": null,
-        "categoryId": "technologies",
-        "hint": "online"
-    },
-    {
-        "id": "tech_ai",
-        "question": "လူသားတို့ကဲ့သို့ စဉ်းစားတွေးခေါ်နိုင်ရန် ဖန်တီးထားသော ဉာဏ်ရည်တုမှာ အဘယ်နည်း။",
-        "text": "AI",
-        "imageId": null,
-        "categoryId": "technologies",
-        "hint": "smart"
-    },
-    {
-        "id": "img_dragon",
-        "question": "မီးမှုတ်နိုင်ပြီး အတောင်ပံများဖြင့် ပျံသန်းနိုင်သော ပုံပြင်ထဲမှ သတ္တဝါမှာ အဘယ်နည်း။",
-        "text": "နဂါး",
-        "imageId": null,
-        "categoryId": "imaginations",
-        "hint": "ပျံနိုင်"
-    },
-    {
-        "id": "img_ghost",
-        "question": "လူတို့ မမြင်နိုင်သော်လည်း ရှိသည်ဟု ယူဆကြသော ဝိညာဉ်မှာ အဘယ်နည်း။",
-        "text": "ဝိညာဉ်",
-        "imageId": null,
-        "categoryId": "imaginations",
-        "hint": "မမြင်ရ"
-    },
-    {
-        "id": "img_fairy",
-        "question": "ပုံပြင်ထဲတွင် မှော်တံလေးကိုင်ပြီး တောင်ပံလေးများဖြင့် ပျံသန်းတတ်သော မိန်းကလေးမှာ အဘယ်နည်း။",
-        "text": "မယ်မင်း",
-        "imageId": null,
-        "categoryId": "imaginations",
-        "hint": "ပုံပြင်"
-    },
-    {
-        "id": "img_dinosaur",
-        "question": "လွန်ခဲ့သော နှစ်ပေါင်းသန်းပေါင်းများစွာက ကမ္ဘာပေါ်တွင် ရှင်သန်ခဲ့သော ဧရာမသတ္တဝါကြီးမှာ အဘယ်နည်း။",
-        "text": "ဒိုင်နိုဆော",
-        "imageId": null,
-        "categoryId": "imaginations",
-        "hint": "ရှေးခေတ်"
-    },
-    {
-        "id": "hero_superman",
-        "question": "ကောင်းကင်ယံမှာ ပျံသန်းနိုင်ပြီး ရင်ဘတ်မှာ 'S' တံဆိပ်ပါသော စွမ်းအားရှင်မှာ အဘယ်နည်း။",
-        "text": "Superman",
-        "imageId": null,
-        "categoryId": "supes",
-        "hint": "ပျံ"
-    },
-    {
-        "id": "hero_batman",
-        "question": "ညအခါတွင် လင်းနို့ဝတ်စုံဝတ်ကာ ရာဇဝတ်သားများကို နှိမ်နင်းသော သူဌေးကြီးမှာ အဘယ်နည်း။",
-        "text": "Batman",
-        "imageId": null,
-        "categoryId": "supes",
-        "hint": "dark"
-    },
-    {
-        "id": "hero_spiderman",
-        "question": "ပင့်ကူကဲ့သို့ နံရံများတွင် ကပ်တက်နိုင်ပြီး ပင့်ကူမျှင်များ ပစ်နိုင်သော စွမ်းအားရှင်မှာ အဘယ်နည်း။",
-        "text": "Spider-Man",
-        "imageId": null,
-        "categoryId": "supes",
-        "hint": "web"
-    },
-    {
-        "id": "hero_ironman",
-        "question": "နည်းပညာမြင့် သံမဏိဝတ်စုံကို ဝတ်ဆင်ပြီး တိုက်ခိုက်သော တိုနီစတပ်ခ်မှာ အဘယ်နည်း။",
-        "text": "Iron Man",
-        "imageId": null,
-        "categoryId": "supes",
-        "hint": "tech suit"
-    },
-    {
-        "id": "nat_mountain",
-        "question": "မြေပြင်ထက် အလွန်မြင့်မားသော သဘာဝအစုအဝေးကြီးမှာ အဘယ်နည်း။",
-        "text": "တောင်",
-        "imageId": null,
-        "categoryId": "nature",
-        "hint": "မြင့်"
-    },
-    {
-        "id": "nat_river",
-        "question": "အမြဲတမ်း စီးဆင်းနေသော သဘာဝရေလမ်းကြောင်းမှာ အဘယ်နည်း။",
-        "text": "မြစ်",
-        "imageId": null,
-        "categoryId": "nature",
-        "hint": "ရေ"
-    },
-    {
-        "id": "nat_forest",
-        "question": "အပင်ကြီးများ စုပေါင်းပေါက်ရောက်နေသော နေရာမှာ အဘယ်နည်း။",
-        "text": "သစ်တော",
-        "imageId": null,
-        "categoryId": "nature",
-        "hint": "အပင်"
-    },
-    {
-        "id": "nat_sea",
-        "question": "အလွန်ကျယ်ပြောသော ငန်သောရေများရှိရာ နေရာမှာ အဘယ်နည်း။",
-        "text": "ပင်လယ်",
-        "imageId": null,
-        "categoryId": "nature",
-        "hint": "ကြီးမား"
-    },
-    {
-        "id": "his_bayinnaung",
-        "question": "ဒုတိယမြန်မာနိုင်ငံတော်ကို တည်ထောင်ခဲ့သော ဟံသာဝတီဆင်ဖြူရှင်မှာ အဘယ်နည်း။",
-        "text": "ဘုရင့်နောင်",
-        "imageId": null,
-        "categoryId": "histories",
-        "hint": "ဘုရင်"
-    },
-    {
-        "id": "his_bagan",
-        "question": "ပုဂံခေတ်က တည်ထားခဲ့သော စေတီပုထိုးများစွာရှိသည့် ရှေးဟောင်းဒေသမှာ အဘယ်နည်း။",
-        "text": "ပုဂံ",
-        "imageId": null,
-        "categoryId": "histories",
-        "hint": "ရှေးဟောင်း"
-    },
-    {
-        "id": "his_revolution",
-        "question": "စနစ်တစ်ခု သို့မဟုတ် အုပ်ချုပ်ရေးတစ်ခုကို ပြောင်းလဲရန် ကြိုးပမ်းခြင်းမှာ အဘယ်နည်း။",
-        "text": "တော်လှန်ရေး",
-        "imageId": null,
-        "categoryId": "histories",
-        "hint": "ပြောင်းလဲ"
-    },
-    {
-        "id": "his_british_era",
-        "question": "မြန်မာနိုင်ငံကို အင်္ဂလိပ်တို့က ကိုလိုနီပြု အုပ်ချုပ်ခဲ့သော ကာလမှာ အဘယ်နည်း။",
-        "text": "အင်္ဂလိပ်ခေတ်",
-        "imageId": null,
-        "categoryId": "histories",
-        "hint": "ကိုလိုနီ"
-    },
-    {
-        "id": "sport_football",
-        "question": "ကစားသမား ၁၁ ဦးစီဖြင့် ဘောလုံးကို ဂိုးထဲဝင်အောင် ကန်ရသော အားကစားမှာ အဘယ်နည်း။",
-        "text": "ဘောလုံး",
-        "imageId": null,
-        "categoryId": "sports",
-        "hint": "ကန်"
-    },
-    {
-        "id": "sport_basketball",
-        "question": "ဘောလုံးကို အမြင့်ရှိခြင်းတောင်းထဲသို့ လက်ဖြင့်ပစ်ထည့်ရသော အားကစားမှာ အဘယ်နည်း။",
-        "text": "ဘတ်စကက်ဘော",
-        "imageId": null,
-        "categoryId": "sports",
-        "hint": "ခုန်"
-    },
-    {
-        "id": "sport_tennis",
-        "question": "ရက်ကတ် (racket) ဖြင့် ဘောလုံးကို ရိုက်ရသော အားကစားမှာ အဘယ်နည်း။",
-        "text": "တင်နစ်",
-        "imageId": null,
-        "categoryId": "sports",
-        "hint": "ရိုက်"
-    },
-    {
-        "id": "sport_running",
-        "question": "ပန်းတိုင်သို့ အမြန်ဆုံးရောက်အောင် ပြိုင်ပွဲဝင်ရသော အားကစားမှာ အဘယ်နည်း။",
-        "text": "ပြေး",
-        "imageId": null,
-        "categoryId": "sports",
-        "hint": "မြန်"
-    }
+  {
+    "id": "animal_cat",
+    "question": "ကြွက်ဖမ်းတတ်ပြီး အိမ်မှာမွေးလေ့ရှိတဲ့ တိရစ္ဆာန်မှာ အဘယ်နည်း။",
+    "text": "ကြောင်",
+    "imageId": "/images/Cat.png",
+    "categoryId": "animals",
+    "hint": "အိမ်မွေး"
+  },
+  {
+    "id": "animal_dog",
+    "question": "သစ္စာရှိပြီး အိမ်စောင့်ပေးတတ်သော တိရစ္ဆာန်မှာ အဘယ်နည်း။",
+    "text": "ခွေး",
+    "imageId": "/images/Dog.png",
+    "categoryId": "animals",
+    "hint": "လုံခြုံရေး"
+  },
+  {
+    "id": "animal_tiger",
+    "question": "ဟိန်းသံပြင်းပြီး တောထဲမှာနေထိုင်သော အသားစားသတ္တဝါမှာ အဘယ်နည်း။",
+    "text": "ကျား",
+    "imageId": "/images/Tiger.png",
+    "categoryId": "animals",
+    "hint": "တော"
+  },
+  {
+    "id": "animal_elephant",
+    "question": "နှာမောင်းရှည်ပြီး အကောင်အကြီးဆုံးသော ကုန်းသတ္တဝါမှာ အဘယ်နည်း။",
+    "text": "ဆင်",
+    "imageId": "/images/Elephnat.png",
+    "categoryId": "animals",
+    "hint": "ကြီးမား"
+  },
+  {
+    "id": "animal_cow",
+    "question": "လူသားတို့အတွက် အာဟာရဖြစ်စေသော နို့ကိုပေးသည့် တိရစ္ဆာန်မှာ အဘယ်နည်း။",
+    "text": "နွား",
+    "imageId": "/images/Cow.png",
+    "categoryId": "animals",
+    "hint": "နို့"
+  },
+  {
+    "id": "animal_horse",
+    "question": "အပြေးမြန်ပြီး လူတို့စီးနင်းရန် အသုံးပြုသော တိရစ္ဆာန်မှာ အဘယ်နည်း။",
+    "text": "မြင်း",
+    "imageId": "/images/Horse.png",
+    "categoryId": "animals",
+    "hint": "မြန်"
+  },
+  {
+    "id": "animal_pig",
+    "question": "အသားကို အဓိကစားသုံးရန် မွေးမြူကြသော တိရစ္ဆာန်မှာ အဘယ်နည်း။",
+    "text": "ဝက်",
+    "imageId": "/images/Pig.png",
+    "categoryId": "animals",
+    "hint": "စားသုံး"
+  },
+  {
+    "id": "animal_leopard",
+    "question": "ကိုယ်လုံးပေါ်တွင် အမည်းစက်ကွက်များပါရှိပြီး သစ်ပင်တက်ကျွမ်းကျင်သော သတ္တဝါမှာ အဘယ်နည်း။",
+    "text": "ကျားသစ်",
+    "imageId": "/images/Leopard.png",
+    "categoryId": "animals",
+    "hint": "စက်ကွက်"
+  },
+  {
+    "id": "animal_chicken",
+    "question": "လူတို့နေ့စဉ်စားသုံးသော ဥများကို ပေးစွမ်းသည့် အိမ်မွေးငှက်မှာ အဘယ်နည်း။",
+    "text": "ကြက်",
+    "imageId": "images/Chicken.png",
+    "categoryId": "animals",
+    "hint": "ဥ"
+  },
+  {
+    "id": "animal_bird",
+    "question": "အတောင်ပံရှိပြီး ကောင်းကင်ယံမှာ ပျံသန်းနိုင်သော သတ္တဝါမှာ အဘယ်နည်း။",
+    "text": "ငှက်",
+    "imageId": "images/Bird.png",
+    "categoryId": "animals",
+    "hint": "ပျံ"
+  },
+  {
+    "id": "animal_snake",
+    "question": "ခြေထောက်မရှိဘဲ ကိုယ်လုံးရှည်လျားကာ တွားသွားတတ်သော သတ္တဝါမှာ အဘယ်နည်း။",
+    "text": "မြွေ",
+    "imageId": "images/Snake.png",
+    "categoryId": "animals",
+    "hint": "ရှည်"
+  },
+  {
+    "id": "animal_frog",
+    "question": "ကုန်းတလှည့် ရေတလှည့်နေထိုင်ပြီး ခုန်ဆွခုန်ဆွ သွားတတ်သော သတ္တဝါမှာ အဘယ်နည်း။",
+    "text": "ဖား",
+    "imageId": "/images/Frog.png",
+    "categoryId": "animals",
+    "hint": "ခုန်"
+  },
+  {
+    "id": "animal_fish",
+    "question": "ရေထဲတွင် ကူးခတ်ရှင်သန်ပြီး ပါးဟက်ဖြင့် အသက်ရှူသော သတ္တဝါမှာ အဘယ်နည်း။",
+    "text": "ငါး",
+    "imageId": "/images/Fish.png",
+    "categoryId": "animals",
+    "hint": "ရေ"
+  },
+  {
+    "id": "animal_eagle",
+    "question": "အမြင်အာရုံစူးရှပြီး အမြင့်ပျံနိုင်သော ငှက်ရဲမှာ အဘယ်နည်း။",
+    "text": "လင်းယုန်",
+    "imageId": "/images/Eagle.png",
+    "categoryId": "animals",
+    "hint": "ပျံ"
+  },
+  {
+    "id": "animal_turtle",
+    "question": "မာကျောသော အခွံရှိပြီး အသွားအလာ နှေးကွေးသော သတ္တဝါမှာ အဘယ်နည်း။",
+    "text": "လိပ်",
+    "imageId": "/images/Turtle.png",
+    "categoryId": "animals",
+    "hint": "ယက်"
+  },
+  {
+    "id": "animal_giraffe",
+    "question": "လည်ပင်းအရှည်ဆုံးဖြစ်ပြီး သစ်ပင်အမြင့်မှ သစ်ရွက်များကို စားတတ်သော တိရစ္ဆာန်မှာ အဘယ်နည်း။",
+    "text": "သစ်ကုလားအုတ်",
+    "imageId": "/images/Giraffe.png",
+    "categoryId": "animals",
+    "hint": "ရှည်"
+  },
+  {
+    "id": "animal_zebra",
+    "question": "ကိုယ်လုံးပေါ်တွင် အဖြူအမည်း အစင်းကြားများပါသော မြင်းနှင့်တူသည့် တိရစ္ဆာန်မှာ အဘယ်နည်း။",
+    "text": "မြင်းကျား",
+    "imageId": "/images/Zebra.png",
+    "categoryId": "animals",
+    "hint": "ကြား"
+  },
+  {
+    "id": "animal_bear",
+    "question": "အမွှေးထူပြီး ကိုယ်လုံးကြီးမားကာ ပျားရည်ကြိုက်တတ်သော တောရိုင်းတိရစ္ဆာန်မှာ အဘယ်နည်း။",
+    "text": "ဝက်ဝံ",
+    "imageId": "/images/Bear.png",
+    "categoryId": "animals",
+    "hint": "တော"
+  },
+  {
+    "id": "animal_crocodile",
+    "question": "ရေထဲတွင်နေထိုင်ပြီး အလွန်ကြောက်စရာကောင်းသော ရေနေတွားသွားသတ္တဝါမှာ အဘယ်နည်း။",
+    "text": "မိကျောင်း",
+    "imageId": "/images/Crocodile.png",
+    "categoryId": "animals",
+    "hint": "ရေ"
+  },
+  {
+    "id": "animal_ostrich",
+    "question": "မပျံသန်းနိုင်သော်လည်း အပြေးအလွန်မြန်သော ကမ္ဘာ့အကြီးဆုံးငှက်မှာ အဘယ်နည်း။",
+    "text": "ငှက်ကုလားအုတ်",
+    "imageId": "/images/Ostrich.png",
+    "categoryId": "animals",
+    "hint": "မြန်"
+  },
+  {
+    "id": "animal_monkey",
+    "question": "သစ်ပင်တက်ကျွမ်းကျင်ပြီး လူနှင့်အနီးစပ်ဆုံး တူသောတိရစ္ဆာန်မှာ အဘယ်နည်း။",
+    "text": "မျောက်",
+    "imageId": "/images/Monkey.png",
+    "categoryId": "animals",
+    "hint": "တက်"
+  },
+  {
+    "id": "animal_kangaroo",
+    "question": "ရင်ဘတ်တွင် အိတ်ပါရှိပြီး သားငယ်ကို ထည့်ကာ ခုန်သွားတတ်သော တိရစ္ဆာန်မှာ အဘယ်နည်း။",
+    "text": "သားပိုက်ကောင်",
+    "imageId": "/images/Kangaroo.png",
+    "categoryId": "animals",
+    "hint": "ခုန်"
+  },
+  {
+    "id": "animal_penguin",
+    "question": "အလွန်အေးသော ဒေသများတွင် နေထိုင်ပြီး မပျံနိုင်သော ရေငှက်မှာ အဘယ်နည်း။",
+    "text": "ပင်ဂွင်း",
+    "imageId": "/images/Penguin.png",
+    "categoryId": "animals",
+    "hint": "အေး"
+  },
+  {
+    "id": "food_mohinga",
+    "question": "မြန်မာနိုင်ငံ၏ နာမည်ကျော် မနက်စာဖြစ်ပြီး ငါးဟင်းရည်ဖြင့် စားသုံးရသော အစားအစာမှာ အဘယ်နည်း။",
+    "text": "မုန့်ဟင်းခါး",
+    "imageId": null,
+    "categoryId": "foods",
+    "hint": "မနက်စာ"
+  },
+  {
+    "id": "food_pizza",
+    "question": "အီတလီနိုင်ငံမှ စတင်ခဲ့ပြီး ဂျုံပြားပေါ်တွင် ချိစ်နှင့် အသားများတင်ကာ ဖုတ်ထားသော အနောက်တိုင်းအစားအစာမှာ အဘယ်နည်း။",
+    "text": "ပီဇာ",
+    "imageId": null,
+    "categoryId": "foods",
+    "hint": "အနောက်တိုင်း"
+  },
+  {
+    "id": "food_hamburger",
+    "question": "အသားပြားကို ပေါင်မုန့်နှစ်ချပ်ကြားညှပ်ထားသော နာမည်ကြီး fast food မှာ အဘယ်နည်း။",
+    "text": "ဟမ်ဘာဂါ",
+    "imageId": null,
+    "categoryId": "foods",
+    "hint": "fast food"
+  },
+  {
+    "id": "loc_school",
+    "question": "ကလေးငယ်များ ပညာသင်ကြားရာ နေရာမှာ အဘယ်နည်း။",
+    "text": "ကျောင်း",
+    "imageId": null,
+    "categoryId": "locations",
+    "hint": "သင်ကြား"
+  },
+  {
+    "id": "loc_hospital",
+    "question": "ဖျားနာသူများကို ကုသပေးရာ ကျန်းမာရေးစောင့်ရှောက်မှု ဌာနမှာ အဘယ်နည်း။",
+    "text": "ဆေးရုံ",
+    "imageId": null,
+    "categoryId": "locations",
+    "hint": "ကျန်းမာရေး"
+  },
+  {
+    "id": "loc_market",
+    "question": "ဟင်းသီးဟင်းရွက်နှင့် ကုန်ပစ္စည်းများကို ရောင်းဝယ်ဖောက်ကားရာ နေရာမှာ အဘယ်နည်း။",
+    "text": "စျေး",
+    "imageId": null,
+    "categoryId": "locations",
+    "hint": "ဝယ်ယူ"
+  },
+  {
+    "id": "loc_airport",
+    "question": "လေယာဉ်များ ဆိုက်ကပ်ရာနှင့် ထွက်ခွာရာ နေရာမှာ အဘယ်နည်း။",
+    "text": "လေဆိပ်",
+    "imageId": null,
+    "categoryId": "locations",
+    "hint": "လေယာဉ်"
+  },
+  {
+    "id": "country_myanmar",
+    "question": "အရှေ့တောင်အာရှတွင် တည်ရှိပြီး ရွှေတိဂုံဘုရားရှိသော နိုင်ငံမှာ အဘယ်နည်း။",
+    "text": "မြန်မာ",
+    "imageId": null,
+    "categoryId": "countries",
+    "hint": "အာရှ"
+  },
+  {
+    "id": "country_japan",
+    "question": "အရှေ့အာရှတွင် တည်ရှိပြီး နည်းပညာနှင့် ချယ်ရီပန်းများကြောင့် ကျော်ကြားသော နိုင်ငံမှာ အဘယ်နည်း။",
+    "text": "ဂျပန်",
+    "imageId": null,
+    "categoryId": "countries",
+    "hint": "နည်းပညာ"
+  },
+  {
+    "id": "country_usa",
+    "question": "မြောက်အမေရိကတိုက်တွင် တည်ရှိပြီး အင်အားကြီးမားသော နိုင်ငံမှာ အဘယ်နည်း။",
+    "text": "အမေရိကန်",
+    "imageId": null,
+    "categoryId": "countries",
+    "hint": "ကြီးမား"
+  },
+  {
+    "id": "country_korea",
+    "question": "K-pop နှင့် Kimchi ကြောင့် ကမ္ဘာတစ်ဝှမ်း ကျော်ကြားသော နိုင်ငံမှာ အဘယ်နည်း။",
+    "text": "ကိုရီးယား",
+    "imageId": null,
+    "categoryId": "countries",
+    "hint": "K-pop"
+  },
+  {
+    "id": "movie_titanic",
+    "question": "သမုဒ္ဒရာထဲတွင် သင်္ဘောကြီး နစ်မြုပ်ခဲ့သော ဖြစ်ရပ်မှန်ကို အခြေခံရိုက်ကူးထားသည့် ဇာတ်ကားမှာ အဘယ်နည်း။",
+    "text": "Titanic",
+    "imageId": null,
+    "categoryId": "movies",
+    "hint": "သင်္ဘော"
+  },
+  {
+    "id": "movie_avengers",
+    "question": "စွမ်းအားရှင် (Superheroes) များစွာ စုပေါင်းပြီး ကမ္ဘာကြီးကို ကာကွယ်သော ဇာတ်ကားမှာ အဘယ်နည်း။",
+    "text": "Avengers",
+    "imageId": null,
+    "categoryId": "movies",
+    "hint": "hero"
+  },
+  {
+    "id": "movie_harry_potter",
+    "question": "မှော်ပညာသင်ကျောင်းနှင့် မှော်ဆရာလေးအကြောင်း ရိုက်ကူးထားသော ဇာတ်ကားမှာ အဘယ်နည်း။",
+    "text": "Harry Potter",
+    "imageId": null,
+    "categoryId": "movies",
+    "hint": "magic"
+  },
+  {
+    "id": "movie_frozen",
+    "question": "နှင်းဘုရင်မ အယ်လ်ဆာနှင့် သူမ၏ ညီမလေး အန်နာတို့အကြောင်း ရိုက်ကူးထားသော ကာတွန်းဇာတ်ကားမှာ အဘယ်နည်း။",
+    "text": "Frozen",
+    "imageId": null,
+    "categoryId": "movies",
+    "hint": "snow"
+  },
+  {
+    "id": "job_doctor",
+    "question": "ဆေးရုံတွင် လူနာများကို ဆေးကုသပေးသော အသက်မွေးဝမ်းကြောင်းမှာ အဘယ်နည်း။",
+    "text": "ဆရာဝန်",
+    "imageId": null,
+    "categoryId": "jobs",
+    "hint": "ဆေးရုံ"
+  },
+  {
+    "id": "job_teacher",
+    "question": "ကျောင်းတွင် ကျောင်းသားများကို ပညာသင်ကြားပေးသော ပုဂ္ဂိုလ်မှာ အဘယ်နည်း။",
+    "text": "ဆရာ",
+    "imageId": null,
+    "categoryId": "jobs",
+    "hint": "ကျောင်း"
+  },
+  {
+    "id": "job_police",
+    "question": "ပြည်သူများ၏ လုံခြုံရေးကို ကာကွယ်ပေးပြီး တရားဥပဒေကို ထိန်းသိမ်းသူမှာ အဘယ်နည်း။",
+    "text": "ရဲ",
+    "imageId": null,
+    "categoryId": "jobs",
+    "hint": "လုံခြုံရေး"
+  },
+  {
+    "id": "job_engineer",
+    "question": "အဆောက်အဦးများ၊ လမ်းတံတားများနှင့် စက်ပစ္စည်းများကို ဒီဇိုင်းဆွဲ တည်ဆောက်သူမှာ အဘယ်နည်း။",
+    "text": "အင်ဂျင်နီယာ",
+    "imageId": null,
+    "categoryId": "jobs",
+    "hint": "တည်ဆောက်"
+  },
+  {
+    "id": "tech_mobile",
+    "question": "နေရာမရွေး သယ်ဆောင်သွားနိုင်ပြီး ဖုန်းခေါ်ဆိုရန်နှင့် အင်တာနက်သုံးရန် အသုံးပြုသော ကိရိယာမှာ အဘယ်နည်း။",
+    "text": "မိုဘိုင်းဖုန်း",
+    "imageId": null,
+    "categoryId": "technologies",
+    "hint": "ဆက်သွယ်"
+  },
+  {
+    "id": "tech_laptop",
+    "question": "သယ်ဆောင်ရလွယ်ကူသော ကွန်ပျူတာတစ်မျိုးဖြစ်ပြီး အလုပ်လုပ်ရန် အသုံးပြုသော ကိရိယာမှာ အဘယ်နည်း။",
+    "text": "လက်ပ်တော့",
+    "imageId": null,
+    "categoryId": "technologies",
+    "hint": "အလုပ်"
+  },
+  {
+    "id": "tech_internet",
+    "question": "တစ်ကမ္ဘာလုံးကို ချိတ်ဆက်ပေးထားသော ကွန်ရက်ကြီးမှာ အဘယ်နည်း။",
+    "text": "အင်တာနက်",
+    "imageId": null,
+    "categoryId": "technologies",
+    "hint": "online"
+  },
+  {
+    "id": "tech_ai",
+    "question": "လူသားတို့ကဲ့သို့ စဉ်းစားတွေးခေါ်နိုင်ရန် ဖန်တီးထားသော ဉာဏ်ရည်တုမှာ အဘယ်နည်း။",
+    "text": "AI",
+    "imageId": null,
+    "categoryId": "technologies",
+    "hint": "smart"
+  },
+  {
+    "id": "img_dragon",
+    "question": "မီးမှုတ်နိုင်ပြီး အတောင်ပံများဖြင့် ပျံသန်းနိုင်သော ပုံပြင်ထဲမှ သတ္တဝါမှာ အဘယ်နည်း။",
+    "text": "နဂါး",
+    "imageId": null,
+    "categoryId": "imaginations",
+    "hint": "ပျံနိုင်"
+  },
+  {
+    "id": "img_ghost",
+    "question": "လူတို့ မမြင်နိုင်သော်လည်း ရှိသည်ဟု ယူဆကြသော ဝိညာဉ်မှာ အဘယ်နည်း။",
+    "text": "ဝိညာဉ်",
+    "imageId": null,
+    "categoryId": "imaginations",
+    "hint": "မမြင်ရ"
+  },
+  {
+    "id": "img_fairy",
+    "question": "ပုံပြင်ထဲတွင် မှော်တံလေးကိုင်ပြီး တောင်ပံလေးများဖြင့် ပျံသန်းတတ်သော မိန်းကလေးမှာ အဘယ်နည်း။",
+    "text": "မယ်မင်း",
+    "imageId": null,
+    "categoryId": "imaginations",
+    "hint": "ပုံပြင်"
+  },
+  {
+    "id": "img_dinosaur",
+    "question": "လွန်ခဲ့သော နှစ်ပေါင်းသန်းပေါင်းများစွာက ကမ္ဘာပေါ်တွင် ရှင်သန်ခဲ့သော ဧရာမသတ္တဝါကြီးမှာ အဘယ်နည်း။",
+    "text": "ဒိုင်နိုဆော",
+    "imageId": null,
+    "categoryId": "imaginations",
+    "hint": "ရှေးခေတ်"
+  },
+  {
+    "id": "hero_superman",
+    "question": "ကောင်းကင်ယံမှာ ပျံသန်းနိုင်ပြီး ရင်ဘတ်မှာ 'S' တံဆိပ်ပါသော စွမ်းအားရှင်မှာ အဘယ်နည်း။",
+    "text": "Superman",
+    "imageId": null,
+    "categoryId": "supes",
+    "hint": "ပျံ"
+  },
+  {
+    "id": "hero_batman",
+    "question": "ညအခါတွင် လင်းနို့ဝတ်စုံဝတ်ကာ ရာဇဝတ်သားများကို နှိမ်နင်းသော သူဌေးကြီးမှာ အဘယ်နည်း။",
+    "text": "Batman",
+    "imageId": null,
+    "categoryId": "supes",
+    "hint": "dark"
+  },
+  {
+    "id": "hero_spiderman",
+    "question": "ပင့်ကူကဲ့သို့ နံရံများတွင် ကပ်တက်နိုင်ပြီး ပင့်ကူမျှင်များ ပစ်နိုင်သော စွမ်းအားရှင်မှာ အဘယ်နည်း။",
+    "text": "Spider-Man",
+    "imageId": null,
+    "categoryId": "supes",
+    "hint": "web"
+  },
+  {
+    "id": "hero_ironman",
+    "question": "နည်းပညာမြင့် သံမဏိဝတ်စုံကို ဝတ်ဆင်ပြီး တိုက်ခိုက်သော တိုနီစတပ်ခ်မှာ အဘယ်နည်း။",
+    "text": "Iron Man",
+    "imageId": null,
+    "categoryId": "supes",
+    "hint": "tech suit"
+  },
+  {
+    "id": "nat_mountain",
+    "question": "မြေပြင်ထက် အလွန်မြင့်မားသော သဘာဝအစုအဝေးကြီးမှာ အဘယ်နည်း။",
+    "text": "တောင်",
+    "imageId": null,
+    "categoryId": "nature",
+    "hint": "မြင့်"
+  },
+  {
+    "id": "nat_river",
+    "question": "အမြဲတမ်း စီးဆင်းနေသော သဘာဝရေလမ်းကြောင်းမှာ အဘယ်နည်း။",
+    "text": "မြစ်",
+    "imageId": null,
+    "categoryId": "nature",
+    "hint": "ရေ"
+  },
+  {
+    "id": "nat_forest",
+    "question": "အပင်ကြီးများ စုပေါင်းပေါက်ရောက်နေသော နေရာမှာ အဘယ်နည်း။",
+    "text": "သစ်တော",
+    "imageId": null,
+    "categoryId": "nature",
+    "hint": "အပင်"
+  },
+  {
+    "id": "nat_sea",
+    "question": "အလွန်ကျယ်ပြောသော ငန်သောရေများရှိရာ နေရာမှာ အဘယ်နည်း။",
+    "text": "ပင်လယ်",
+    "imageId": null,
+    "categoryId": "nature",
+    "hint": "ကြီးမား"
+  },
+  {
+    "id": "his_bayinnaung",
+    "question": "ဒုတိယမြန်မာနိုင်ငံတော်ကို တည်ထောင်ခဲ့သော ဟံသာဝတီဆင်ဖြူရှင်မှာ အဘယ်နည်း။",
+    "text": "ဘုရင့်နောင်",
+    "imageId": null,
+    "categoryId": "histories",
+    "hint": "ဘုရင်"
+  },
+  {
+    "id": "his_bagan",
+    "question": "ပုဂံခေတ်က တည်ထားခဲ့သော စေတီပုထိုးများစွာရှိသည့် ရှေးဟောင်းဒေသမှာ အဘယ်နည်း။",
+    "text": "ပုဂံ",
+    "imageId": null,
+    "categoryId": "histories",
+    "hint": "ရှေးဟောင်း"
+  },
+  {
+    "id": "his_revolution",
+    "question": "စနစ်တစ်ခု သို့မဟုတ် အုပ်ချုပ်ရေးတစ်ခုကို ပြောင်းလဲရန် ကြိုးပမ်းခြင်းမှာ အဘယ်နည်း။",
+    "text": "တော်လှန်ရေး",
+    "imageId": null,
+    "categoryId": "histories",
+    "hint": "ပြောင်းလဲ"
+  },
+  {
+    "id": "his_british_era",
+    "question": "မြန်မာနိုင်ငံကို အင်္ဂလိပ်တို့က ကိုလိုနီပြု အုပ်ချုပ်ခဲ့သော ကာလမှာ အဘယ်နည်း။",
+    "text": "အင်္ဂလိပ်ခေတ်",
+    "imageId": null,
+    "categoryId": "histories",
+    "hint": "ကိုလိုနီ"
+  },
+  {
+    "id": "sport_football",
+    "question": "ကစားသမား ၁၁ ဦးစီဖြင့် ဘောလုံးကို ဂိုးထဲဝင်အောင် ကန်ရသော အားကစားမှာ အဘယ်နည်း။",
+    "text": "ဘောလုံး",
+    "imageId": null,
+    "categoryId": "sports",
+    "hint": "ကန်"
+  },
+  {
+    "id": "sport_basketball",
+    "question": "ဘောလုံးကို အမြင့်ရှိခြင်းတောင်းထဲသို့ လက်ဖြင့်ပစ်ထည့်ရသော အားကစားမှာ အဘယ်နည်း။",
+    "text": "ဘတ်စကက်ဘော",
+    "imageId": null,
+    "categoryId": "sports",
+    "hint": "ခုန်"
+  },
+  {
+    "id": "sport_tennis",
+    "question": "ရက်ကတ် (racket) ဖြင့် ဘောလုံးကို ရိုက်ရသော အားကစားမှာ အဘယ်နည်း။",
+    "text": "တင်နစ်",
+    "imageId": null,
+    "categoryId": "sports",
+    "hint": "ရိုက်"
+  },
+  {
+    "id": "sport_running",
+    "question": "ပန်းတိုင်သို့ အမြန်ဆုံးရောက်အောင် ပြိုင်ပွဲဝင်ရသော အားကစားမှာ အဘယ်နည်း။",
+    "text": "ပြေး",
+    "imageId": null,
+    "categoryId": "sports",
+    "hint": "မြန်"
+  }
 ]
