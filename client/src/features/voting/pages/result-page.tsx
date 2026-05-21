@@ -92,8 +92,11 @@ const ResultPage = () => {
   const imposterNames =
     imposterPlayers.map((player) => player.name).join(", ") || "Unknown";
 
-  const hintCategory = config.category?.name || "N/A";
-  const keywordText = config.word?.text || "N/A";
+  const hint =
+    config.gameMode === "word" ? config.word?.hint : config.question?.hint;
+
+  const keywordOrQuestionText =
+    config.gameMode === "word" ? config.word?.text : config.question?.text;
 
   const titleText = isTeammatesWin ? "Teammates Win!" : "Imposter Win!";
   const titleColor = isTeammatesWin ? "text-success-500" : "text-red-500";
@@ -122,9 +125,10 @@ const ResultPage = () => {
         </div>
         <div className={"flex flex-col gap-1"}>
           <p className={"text-lg md:text-2xl"}>Imposter: {imposterNames}</p>
-          <p className={"text-lg md:text-2xl"}>Imposter Hint: {hintCategory}</p>
+          <p className={"text-lg md:text-2xl"}>Imposter Hint: {hint}</p>
           <p className={"text-lg md:text-2xl"}>
-            Keyword: {keywordText || "N/A"}
+            {config.gameMode === "word" ? "Keyword" : "Question"}:{" "}
+            {keywordOrQuestionText || "N/A"}
           </p>
         </div>
       </div>

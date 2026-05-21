@@ -16,7 +16,7 @@ type GameSetting = {
   turnTimer: number;
   durationTimer: number;
   canImposterGetHint: boolean;
-  gameType: gameType
+  gameType: gameType;
 };
 
 export type Category = {
@@ -31,7 +31,7 @@ export type Word = {
   imageId: string | null;
   categoryId: string | null;
   hint: string;
-  question: string
+  //  question: string
 };
 
 export type Question = {
