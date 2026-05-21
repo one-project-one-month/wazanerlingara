@@ -3,6 +3,17 @@ import { createRoot } from "react-dom/client";
 import "@/styles/index.css";
 import { RouterProvider } from "react-router-dom";
 import router from "./app/routes/router";
+import { registerSW } from "virtual:pwa-register";
+
+registerSW({
+  onNeedRefresh() {
+    console.log("New version available");
+  },
+
+  onOfflineReady() {
+    console.log("App ready for offline use");
+  },
+});
 
 const rootElement = document.getElementById("root");
 if (!rootElement) {
@@ -10,7 +21,7 @@ if (!rootElement) {
 }
 
 createRoot(rootElement).render(
- 	<StrictMode>
- 		<RouterProvider router={router} />
- 	</StrictMode>,
+  <StrictMode>
+    <RouterProvider router={router} />
+  </StrictMode>,
 );

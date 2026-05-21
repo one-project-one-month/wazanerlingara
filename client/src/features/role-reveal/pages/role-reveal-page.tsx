@@ -16,14 +16,22 @@ import { getGameConfig } from "@/features/role-reveal/utils/get-game-config.ts";
 import { shuffleArray } from "@/lib/shuffle.ts";
 import { useGameConfigStore } from "@/stores/game-config-store";
 
-
-
-const shuffledImages = shuffleArray(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"])
+const shuffledImages = shuffleArray([
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+]);
 export default function RoleRevealPage() {
   const navigate = useNavigate();
-  const updateGameConfig = useGameConfigStore(s => s.updateGameConfig);
+  const updateGameConfig = useGameConfigStore((s) => s.updateGameConfig);
   const [gameConfig] = useState(getGameConfig);
-
 
   const [players, setPlayers] = useState<Player[]>(gameConfig?.players ?? []);
   const [showExitModal, setShowExitModal] = useState<boolean>(false);
@@ -71,10 +79,14 @@ export default function RoleRevealPage() {
 
   const typedConfig = gameConfig as GameConfig;
   const revealContent =
-    typedConfig.gameMode === "word" ? typedConfig.word?.text : typedConfig.word?.question;
-  const revealImageId = typedConfig.word?.imageId
+    typedConfig.gameMode === "word"
+      ? typedConfig.word?.text
+      : typedConfig.question?.text;
+  const revealImageId = typedConfig.word?.imageId;
   const hint =
-    typedConfig.gameMode === "word" ? typedConfig.word?.hint : typedConfig.word?.hint;
+    typedConfig.gameMode === "word"
+      ? typedConfig.word?.hint
+      : typedConfig.question?.hint;
   const imposterIds = typedConfig.imposterIds ?? "";
 
   return (
