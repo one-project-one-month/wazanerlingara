@@ -11,12 +11,12 @@ export function getRandomItemExcluding<T extends { id: string }>(
   return filtered[Math.floor(Math.random() * filtered.length)];
 }
 
-export function getRandomItemsExcluding<T>(
+export function getRandomItemsExcluding<T extends { id: string }>(
   arr: T[],
   count: number,
   excludeIds: string[] = [],
 ): T[] {
-  const filtered = arr.filter((item: any) => !excludeIds.includes(item.id));
+  const filtered = arr.filter((item: T) => !excludeIds.includes(item.id));
 
   // Shuffle array
   const shuffled = [...filtered].sort(() => Math.random() - 0.5);

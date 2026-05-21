@@ -4,8 +4,8 @@ import { useGameConfigStore } from "@/stores/game-config-store";
 
 const ImposterCounter = () => {
   const { config, updateGameConfig } = useGameConfigStore();
+  const players = config?.players ?? [];
   const imposterCount = config?.gameSetting.imposterCount || 0;
-
   const handleImposterCounter = (type: "INCREASE" | "DECREASE") => {
     if (!config) return;
     if (type === "INCREASE") {
@@ -13,7 +13,7 @@ const ImposterCounter = () => {
         gameSetting: {
           ...config?.gameSetting,
           imposterCount: Math.min(
-            config?.players.length - 1,
+            Math.floor(players.length / 2),
             imposterCount + 1,
           ),
         },

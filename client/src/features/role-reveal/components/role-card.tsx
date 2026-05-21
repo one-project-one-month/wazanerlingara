@@ -35,7 +35,7 @@ export default function RoleCard({
   handleClickCard,
   handleReveal,
 }: Props) {
-  const getUrl = useGameImageStore(s => s.getImageUrl);
+  const getUrl = useGameImageStore((s) => s.getImageUrl);
   const [playerAvatarUrl, setPlayerAvatarUrl] = useState<string | undefined>(
     undefined,
   );
@@ -58,98 +58,121 @@ export default function RoleCard({
 
   const isImposter = imposterIds.includes(currentPlayer.id);
   const isCardClickable = !showBlur && !revealed;
-  const cardRole = isCardClickable ? "button" : undefined;
+  const cardInteractionProps = isCardClickable
+    ? {
+        role: "button",
+        tabIndex: isDisabled ? -1 : 0,
+        "aria-disabled": isDisabled,
+        onClick: () => {
+          if (!isDisabled) handleClickCard();
+        },
+        onKeyDown: (e: React.KeyboardEvent<HTMLDivElement>) => {
+          if (isDisabled) return;
+
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleClickCard();
+          }
+        },
+      }
+    : {};
 
   return (
-    <div
-      role={cardRole}
-      tabIndex={isCardClickable ? (isDisabled ? -1 : 0) : undefined}
-      aria-disabled={isCardClickable ? isDisabled : undefined}
-      onClick={isCardClickable ? () => { if (!isDisabled) handleClickCard(); } : undefined}
-      onKeyDown={isCardClickable ? (e => {
-        if (isDisabled) return;
-        if (e.key === "Enter") handleClickCard();
-      }) : undefined}
-      className={`
+    <>
+      <div
+        {...cardInteractionProps}
+        className={`
         relative
         w-65 h-90
         md:w-95 md:h-130
         lg:w-60 lg:h-75
         rounded-[30px]
         flex items-center justify-center
-        ${isDisabled
-          ? "opacity-50 cursor-not-allowed"
-          : "cursor-pointer"
-        }
+        ${isDisabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
       `}
-    >
-      {/*{glowing borders}*/}
-      <div className="absolute inset-0 rounded-4xl pointer-events-none z-0 shadow-[0_0_60px_rgba(255,255,255,0.25)]" />
-      <div className="absolute inset-0 rounded-4xl border-[3px] border-white/60 z-10" />
-      <div className="absolute inset-2 rounded-[26px] border-2 border-white/40 z-10" />
+      >
+        {/*{glowing borders}*/}
+        <div className="absolute inset-0 rounded-4xl pointer-events-none z-0 shadow-[0_0_60px_rgba(255,255,255,0.25)]" />
+        <div className="absolute inset-0 rounded-4xl border-[3px] border-white/60 z-10" />
+        <div className="absolute inset-2 rounded-[26px] border-2 border-white/40 z-10" />
 
-      <div className="absolute inset-3 rounded-3xl bg-black z-20 flex items-center justify-center overflow-hidden">
-        <div ref={cardRef} className="  flex flex-col items-center">
-          {!revealed && (
-            <>
-              {playerAvatarUrl ? (
+        <div className="absolute inset-3 rounded-3xl bg-black z-20 flex items-center justify-center overflow-hidden">
+          <div ref={cardRef} className="  flex flex-col items-center">
+            {!revealed && (
+              <>
+                {playerAvatarUrl ? (
+                  <img
+                    loading={"lazy"}
+                    src={playerAvatarUrl}
+                    alt="avatar"
+                    className="w-40 h-40 md:w-50 md:h-50 object-contain mb-5"
+                  />
+                ) : (
+                  <h2>Loading Image...</h2>
+                )}
+                {/* <p className="text-[16px] md:text-lg text-white/90">
+                  {currentPlayer.name}
+                </p> */}
+              </>
+            )}
+
+            {revealed && (
+              <>
                 <img
-                  loading={"lazy"}
-                  src={playerAvatarUrl}
-                  alt="avatar"
-                  className="w-40 h-40 md:w-50 md:h-50 object-contain mb-5"
+                  src={isImposter ? getUrl("imposter") : (revealImageId ?? "")}
+                  alt="wordOrImposterImg"
+                  className="w-50 h-50  object-contain mb-5"
                 />
-              ) : (
-                <h2>Loading Image...</h2>
-              )}
-              <p className="text-[16px] md:text-lg text-white/90">
-                {currentPlayer.name}
-              </p>
-            </>
-          )}
-
-          {revealed && (
-            <>
-              <img
-                src={isImposter ? getUrl("imposter") : (revealImageId ?? "")}
-                alt="wordOrImposterImg"
-                className="w-50 h-50  object-contain mb-5"
-              />
-              <h2
-                className={`text-2xl text-center md:text-3xl font-semibold ${isImposter ? "text-red-500" : "text-white"
+                {/* <h2
+                  className={`text-2xl text-center md:text-3xl font-semibold ${
+                    isImposter ? "text-red-500" : "text-white"
                   }`}
-              >
-                {isImposter ? "Imposter" : revealContent}
-              </h2>
-              {isImposter && imposterCanGetHint ? `hint- ${hint}` : ""}
-            </>
+                >
+                  {isImposter ? "Imposter" : revealContent}
+                </h2> */}
+              </>
+            )}
+          </div>
+
+          {showBlur && !revealed && (
+            <button
+              type={"button"}
+              tabIndex={0}
+              onClick={(event) => {
+                event.stopPropagation();
+                handleReveal();
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.stopPropagation();
+                  handleReveal();
+                }
+              }}
+              className="absolute inset-0 backdrop-blur-2xl z-130 flex items-center justify-center"
+            >
+              <div className="absolute inset-0 backdrop-blur-xl bg-white/5" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.25),rgba(0,0,0,0.6))]" />
+              <div className="absolute inset-0 opacity-30 mix-blend-overlay " />
+
+              <img src={viewButton} alt="view" />
+            </button>
           )}
         </div>
-
-        {showBlur && !revealed && (
-          <button
-            type={"button"}
-            tabIndex={0}
-            onClick={(event) => {
-              event.stopPropagation();
-              handleReveal();
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                e.stopPropagation();
-                handleReveal();
-              }
-            }}
-            className="absolute inset-0 backdrop-blur-2xl z-130 flex items-center justify-center"
-          >
-            <div className="absolute inset-0 backdrop-blur-xl bg-white/5" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.25),rgba(0,0,0,0.6))]" />
-            <div className="absolute inset-0 opacity-30 mix-blend-overlay " />
-
-            <img src={viewButton} alt="view" />
-          </button>
-        )}
       </div>
-    </div>
+      <p className={`text-2xl text-center md:text-3xl font-semibold }`}>
+        {revealed ? (
+          isImposter ? (
+            <span className={`${isImposter ? "text-red-500" : "text-white"}`}>
+              Imposter
+            </span>
+          ) : (
+            revealContent
+          )
+        ) : (
+          <span>ကစားသမား - {currentPlayer.name} </span>
+        )}
+      </p>
+      {revealed && isImposter && imposterCanGetHint && <p>hint-{hint}</p>}
+    </>
   );
 }

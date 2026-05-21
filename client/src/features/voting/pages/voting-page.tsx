@@ -17,10 +17,10 @@ const VotingPage = () => {
 
   const navigate = useNavigate();
   const { config } = useGameConfigStore();
-  const playersLength = config?.players.length ?? 0;
+  const players = config?.players || [];
+  const playersLength = players.length ?? 0;
   const [votedPlayers, setVotedPlayers] = useState(
-    config?.players.map((p) => ({ id: p.id, name: p.name, votedCount: 0 })) ||
-      [],
+    players.map((p) => ({ id: p.id, name: p.name, votedCount: 0 })) || [],
   );
   const [voteCount, setVoteCount] = useState(0);
 
@@ -75,7 +75,6 @@ const VotingPage = () => {
     const nextVoteCount = voteCount + 1;
     setVoteCount(nextVoteCount);
     if (nextVoteCount === playersLength) {
-      console.log("All players have voted");
       setIsLoading(true);
     }
   }, [playersLength, selectedPlayerIds, voteCount]);
@@ -130,14 +129,16 @@ const VotingPage = () => {
                 လက်ရှိ vote ရန်အလှည့်ကျသူ :
               </h1>
               <span className={"ml-1 text-xl lg:text-3xl opacity-80"}>
-                {config?.players[voteCount].name}
+                {players[voteCount].name}
               </span>
             </div>
           </div>
 
           <div className="w-full flex justify-center py-4">
             <VotingPlayerCard
-              players={config?.players || []}
+              players={
+                players.filter((u) => u.id !== players[voteCount].id) || []
+              }
               selectedPlayerIds={selectedPlayerIds}
               onSelect={toggleSelectPlayer}
             />
