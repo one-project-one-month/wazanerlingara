@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { APP_CONFIG } from "@/app/config/app-config.ts";
+import questionImg from "@/assets/images/ImagesForQuestions/Question.png";
 import ConfirmModal from "@/components/ui/confirm-modal.tsx";
 import BottomSection from "@/features/role-reveal/components/bottom-section.tsx";
 import RoleCard from "@/features/role-reveal/components/role-card.tsx";
@@ -82,7 +83,8 @@ export default function RoleRevealPage() {
     typedConfig.gameMode === "word"
       ? typedConfig.word?.text
       : typedConfig.question?.text;
-  const revealImageId = typedConfig.word?.imageId;
+  const revealImageId =
+    typedConfig.gameMode === "word" ? typedConfig.word?.imageId : questionImg;
   const hint =
     typedConfig.gameMode === "word"
       ? typedConfig.word?.hint
@@ -115,7 +117,7 @@ export default function RoleRevealPage() {
         hint={hint ?? ""}
       />
 
-      <InstructionText confirmed={confirmed} />
+      <InstructionText revealed={revealed} confirmed={confirmed} />
 
       <BottomSection
         currentPlayerIndex={currentPlayerIndex}
