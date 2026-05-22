@@ -119,7 +119,6 @@ import sea from "@/assets/images/ImagesForWords/Nature/sea.jpg";
 //histories
 import bagan from "@/assets/images/ImagesForWords/History/Bagan.jpg";
 import bayinnaung from "@/assets/images/ImagesForWords/History/Bayinnaung.png";
-import bandula from "@/assets/images/ImagesForWords/History/BanDula.png";
 import kyansitthar from "@/assets/images/ImagesForWords/History/KyanSittThar.png";
 
 //sports
@@ -916,13 +915,6 @@ const histories = [
     imageId: bagan,
     categoryId: "histories",
     hint: "ရှေးဟောင်း",
-  },
-  {
-    id: "",
-    text: "ဗန္ဓုလ",
-    imageId: bandula,
-    categoryId: "histories",
-    hint: "သတ္တိ",
   },
   {
     id: "",
