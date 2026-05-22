@@ -1,5 +1,6 @@
 import type { Category, Question, Word } from "@/types/game.type.ts";
 
+//animals
 import bearPic from "@/assets/images/ImagesForWords/Animals/Bear.png";
 import birdPic from "@/assets/images/ImagesForWords/Animals/Bird.png";
 import catPic from "@/assets/images/ImagesForWords/Animals/Cat.png";
@@ -24,7 +25,110 @@ import tigerPic from "@/assets/images/ImagesForWords/Animals/Tiger.png";
 import turtlePic from "@/assets/images/ImagesForWords/Animals/Turtle.png";
 import zebraPic from "@/assets/images/ImagesForWords/Animals/Zebra.png";
 
+//foods
+import montHinKharPic from "@/assets/images/ImagesForWords/Foods/mont-hin-khar.png";
+import pizzaPic from "@/assets/images/ImagesForWords/Foods/pizza.png";
+import burgerPic from "@/assets/images/ImagesForWords/Foods/burger.png";
+
+//places
+import schoolPic from "@/assets/images/ImagesForWords/Places(နေရာဒေသ)/School.png";
+import hospitalPic from "@/assets/images/ImagesForWords/Places(နေရာဒေသ)/Hospital (1).jpg";
+import marketPic from "@/assets/images/ImagesForWords/Places(နေရာဒေသ)/Market.jpg";
+import airPortPic from "@/assets/images/ImagesForWords/Places(နေရာဒေသ)/Airport.jpg";
+
+//countries
+import myanmar from "@/assets/images/ImagesForWords/Countries/Myanmar.jpg";
+import unitedStates from "@/assets/images/ImagesForWords/Countries/USA.jpg";
+import china from "@/assets/images/ImagesForWords/Countries/China.jpg";
+import japan from "@/assets/images/ImagesForWords/Countries/Japan.jpg";
+import southKorea from "@/assets/images/ImagesForWords/Countries/Korea.jpg";
+import england from "@/assets/images/ImagesForWords/Countries/England.jpg";
+import france from "@/assets/images/ImagesForWords/Countries/Frence.jpg";
+import germany from "@/assets/images/ImagesForWords/Countries/Germany.jpg";
+import italy from "@/assets/images/ImagesForWords/Countries/Italy.jpg";
+import spain from "@/assets/images/ImagesForWords/Countries/Spain.jpg";
+import brazil from "@/assets/images/ImagesForWords/Countries/Brazil.jpg";
+import argentina from "@/assets/images/ImagesForWords/Countries/Argentina.jpg";
+import russia from "@/assets/images/ImagesForWords/Countries/Russia.jpg";
+import india from "@/assets/images/ImagesForWords/Countries/India.jpg";
+import thailand from "@/assets/images/ImagesForWords/Countries/Thailand.jpg";
+import singapore from "@/assets/images/ImagesForWords/Countries/Singpore.jpg";
+import malaysia from "@/assets/images/ImagesForWords/Countries/Malaysia.jpg";
+import vietnam from "@/assets/images/ImagesForWords/Countries/Vietnam.jpg";
+import canada from "@/assets/images/ImagesForWords/Countries/Canada flag_.jpg";
+import saudiArabia from "@/assets/images/ImagesForWords/Countries/Saudi.jpg";
+import egypt from "@/assets/images/ImagesForWords/Countries/Egypt.jpg";
+import southAfrica from "@/assets/images/ImagesForWords/Countries/SouthAfrica.jpg";
+import nepal from "@/assets/images/ImagesForWords/Countries/Nepal.jpg";
+import pakistan from "@/assets/images/ImagesForWords/Countries/Pakistan.jpg";
+import indonesia from "@/assets/images/ImagesForWords/Countries/Indonesia.jpg";
+
+//movies
+import harryPotter from "@/assets/images/ImagesForWords/Movies/HarryPotter.jpg";
+import frozen from "@/assets/images/ImagesForWords/Movies/Frozen.jpg";
+import titanic from "@/assets/images/ImagesForWords/Movies/Titanic.jpg";
+import avengers from "@/assets/images/ImagesForWords/Movies/Avengers.jpg";
+
+//jobs
+import doctor from "@/assets/images/ImagesForWords/Jobs/Doctor.png";
+import teacher from "@/assets/images/ImagesForWords/Jobs/Teacher.png";
+import engineer from "@/assets/images/ImagesForWords/Jobs/Engineer.png";
+import police from "@/assets/images/ImagesForWords/Jobs/Police.png";
+
+//technologies
+import mobilePhone from "@/assets/images/ImagesForWords/Technologies/MobilePhone.png";
+import laptop from "@/assets/images/ImagesForWords/Technologies/Laptop.png";
+import ai from "@/assets/images/ImagesForWords/Technologies/Ai.png";
+import internet from "@/assets/images/ImagesForWords/Technologies/Internet.jpg";
+
+//imaginations
+import dragon from "@/assets/images/ImagesForWords/Imaginations(စိတ်ကူးယဉ်အရာများ)/Dragon.png";
+import dinosaur from "@/assets/images/ImagesForWords/Imaginations(စိတ်ကူးယဉ်အရာများ)/Dinossaur.png";
+import beluu from "@/assets/images/ImagesForWords/Imaginations(စိတ်ကူးယဉ်အရာများ)/BeLuu.png";
+import ghost from "@/assets/images/ImagesForWords/Imaginations(စိတ်ကူးယဉ်အရာများ)/Ghost.png";
+import godzilla from "@/assets/images/ImagesForWords/Imaginations(စိတ်ကူးယဉ်အရာများ)/Godzilla.png";
+
+//superheros
+import superman from "@/assets/images/ImagesForWords/SuperHeros/superman.png";
+import batman from "@/assets/images/ImagesForWords/SuperHeros/batman.png";
+import spiderman from "@/assets/images/ImagesForWords/SuperHeros/spiderman.png";
+import ironMan from "@/assets/images/ImagesForWords/SuperHeros/ironman.png";
+import captainAmerica from "@/assets/images/ImagesForWords/SuperHeros/captainamerica.png";
+import thor from "@/assets/images/ImagesForWords/SuperHeros/thor.png";
+import hulk from "@/assets/images/ImagesForWords/SuperHeros/hulk.png";
+import doctorStrange from "@/assets/images/ImagesForWords/SuperHeros/doctorstrange.png";
+import blackPanther from "@/assets/images/ImagesForWords/SuperHeros/blackpanther.png";
+import flash from "@/assets/images/ImagesForWords/SuperHeros/flash.png";
+import wonderWoman from "@/assets/images/ImagesForWords/SuperHeros/wonderwoman.png";
+import aquaman from "@/assets/images/ImagesForWords/SuperHeros/aquaman.png";
+import greenLantern from "@/assets/images/ImagesForWords/SuperHeros/greenlantern.jpg";
+import wolverine from "@/assets/images/ImagesForWords/SuperHeros/wolverine.png";
+import deadpool from "@/assets/images/ImagesForWords/SuperHeros/deadpool.png";
+import antMan from "@/assets/images/ImagesForWords/SuperHeros/antman.png";
+import captainMarvel from "@/assets/images/ImagesForWords/SuperHeros/captainmarvel.png";
+import blackWidow from "@/assets/images/ImagesForWords/SuperHeros/blackwidow.png";
+import shazam from "@/assets/images/ImagesForWords/SuperHeros/shazam.png";
+import loki from "@/assets/images/ImagesForWords/SuperHeros/loki.png";
+
+//nature
+import mountain from "@/assets/images/ImagesForWords/Nature/mountain.png";
+import river from "@/assets/images/ImagesForWords/Nature/river.jpg";
+import forest from "@/assets/images/ImagesForWords/Nature/forest.jpg";
+import sea from "@/assets/images/ImagesForWords/Nature/sea.jpg";
+
+//histories
+import bagan from "@/assets/images/ImagesForWords/History/Bagan.jpg";
+import bayinnaung from "@/assets/images/ImagesForWords/History/Bayinnaung.png";
+import kyansitthar from "@/assets/images/ImagesForWords/History/KyanSittThar.png";
+
+//sports
+import football from "@/assets/images/ImagesForWords/Sports/footabll.png";
+import basketball from "@/assets/images/ImagesForWords/Sports/basketball.png";
+import run from "@/assets/images/ImagesForWords/Sports/run.png";
+import tennis from "@/assets/images/ImagesForWords/Sports/tennis.png";
+
 export const GAME_CATEGORIES: Category[] = [
+  { id: "all", name: "အားလုံး", imageId: "all" },
   { id: "animals", name: "တိရစ္ဆာန်များ", imageId: "animals" },
   { id: "foods", name: "အစားအသောက်", imageId: "foods" },
   { id: "locations", name: "နေရာဒေသ", imageId: "locations" },
@@ -33,7 +137,7 @@ export const GAME_CATEGORIES: Category[] = [
   { id: "jobs", name: "အလုပ်အကိုင်", imageId: "jobs" },
   { id: "technologies", name: "နည်းပညာ", imageId: "technologies" },
   { id: "imaginations", name: "စိတ်ကူးယဉ် အရာများ", imageId: "imaginations" },
-  { id: "superheroes", name: "စူပါဟီးရိုးများ", imageId: "superheroes" },
+  { id: "supes", name: "စူပါဟီးရိုးများ", imageId: "superheroes" },
   { id: "nature", name: "သဘာဝ", imageId: "nature" },
   { id: "histories", name: "သမိုင်း", imageId: "histories" },
   { id: "sports", name: "အားကစား", imageId: "sports" },
@@ -277,7 +381,7 @@ const foods = [
   {
     id: "",
     text: "မုန့်ဟင်းခါး",
-    imageId: null,
+    imageId: montHinKharPic,
     categoryId: "foods",
     hint: "မနက်စာ",
   },
@@ -285,14 +389,14 @@ const foods = [
   {
     id: "",
     text: "ပီဇာ",
-    imageId: null,
+    imageId: pizzaPic,
     categoryId: "foods",
     hint: "အနောက်တိုင်း",
   },
   {
     id: "",
     text: "ဟမ်ဘာဂါ",
-    imageId: null,
+    imageId: burgerPic,
     categoryId: "foods",
     hint: "fast food",
   },
@@ -301,28 +405,28 @@ const places = [
   {
     id: "",
     text: "ကျောင်း",
-    imageId: null,
+    imageId: schoolPic,
     categoryId: "locations",
     hint: "သင်ကြား",
   },
   {
     id: "",
     text: "ဆေးရုံ",
-    imageId: null,
+    imageId: hospitalPic,
     categoryId: "locations",
     hint: "ကျန်းမာရေး",
   },
   {
     id: "",
     text: "စျေး",
-    imageId: null,
+    imageId: marketPic,
     categoryId: "locations",
     hint: "ဝယ်ယူ",
   },
   {
     id: "",
     text: "လေဆိပ်",
-    imageId: null,
+    imageId: airPortPic,
     categoryId: "locations",
     hint: "လေယာဉ်",
   },
@@ -330,65 +434,236 @@ const places = [
 const countries = [
   {
     id: "",
-    text: "မြန်မာ",
-    imageId: null,
+    text: "အမေရိကန်",
+    imageId: unitedStates,
     categoryId: "countries",
-    hint: "အာရှ",
+    hint: "Hollywood",
+  },
+  {
+    id: "",
+    text: "တရုတ်",
+    imageId: china,
+    categoryId: "countries",
+    hint: "လူဦးရေများ",
   },
   {
     id: "",
     text: "ဂျပန်",
-    imageId: null,
+    imageId: japan,
     categoryId: "countries",
-    hint: "နည်းပညာ",
-  },
-  {
-    id: "",
-    text: "အမေရိကန်",
-    imageId: null,
-    categoryId: "countries",
-    hint: "ကြီးမား",
+    hint: "Anime",
   },
   {
     id: "",
     text: "ကိုရီးယား",
-    imageId: null,
+    imageId: southKorea,
     categoryId: "countries",
     hint: "K-pop",
+  },
+  {
+    id: "",
+    text: "အင်္ဂလန်",
+    imageId: england,
+    categoryId: "countries",
+    hint: "Premier League",
+  },
+  {
+    id: "",
+    text: "ပြင်သစ်",
+    imageId: france,
+    categoryId: "countries",
+    hint: "Eiffel Tower",
+  },
+  {
+    id: "",
+    text: "ဂျာမနီ",
+    imageId: germany,
+    categoryId: "countries",
+    hint: "BMW",
+  },
+  {
+    id: "",
+    text: "အီတလီ",
+    imageId: italy,
+    categoryId: "countries",
+    hint: "Pizza",
+  },
+  {
+    id: "",
+    text: "စပိန်",
+    imageId: spain,
+    categoryId: "countries",
+    hint: "Real Madrid",
+  },
+  {
+    id: "",
+    text: "ဘရာဇီး",
+    imageId: brazil,
+    categoryId: "countries",
+    hint: "Football",
+  },
+  {
+    id: "",
+    text: "အာဂျင်တီးနား",
+    imageId: argentina,
+    categoryId: "countries",
+    hint: "Messi",
+  },
+  {
+    id: "",
+    text: "ရုရှား",
+    imageId: russia,
+    categoryId: "countries",
+    hint: "အေး",
+  },
+  {
+    id: "",
+    text: "အိန္ဒိယ",
+    imageId: india,
+    categoryId: "countries",
+    hint: "Bollywood",
+  },
+  {
+    id: "",
+    text: "ထိုင်း",
+    imageId: thailand,
+    categoryId: "countries",
+    hint: "ခရီးသွား",
+  },
+  {
+    id: "",
+    text: "စင်ကာပူ",
+    imageId: singapore,
+    categoryId: "countries",
+    hint: "Marina Bay",
+  },
+  {
+    id: "",
+    text: "မလေးရှား",
+    imageId: malaysia,
+    categoryId: "countries",
+    hint: "Twin Towers",
+  },
+  {
+    id: "",
+    text: "ဗီယက်နမ်",
+    imageId: vietnam,
+    categoryId: "countries",
+    hint: "Pho",
+  },
+  {
+    id: "",
+    text: "ကနေဒါ",
+    imageId: canada,
+    categoryId: "countries",
+    hint: "Maple",
+  },
+  {
+    id: "",
+    text: "ဆော်ဒီအာရေးဗီးယား",
+    imageId: saudiArabia,
+    categoryId: "countries",
+    hint: "ရေနံ",
+  },
+  {
+    id: "",
+    text: "အီဂျစ်",
+    imageId: egypt,
+    categoryId: "countries",
+    hint: "Pyramid",
+  },
+  {
+    id: "",
+    text: "တောင်အာဖရိက",
+    imageId: southAfrica,
+    categoryId: "countries",
+    hint: "Safari",
+  },
+  {
+    id: "",
+    text: "မြန်မာ",
+    imageId: myanmar,
+    categoryId: "countries",
+    hint: "ရွှေတိဂုံ",
+  },
+  {
+    id: "",
+    text: "နီပေါ",
+    imageId: nepal,
+    categoryId: "countries",
+    hint: "Everest",
+  },
+  {
+    id: "",
+    text: "ပါကစ္စတန်",
+    imageId: pakistan,
+    categoryId: "countries",
+    hint: "Cricket",
+  },
+  {
+    id: "",
+    text: "အင်ဒိုနီးရှား",
+    imageId: indonesia,
+    categoryId: "countries",
+    hint: "ကျွန်းများ",
   },
 ];
 const movies = [
   {
     id: "",
     text: "Titanic",
-    imageId: null,
+    imageId: titanic,
     categoryId: "movies",
     hint: "သင်္ဘော",
   },
   {
     id: "",
     text: "Avengers",
-    imageId: null,
+    imageId: avengers,
     categoryId: "movies",
     hint: "hero",
   },
   {
     id: "",
     text: "Harry Potter",
-    imageId: null,
+    imageId: harryPotter,
     categoryId: "movies",
     hint: "magic",
   },
-  { id: "", text: "Frozen", imageId: null, categoryId: "movies", hint: "snow" },
+  {
+    id: "",
+    text: "Frozen",
+    imageId: frozen,
+    categoryId: "movies",
+    hint: "snow",
+  },
 ];
 const jobs = [
-  { id: "", text: "ဆရာဝန်", imageId: null, categoryId: "jobs", hint: "ဆေးရုံ" },
-  { id: "", text: "ဆရာ", imageId: null, categoryId: "jobs", hint: "ကျောင်း" },
-  { id: "", text: "ရဲ", imageId: null, categoryId: "jobs", hint: "လုံခြုံရေး" },
+  {
+    id: "",
+    text: "ဆရာဝန်",
+    imageId: doctor,
+    categoryId: "jobs",
+    hint: "ဆေးရုံ",
+  },
+  {
+    id: "",
+    text: "ဆရာ",
+    imageId: teacher,
+    categoryId: "jobs",
+    hint: "ကျောင်း",
+  },
+  {
+    id: "",
+    text: "ရဲ",
+    imageId: police,
+    categoryId: "jobs",
+    hint: "လုံခြုံရေး",
+  },
   {
     id: "",
     text: "အင်ဂျင်နီယာ",
-    imageId: null,
+    imageId: engineer,
     categoryId: "jobs",
     hint: "တည်ဆောက်",
   },
@@ -397,28 +672,28 @@ const technologies = [
   {
     id: "",
     text: "မိုဘိုင်းဖုန်း",
-    imageId: null,
+    imageId: mobilePhone,
     categoryId: "technologies",
     hint: "ဆက်သွယ်",
   },
   {
     id: "",
     text: "လက်ပ်တော့",
-    imageId: null,
+    imageId: laptop,
     categoryId: "technologies",
     hint: "အလုပ်",
   },
   {
     id: "",
     text: "အင်တာနက်",
-    imageId: null,
+    imageId: internet,
     categoryId: "technologies",
     hint: "online",
   },
   {
     id: "",
     text: "AI",
-    imageId: null,
+    imageId: ai,
     categoryId: "technologies",
     hint: "smart",
   },
@@ -427,58 +702,201 @@ const imaginations = [
   {
     id: "",
     text: "နဂါး",
-    imageId: null,
+    imageId: dragon,
     categoryId: "imaginations",
     hint: "ပျံနိုင်",
   },
   {
     id: "",
     text: "ဝိညာဉ်",
-    imageId: null,
+    imageId: ghost,
     categoryId: "imaginations",
     hint: "မမြင်ရ",
   },
   {
     id: "",
-    text: "မယ်မင်း",
-    imageId: null,
+    text: "ဘီလူး",
+    imageId: beluu,
     categoryId: "imaginations",
     hint: "ပုံပြင်",
   },
   {
     id: "",
+    text: " ဂေါ်ဇီလာ",
+    imageId: godzilla,
+    categoryId: "imaginations",
+    hint: "မွန်းစတား",
+  },
+  {
+    id: "",
     text: "ဒိုင်နိုဆော",
-    imageId: null,
+    imageId: dinosaur,
     categoryId: "imaginations",
     hint: "ရှေးခေတ်",
   },
 ];
 const superHeroes = [
-  { id: "", text: "Superman", imageId: null, categoryId: "supes", hint: "ပျံ" },
-  { id: "", text: "Batman", imageId: null, categoryId: "supes", hint: "dark" },
+  {
+    id: "",
+    text: "Superman",
+    imageId: superman,
+    categoryId: "supes",
+    hint: "ပျံ",
+  },
+  {
+    id: "",
+    text: "Batman",
+    imageId: batman,
+    categoryId: "supes",
+    hint: "dark",
+  },
   {
     id: "",
     text: "Spider-Man",
-    imageId: null,
+    imageId: spiderman,
     categoryId: "supes",
     hint: "web",
   },
   {
     id: "",
     text: "Iron Man",
-    imageId: null,
+    imageId: ironMan,
     categoryId: "supes",
     hint: "tech suit",
   },
+  {
+    id: "",
+    text: "Captain America",
+    imageId: captainAmerica,
+    categoryId: "supes",
+    hint: "shield",
+  },
+  {
+    id: "",
+    text: "Thor",
+    imageId: thor,
+    categoryId: "supes",
+    hint: "hammer",
+  },
+  {
+    id: "",
+    text: "Hulk",
+    imageId: hulk,
+    categoryId: "supes",
+    hint: "green",
+  },
+  {
+    id: "",
+    text: "Doctor Strange",
+    imageId: doctorStrange,
+    categoryId: "supes",
+    hint: "magic",
+  },
+  {
+    id: "",
+    text: "Black Panther",
+    imageId: blackPanther,
+    categoryId: "supes",
+    hint: "Wakanda",
+  },
+  {
+    id: "",
+    text: "Flash",
+    imageId: flash,
+    categoryId: "supes",
+    hint: "speed",
+  },
+  {
+    id: "",
+    text: "Wonder Woman",
+    imageId: wonderWoman,
+    categoryId: "supes",
+    hint: "lasso",
+  },
+  {
+    id: "",
+    text: "Aquaman",
+    imageId: aquaman,
+    categoryId: "supes",
+    hint: "ocean",
+  },
+  {
+    id: "",
+    text: "Green Lantern",
+    imageId: greenLantern,
+    categoryId: "supes",
+    hint: "ring",
+  },
+  {
+    id: "",
+    text: "Wolverine",
+    imageId: wolverine,
+    categoryId: "supes",
+    hint: "claws",
+  },
+  {
+    id: "",
+    text: "Deadpool",
+    imageId: deadpool,
+    categoryId: "supes",
+    hint: "funny",
+  },
+  {
+    id: "",
+    text: "Ant-Man",
+    imageId: antMan,
+    categoryId: "supes",
+    hint: "small",
+  },
+  {
+    id: "",
+    text: "Captain Marvel",
+    imageId: captainMarvel,
+    categoryId: "supes",
+    hint: "cosmic",
+  },
+  {
+    id: "",
+    text: "Black Widow",
+    imageId: blackWidow,
+    categoryId: "supes",
+    hint: "spy",
+  },
+  {
+    id: "",
+    text: "Shazam",
+    imageId: shazam,
+    categoryId: "supes",
+    hint: "lightning",
+  },
+  {
+    id: "",
+    text: "Loki",
+    imageId: loki,
+    categoryId: "supes",
+    hint: "trickster",
+  },
 ];
 const nature = [
-  { id: "", text: "တောင်", imageId: null, categoryId: "nature", hint: "မြင့်" },
-  { id: "", text: "မြစ်", imageId: null, categoryId: "nature", hint: "ရေ" },
-  { id: "", text: "သစ်တော", imageId: null, categoryId: "nature", hint: "အပင်" },
+  {
+    id: "",
+    text: "တောင်",
+    imageId: mountain,
+    categoryId: "nature",
+    hint: "မြင့်",
+  },
+  { id: "", text: "မြစ်", imageId: river, categoryId: "nature", hint: "ရေ" },
+  {
+    id: "",
+    text: "သစ်တော",
+    imageId: forest,
+    categoryId: "nature",
+    hint: "အပင်",
+  },
   {
     id: "",
     text: "ပင်လယ်",
-    imageId: null,
+    imageId: sea,
     categoryId: "nature",
     hint: "ကြီးမား",
   },
@@ -487,49 +905,48 @@ const histories = [
   {
     id: "",
     text: "ဘုရင့်နောင်",
-    imageId: null,
+    imageId: bayinnaung,
     categoryId: "histories",
     hint: "ဘုရင်",
   },
   {
     id: "",
     text: "ပုဂံ",
-    imageId: null,
+    imageId: bagan,
     categoryId: "histories",
     hint: "ရှေးဟောင်း",
   },
   {
     id: "",
-    text: "တော်လှန်ရေး",
-    imageId: null,
+    text: "ကျန်စစ်သား",
+    imageId: kyansitthar,
     categoryId: "histories",
-    hint: "ပြောင်းလဲ",
-  },
-  {
-    id: "",
-    text: "အင်္ဂလိပ်ခေတ်",
-    imageId: null,
-    categoryId: "histories",
-    hint: "ကိုလိုနီ",
+    hint: "ဘုရင်",
   },
 ];
 const sports = [
-  { id: "", text: "ဘောလုံး", imageId: null, categoryId: "sports", hint: "ကန်" },
+  {
+    id: "",
+    text: "ဘောလုံး",
+    imageId: football,
+    categoryId: "sports",
+    hint: "ကန်",
+  },
   {
     id: "",
     text: "ဘတ်စကက်ဘော",
-    imageId: null,
+    imageId: basketball,
     categoryId: "sports",
     hint: "ခုန်",
   },
   {
     id: "",
-    text: "တင်နစ်",
-    imageId: null,
+    text: "တင်းနစ်",
+    imageId: tennis,
     categoryId: "sports",
     hint: "ရိုက်",
   },
-  { id: "", text: "ပြေး", imageId: null, categoryId: "sports", hint: "မြန်" },
+  { id: "", text: "ပြေး", imageId: run, categoryId: "sports", hint: "မြန်" },
 ];
 
 const rawWords: Word[] = [
