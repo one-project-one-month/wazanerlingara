@@ -13,6 +13,7 @@ import avatar8 from "@/assets/players/Avatars/Avatar8.svg";
 import avatar9 from "@/assets/players/Avatars/Avatar9.svg";
 import imposter from "@/assets/players/ImposterPic.svg";
 //for category images
+import all from "@/assets/categories/all.png";
 import animals from "@/assets/categories/animals.svg";
 import countries from "@/assets/categories/countries.svg";
 import foods from "@/assets/categories/foods.svg";
@@ -40,7 +41,6 @@ export const GAME_SFX_FILES = {
   backgroundMusic,
 };
 
-
 export const GAME_IMAGE_ASSETS: Image[] = [
   { id: "onboarding-1", url: onboarding1, name: "Onboarding Illustration 1" },
   { id: "onboarding-2", url: onboarding2, name: "Onboarding Illustration 2" },
@@ -56,6 +56,7 @@ export const GAME_IMAGE_ASSETS: Image[] = [
   { id: "9", url: avatar9, name: "Pic 9" },
   { id: "10", url: avatar10, name: "Pic 10" },
   { id: "imposter", url: imposter, name: "Imposter Pic" },
+  { id: "all", url: all, name: "အားလုံး" },
   { id: "animals", url: animals, name: "တိရစ္ဆာန်များ" },
   { id: "foods", url: foods, name: "အစားအသောက်" },
   { id: "locations", url: locations, name: "နေရာဒေသ" },
@@ -69,5 +70,3 @@ export const GAME_IMAGE_ASSETS: Image[] = [
   { id: "histories", url: histories, name: "သမိုင်း" },
   { id: "sports", url: sports, name: "အားကစား" },
 ];
-
-
