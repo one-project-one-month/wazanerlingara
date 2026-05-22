@@ -14,7 +14,8 @@ export default function CategoryCard({
   isSelected,
   onSelect,
 }: CategoryCardProps) {
-  const { getImageUrl } = useGameImageStore()
+  const { getImageUrl } = useGameImageStore();
+
   return (
     <button
       type="button"
@@ -28,7 +29,7 @@ export default function CategoryCard({
       )}
     >
       <img
-        src={getImageUrl(category.imageId ?? "1")}
+        src={getImageUrl(category.imageId ?? "all")}
         alt={category.id}
         className="size-30 w-full md:size-36"
       />

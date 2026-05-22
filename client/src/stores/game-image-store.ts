@@ -26,6 +26,7 @@ export const useGameImageStore = create<GameImageStore>((set, get) => ({
     }
 
     const nextById = Object.fromEntries(images.map((img) => [img.id, img]));
+
     const { isLoaded, imagesById } = get();
     if (
       isLoaded &&
@@ -61,5 +62,7 @@ export const useGameImageStore = create<GameImageStore>((set, get) => ({
 
   getImage: (id) => get().imagesById[id],
 
-  getImageUrl: (id) => get().imagesById[id]?.url,
+  getImageUrl: (id) => {
+    return get().imagesById[id]?.url;
+  },
 }));

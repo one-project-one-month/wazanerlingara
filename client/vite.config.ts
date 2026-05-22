@@ -12,7 +12,6 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       includeAssets: ["logo.svg"],
-
       manifest: {
         name: "Wazanalingara",
         id: "/",

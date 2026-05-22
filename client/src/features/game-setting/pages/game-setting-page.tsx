@@ -26,13 +26,15 @@ const GameSetting = () => {
       previousQuestionId,
     } = config;
 
-    const wordsByCategory = words.filter(
-      (word) => word.categoryId === category.id,
-    );
+    const wordsByCategory =
+      category.id !== "all"
+        ? words.filter((word) => word.categoryId === category.id)
+        : words;
 
-    const questionsByCategory = questions.filter(
-      (q) => q.categoryId === category.id,
-    );
+    const questionsByCategory =
+      category.id !== "all"
+        ? questions.filter((q) => q.categoryId === category.id)
+        : questions;
 
     const randomWord = getRandomItemExcluding(
       wordsByCategory,

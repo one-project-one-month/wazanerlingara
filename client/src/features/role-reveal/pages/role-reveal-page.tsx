@@ -16,6 +16,8 @@ import { getGameConfig } from "@/features/role-reveal/utils/get-game-config.ts";
 import { shuffleArray } from "@/lib/shuffle.ts";
 import { useGameConfigStore } from "@/stores/game-config-store";
 
+import questionImage from "@/assets/images/ImagesForQuestions/Question.png";
+
 const shuffledImages = shuffleArray([
   "1",
   "2",
@@ -82,7 +84,8 @@ export default function RoleRevealPage() {
     typedConfig.gameMode === "word"
       ? typedConfig.word?.text
       : typedConfig.question?.text;
-  const revealImageId = typedConfig.word?.imageId;
+  const revealImageId =
+    typedConfig.gameMode === "word" ? typedConfig.word?.imageId : questionImage;
   const hint =
     typedConfig.gameMode === "word"
       ? typedConfig.word?.hint
@@ -115,7 +118,7 @@ export default function RoleRevealPage() {
         hint={hint ?? ""}
       />
 
-      <InstructionText confirmed={confirmed} />
+      <InstructionText confirmed={confirmed} revealed={revealed} />
 
       <BottomSection
         currentPlayerIndex={currentPlayerIndex}

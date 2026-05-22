@@ -8,7 +8,7 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 export default function MainLayout() {
   const location = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const loadSfx = useGameSfxStore((s) => s.load);
   const loadImages = useGameImageStore((s) => s.load);
   const imagesLoaded = useGameImageStore((s) => s.isLoaded);

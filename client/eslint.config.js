@@ -6,18 +6,22 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export default defineConfig([
-	globalIgnores(["dist"]),
-	{
-		files: ["**/*.{ts,tsx}"],
-		extends: [
-			js.configs.recommended,
-			tseslint.configs.recommended,
-			reactHooks.configs.flat.recommended,
-			reactRefresh.configs.vite,
-		],
-		languageOptions: {
-			ecmaVersion: 2020,
-			globals: globals.browser,
-		},
-	},
+  // ✅ correct ignore place
+  globalIgnores(["dist", "dev-dist", "sw.js", "**/workbox-*.js"]),
+
+  {
+    files: ["**/*.{ts,tsx}"],
+
+    extends: [
+      js.configs.recommended,
+      tseslint.configs.recommended,
+      reactHooks.configs.flat.recommended,
+      reactRefresh.configs.vite,
+    ],
+
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+    },
+  },
 ]);

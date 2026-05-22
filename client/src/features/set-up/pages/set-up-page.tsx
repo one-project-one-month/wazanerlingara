@@ -10,6 +10,7 @@ import { useAppNavigation } from "@/lib/use-app-navigation";
 import { useGameConfigStore } from "@/stores/game-config-store";
 import { useNavigate } from "react-router-dom";
 import SetupPageSetting from "../components/setup-page-settings";
+//import InstallButton from "@/components/core/intstall-button.tsx";
 export default function SetupPage() {
   const { setGameConfig } = useGameConfigStore();
   const navigate = useNavigate();
@@ -89,7 +90,7 @@ export default function SetupPage() {
                 <span>စကစားကြမယ်</span>
               </span>
             </Button>
-
+            {/*<InstallButton />*/}
             <Button
               variant="outline"
               className="h-18 flex items-center justify-center text-2xl tracking-wide"
