@@ -31,7 +31,6 @@ const GameSetting = () => {
         ? words.filter((word) => word.categoryId === category.id)
         : words;
 
-    console.log();
     console.log("wordsByCategory", wordsByCategory);
 
     const questionsByCategory =
