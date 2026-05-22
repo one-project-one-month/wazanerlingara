@@ -117,7 +117,7 @@ export default function RoleRevealPage() {
         hint={hint ?? ""}
       />
 
-      <InstructionText confirmed={confirmed} />
+      <InstructionText revealed={revealed} confirmed={confirmed} />
 
       <BottomSection
         currentPlayerIndex={currentPlayerIndex}
