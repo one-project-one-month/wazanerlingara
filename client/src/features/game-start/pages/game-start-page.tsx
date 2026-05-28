@@ -13,7 +13,7 @@ import { createPlayerInput } from "../utils/create-player-input";
 type Props = ReturnType<typeof createPlayerInput>;
 
 const MIN_PLAYERS = 3;
-const MAX_PLAYERS = 10;
+const MAX_PLAYERS = 15;
 
 export default function GameStartPage() {
   const { config, updateGameConfig } = useGameConfigStore();
